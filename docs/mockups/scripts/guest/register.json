@@ -21,10 +21,13 @@
                     "typeID": "TextInput",
                     "zOrder": "1",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "134",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "294"
+                    "y": "294",
+                    "properties": {
+                        "text": "john.doe@gmail.com"
+                    }
                 },
                 {
                     "ID": "4",
@@ -43,10 +46,13 @@
                     "typeID": "TextInput",
                     "zOrder": "3",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "93",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "380"
+                    "y": "380",
+                    "properties": {
+                        "text": "*************"
+                    }
                 },
                 {
                     "ID": "6",
@@ -92,10 +98,13 @@
                     "typeID": "TextInput",
                     "zOrder": "7",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "67",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "214"
+                    "y": "214",
+                    "properties": {
+                        "text": "johndoe7"
+                    }
                 },
                 {
                     "ID": "11",
@@ -114,10 +123,13 @@
                     "typeID": "TextInput",
                     "zOrder": "9",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "93",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "454"
+                    "y": "454",
+                    "properties": {
+                        "text": "*************"
+                    }
                 },
                 {
                     "ID": "13",

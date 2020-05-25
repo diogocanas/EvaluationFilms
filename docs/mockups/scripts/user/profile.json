@@ -21,10 +21,13 @@
                     "typeID": "TextInput",
                     "zOrder": "1",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "38",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "260"
+                    "y": "260",
+                    "properties": {
+                        "text": "Doe"
+                    }
                 },
                 {
                     "ID": "4",
@@ -43,10 +46,13 @@
                     "typeID": "TextInput",
                     "zOrder": "3",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "42",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "329"
+                    "y": "329",
+                    "properties": {
+                        "text": "John"
+                    }
                 },
                 {
                     "ID": "6",
@@ -92,10 +98,13 @@
                     "typeID": "TextInput",
                     "zOrder": "7",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "67",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "198"
+                    "y": "198",
+                    "properties": {
+                        "text": "johndoe7"
+                    }
                 },
                 {
                     "ID": "11",
@@ -142,7 +151,7 @@
                     "x": "391",
                     "y": "441",
                     "properties": {
-                        "text": "Médias à ajouter"
+                        "text": "Avatar"
                     }
                 },
                 {

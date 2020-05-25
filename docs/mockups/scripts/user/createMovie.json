@@ -13,7 +13,7 @@
                     "x": "244",
                     "y": "60",
                     "properties": {
-                        "text": "Page de création d'un film\nhttps://createMovie.php\n"
+                        "text": "Page de création d'un film\nhttps://createMovie.php"
                     }
                 },
                 {
@@ -36,10 +36,13 @@
                     "typeID": "TextInput",
                     "zOrder": "2",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "100",
                     "measuredH": "27",
                     "x": "463",
-                    "y": "261"
+                    "y": "261",
+                    "properties": {
+                        "text": "Les Affranchis"
+                    }
                 },
                 {
                     "ID": "4",
@@ -60,7 +63,7 @@
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "462",
-                    "y": "297",
+                    "y": "294",
                     "properties": {
                         "text": "Description du film"
                     }
@@ -82,11 +85,14 @@
                     "typeID": "TextArea",
                     "zOrder": "6",
                     "w": "555",
-                    "h": "50",
+                    "h": "59",
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "461",
-                    "y": "318"
+                    "y": "315",
+                    "properties": {
+                        "text": "Basé sur le livre Wiseguy du journaliste Nicholas Pileggi publié en 1986, qui raconte l'histoire vraie de Henry Hill, un gangster new-yorkais, le film retrace la montée et la chute d'Henry Hill (interprété par Ray Liotta) et deux de ses amis."
+                    }
                 },
                 {
                     "ID": "13",
@@ -396,6 +402,30 @@
                         "text": "NAVBAR",
                         "align": "center",
                         "bold": "true"
+                    }
+                },
+                {
+                    "ID": "40",
+                    "typeID": "Link",
+                    "zOrder": "32",
+                    "measuredW": "335",
+                    "measuredH": "21",
+                    "x": "473",
+                    "y": "726",
+                    "properties": {
+                        "text": "http://www.allocine.fr/film/fichefilm_gen_cfilm=5969.html"
+                    }
+                },
+                {
+                    "ID": "41",
+                    "typeID": "Link",
+                    "zOrder": "33",
+                    "measuredW": "355",
+                    "measuredH": "21",
+                    "x": "473",
+                    "y": "753",
+                    "properties": {
+                        "text": "https://www.imdb.com/title/tt0099685/?ref_=nv_sr_srsg_0"
                     }
                 }
             ]

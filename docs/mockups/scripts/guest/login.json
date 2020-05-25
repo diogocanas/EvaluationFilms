@@ -21,10 +21,13 @@
                     "typeID": "TextInput",
                     "zOrder": "1",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "134",
                     "measuredH": "27",
                     "x": "388",
-                    "y": "231"
+                    "y": "231",
+                    "properties": {
+                        "text": "john.doe@gmail.com"
+                    }
                 },
                 {
                     "ID": "4",
@@ -43,10 +46,13 @@
                     "typeID": "TextInput",
                     "zOrder": "3",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "112",
                     "measuredH": "27",
                     "x": "388",
-                    "y": "311"
+                    "y": "311",
+                    "properties": {
+                        "text": "****************"
+                    }
                 },
                 {
                     "ID": "6",
