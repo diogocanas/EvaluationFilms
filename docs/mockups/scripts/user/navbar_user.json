@@ -1,0 +1,33 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "MenuBar",
+                    "zOrder": "0",
+                    "w": "956",
+                    "h": "32",
+                    "measuredW": "407",
+                    "measuredH": "32",
+                    "x": "250",
+                    "y": "133",
+                    "properties": {
+                        "text": "Evaluation Films, Accueil, Gestion des films, Déconnexion"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "navbar_user.php",
+            "order": 938471.4037425623,
+            "parentID": null
+        },
+        "resourceID": "95ADE121-A5CB-4236-8DC9-1F466D41F8A5",
+        "mockupH": "32",
+        "mockupW": "956",
+        "measuredW": "1206",
+        "measuredH": "165",
+        "version": "1.0"
+    }
+}

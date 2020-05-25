@@ -1,0 +1,33 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "2",
+                    "typeID": "MenuBar",
+                    "zOrder": "0",
+                    "w": "956",
+                    "h": "32",
+                    "measuredW": "271",
+                    "measuredH": "32",
+                    "x": "221",
+                    "y": "165",
+                    "properties": {
+                        "text": "Evaluation Films, Accueil, Connexion"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "navbar.php",
+            "order": 472632.1385957356,
+            "parentID": null
+        },
+        "resourceID": "760337E6-A7EC-46CF-9291-9B31DB46EA5B",
+        "mockupH": "32",
+        "mockupW": "956",
+        "measuredW": "1177",
+        "measuredH": "197",
+        "version": "1.0"
+    }
+}

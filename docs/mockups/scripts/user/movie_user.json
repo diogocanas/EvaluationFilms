@@ -1,0 +1,208 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "619",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "210",
+                    "y": "60",
+                    "properties": {
+                        "text": "Page d'un film\nhttps://movie.php\n"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextArea",
+                    "zOrder": "1",
+                    "w": "968",
+                    "h": "33",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "210",
+                    "y": "618",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "Image",
+                    "zOrder": "2",
+                    "w": "132",
+                    "h": "192",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "281",
+                    "y": "196"
+                },
+                {
+                    "ID": "4",
+                    "typeID": "Paragraph",
+                    "zOrder": "3",
+                    "w": "353",
+                    "h": "167",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "438",
+                    "y": "229",
+                    "properties": {
+                        "text": "Genre : Policier\nRéalisateur : Martin Scorsese\nActeurs principaux : Robert De Niro, Ray Liotta, Joe Pesci\nSociété de production : Warner Bros.\nPays d'origine : USA\nAnnée de sortie : 1990\nDurée du film : 2 heures et 25 minutes\n\nNote du film : 9/10\nNombre de votes : 250 votes\n"
+                    }
+                },
+                {
+                    "ID": "5",
+                    "typeID": "Title",
+                    "zOrder": "4",
+                    "measuredW": "158",
+                    "measuredH": "28",
+                    "x": "438",
+                    "y": "196",
+                    "properties": {
+                        "size": "24",
+                        "text": "Les Affranchis"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "BlockOfText",
+                    "zOrder": "5",
+                    "w": "432",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "281",
+                    "y": "422"
+                },
+                {
+                    "ID": "7",
+                    "typeID": "Title",
+                    "zOrder": "6",
+                    "measuredW": "103",
+                    "measuredH": "24",
+                    "x": "281",
+                    "y": "396",
+                    "properties": {
+                        "text": "Description",
+                        "size": "20"
+                    }
+                },
+                {
+                    "ID": "8",
+                    "typeID": "Title",
+                    "zOrder": "7",
+                    "measuredW": "170",
+                    "measuredH": "28",
+                    "x": "810",
+                    "y": "196",
+                    "properties": {
+                        "size": "24",
+                        "text": "Liens et vidéos"
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "Link",
+                    "zOrder": "8",
+                    "measuredW": "335",
+                    "measuredH": "21",
+                    "x": "810",
+                    "y": "229",
+                    "properties": {
+                        "text": "http://www.allocine.fr/film/fichefilm_gen_cfilm=5969.html"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Link",
+                    "zOrder": "9",
+                    "measuredW": "355",
+                    "measuredH": "21",
+                    "x": "810",
+                    "y": "250",
+                    "properties": {
+                        "text": "https://www.imdb.com/title/tt0099685/?ref_=nv_sr_srsg_0"
+                    }
+                },
+                {
+                    "ID": "12",
+                    "typeID": "Image",
+                    "zOrder": "10",
+                    "w": "355",
+                    "h": "117",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "810",
+                    "y": "289"
+                },
+                {
+                    "ID": "13",
+                    "typeID": "Label",
+                    "zOrder": "11",
+                    "measuredW": "140",
+                    "measuredH": "21",
+                    "x": "281",
+                    "y": "517",
+                    "properties": {
+                        "text": "Noter le film (de 0 à 10)"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "NumericStepper",
+                    "zOrder": "12",
+                    "measuredW": "47",
+                    "measuredH": "24",
+                    "x": "426",
+                    "y": "515",
+                    "properties": {
+                        "text": "10"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Button",
+                    "zOrder": "13",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "491",
+                    "y": "513",
+                    "properties": {
+                        "text": "Noter"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextInput",
+                    "zOrder": "14",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "210",
+                    "y": "133",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "movie_user.php",
+            "order": 938454.522493119,
+            "parentID": null
+        },
+        "resourceID": "6571A31B-8B51-47CE-AA7D-B88115D9DF40",
+        "mockupH": "619",
+        "mockupW": "968",
+        "measuredW": "1178",
+        "measuredH": "679",
+        "version": "1.0"
+    }
+}

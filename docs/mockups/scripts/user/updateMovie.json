@@ -1,0 +1,476 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "939",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "244",
+                    "y": "60",
+                    "properties": {
+                        "text": "Page de modification et de suppression d'un film\nhttps://updateMovie.php\n"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextArea",
+                    "zOrder": "1",
+                    "w": "968",
+                    "h": "33",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "244",
+                    "y": "940",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "463",
+                    "y": "261"
+                },
+                {
+                    "ID": "4",
+                    "typeID": "Paragraph",
+                    "zOrder": "3",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "463",
+                    "y": "235",
+                    "properties": {
+                        "text": "Titre du film"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Paragraph",
+                    "zOrder": "4",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "462",
+                    "y": "297",
+                    "properties": {
+                        "text": "Description du film"
+                    }
+                },
+                {
+                    "ID": "9",
+                    "typeID": "Paragraph",
+                    "zOrder": "5",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "463",
+                    "y": "181",
+                    "properties": {
+                        "text": "Genre"
+                    }
+                },
+                {
+                    "ID": "12",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "555",
+                    "h": "53",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "461",
+                    "y": "318"
+                },
+                {
+                    "ID": "13",
+                    "typeID": "Paragraph",
+                    "zOrder": "7",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "463",
+                    "y": "377",
+                    "properties": {
+                        "text": "Acteurs principaux"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "ComboBox",
+                    "zOrder": "8",
+                    "w": "139",
+                    "measuredW": "140",
+                    "measuredH": "58",
+                    "x": "462",
+                    "y": "405",
+                    "properties": {
+                        "text": "Leonardo DiCaprio\nAl Pacino"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "Paragraph",
+                    "zOrder": "9",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "464",
+                    "properties": {
+                        "text": "Réalisateur"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "ComboBox",
+                    "zOrder": "10",
+                    "w": "139",
+                    "measuredW": "127",
+                    "measuredH": "58",
+                    "x": "463",
+                    "y": "492",
+                    "properties": {
+                        "text": "Alfred Hitchcock\nMartin Scorsese"
+                    }
+                },
+                {
+                    "ID": "19",
+                    "typeID": "Paragraph",
+                    "zOrder": "11",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "561",
+                    "properties": {
+                        "text": "Société de production"
+                    }
+                },
+                {
+                    "ID": "20",
+                    "typeID": "ComboBox",
+                    "zOrder": "12",
+                    "w": "139",
+                    "measuredW": "106",
+                    "measuredH": "27",
+                    "x": "464",
+                    "y": "587",
+                    "properties": {
+                        "text": "Warner Bros."
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "Paragraph",
+                    "zOrder": "13",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "669",
+                    "y": "561",
+                    "properties": {
+                        "text": "Pays d'origine"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "ComboBox",
+                    "zOrder": "14",
+                    "w": "139",
+                    "measuredW": "71",
+                    "measuredH": "27",
+                    "x": "669",
+                    "y": "587",
+                    "properties": {
+                        "text": "France"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "ComboBox",
+                    "zOrder": "15",
+                    "w": "139",
+                    "measuredW": "140",
+                    "measuredH": "58",
+                    "x": "669",
+                    "y": "405",
+                    "properties": {
+                        "text": "Leonardo DiCaprio\nAl Pacino"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "ComboBox",
+                    "zOrder": "16",
+                    "w": "139",
+                    "measuredW": "140",
+                    "measuredH": "58",
+                    "x": "877",
+                    "y": "405",
+                    "properties": {
+                        "text": "Leonardo DiCaprio\nAl Pacino"
+                    }
+                },
+                {
+                    "ID": "25",
+                    "typeID": "NumericStepper",
+                    "zOrder": "17",
+                    "w": "139",
+                    "measuredW": "66",
+                    "measuredH": "24",
+                    "x": "464",
+                    "y": "658",
+                    "properties": {
+                        "text": "2020"
+                    }
+                },
+                {
+                    "ID": "26",
+                    "typeID": "Paragraph",
+                    "zOrder": "18",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "630",
+                    "properties": {
+                        "text": "Année de sortie"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "NumericStepper",
+                    "zOrder": "19",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "669",
+                    "y": "658",
+                    "properties": {
+                        "text": "2"
+                    }
+                },
+                {
+                    "ID": "28",
+                    "typeID": "NumericStepper",
+                    "zOrder": "20",
+                    "measuredW": "41",
+                    "measuredH": "24",
+                    "x": "778",
+                    "y": "658"
+                },
+                {
+                    "ID": "29",
+                    "typeID": "Paragraph",
+                    "zOrder": "21",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "669",
+                    "y": "630",
+                    "properties": {
+                        "text": "Durée du film"
+                    }
+                },
+                {
+                    "ID": "30",
+                    "typeID": "Paragraph",
+                    "zOrder": "22",
+                    "w": "65",
+                    "h": "24",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "713",
+                    "y": "658",
+                    "properties": {
+                        "text": "heures et "
+                    }
+                },
+                {
+                    "ID": "31",
+                    "typeID": "Paragraph",
+                    "zOrder": "23",
+                    "w": "65",
+                    "h": "24",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "824",
+                    "y": "658",
+                    "properties": {
+                        "text": "minutes"
+                    }
+                },
+                {
+                    "ID": "32",
+                    "typeID": "TextInput",
+                    "zOrder": "24",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "462",
+                    "y": "723"
+                },
+                {
+                    "ID": "33",
+                    "typeID": "Paragraph",
+                    "zOrder": "25",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "697",
+                    "properties": {
+                        "text": "Liens (maximum 2)"
+                    }
+                },
+                {
+                    "ID": "34",
+                    "typeID": "TextInput",
+                    "zOrder": "26",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "462",
+                    "y": "750"
+                },
+                {
+                    "ID": "35",
+                    "typeID": "Button",
+                    "zOrder": "27",
+                    "w": "172",
+                    "h": "27",
+                    "measuredW": "123",
+                    "measuredH": "27",
+                    "x": "462",
+                    "y": "820",
+                    "properties": {
+                        "text": "Choisir un fichier"
+                    }
+                },
+                {
+                    "ID": "36",
+                    "typeID": "Paragraph",
+                    "zOrder": "28",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "794",
+                    "properties": {
+                        "text": "Médias à ajouter"
+                    }
+                },
+                {
+                    "ID": "37",
+                    "typeID": "Button",
+                    "zOrder": "29",
+                    "measuredW": "110",
+                    "measuredH": "27",
+                    "x": "778",
+                    "y": "874",
+                    "properties": {
+                        "text": "Modifier le film"
+                    }
+                },
+                {
+                    "ID": "38",
+                    "typeID": "Button",
+                    "zOrder": "30",
+                    "measuredW": "124",
+                    "measuredH": "27",
+                    "x": "892",
+                    "y": "874",
+                    "properties": {
+                        "text": "Supprimer le film"
+                    }
+                },
+                {
+                    "ID": "39",
+                    "typeID": "ComboBox",
+                    "zOrder": "31",
+                    "w": "139",
+                    "measuredW": "73",
+                    "measuredH": "27",
+                    "x": "464",
+                    "y": "200",
+                    "properties": {
+                        "text": "Policier"
+                    }
+                },
+                {
+                    "ID": "40",
+                    "typeID": "Paragraph",
+                    "zOrder": "32",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "473",
+                    "y": "264",
+                    "properties": {
+                        "text": "Les Affranchis"
+                    }
+                },
+                {
+                    "ID": "41",
+                    "typeID": "Paragraph",
+                    "zOrder": "33",
+                    "w": "532",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "473",
+                    "y": "318",
+                    "properties": {
+                        "text": "Basé sur le livre Wiseguy du journaliste Nicholas Pileggi publié en 1986, qui raconte l'histoire vraie de Henry Hill, un gangster new-yorkais, le film retrace la montée et la chute d'Henry Hill (interprété par Ray Liotta) et deux de ses amis."
+                    }
+                },
+                {
+                    "ID": "42",
+                    "typeID": "Link",
+                    "zOrder": "34",
+                    "measuredW": "335",
+                    "measuredH": "21",
+                    "x": "473",
+                    "y": "726",
+                    "properties": {
+                        "text": "http://www.allocine.fr/film/fichefilm_gen_cfilm=5969.html"
+                    }
+                },
+                {
+                    "ID": "44",
+                    "typeID": "Link",
+                    "zOrder": "35",
+                    "measuredW": "355",
+                    "measuredH": "21",
+                    "x": "473",
+                    "y": "753",
+                    "properties": {
+                        "text": "https://www.imdb.com/title/tt0099685/?ref_=nv_sr_srsg_0"
+                    }
+                },
+                {
+                    "ID": "45",
+                    "typeID": "TextInput",
+                    "zOrder": "36",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "244",
+                    "y": "132",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "updateMovie.php",
+            "order": 938466.5898113953,
+            "parentID": null
+        },
+        "resourceID": "A68EC349-4DED-4E54-A6E0-7F7E39D9234E",
+        "mockupH": "939",
+        "mockupW": "968",
+        "measuredW": "1212",
+        "measuredH": "999",
+        "version": "1.0"
+    }
+}

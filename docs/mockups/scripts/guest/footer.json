@@ -1,0 +1,34 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "TextArea",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "33",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "215",
+                    "y": "237",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "footer.php",
+            "order": 521305.4677772826,
+            "parentID": null
+        },
+        "resourceID": "3E894D56-7BB7-45F4-9CF2-6D4D57DDA8EF",
+        "mockupH": "33",
+        "mockupW": "968",
+        "measuredW": "1183",
+        "measuredH": "270",
+        "version": "1.0"
+    }
+}

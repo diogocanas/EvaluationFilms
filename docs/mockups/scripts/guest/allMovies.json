@@ -1,0 +1,386 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "619",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "210",
+                    "y": "58",
+                    "properties": {
+                        "text": "Page des films\nhttps://allMovies.php\n"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextArea",
+                    "zOrder": "1",
+                    "w": "968",
+                    "h": "34",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "210",
+                    "y": "616",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "Image",
+                    "zOrder": "2",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "336",
+                    "y": "230"
+                },
+                {
+                    "ID": "5",
+                    "typeID": "TextArea",
+                    "zOrder": "3",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "336",
+                    "y": "317",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Image",
+                    "zOrder": "4",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "636",
+                    "y": "230"
+                },
+                {
+                    "ID": "8",
+                    "typeID": "Image",
+                    "zOrder": "5",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "935",
+                    "y": "230"
+                },
+                {
+                    "ID": "10",
+                    "typeID": "Image",
+                    "zOrder": "6",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "336",
+                    "y": "411"
+                },
+                {
+                    "ID": "12",
+                    "typeID": "Image",
+                    "zOrder": "7",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "636",
+                    "y": "411"
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Image",
+                    "zOrder": "8",
+                    "w": "116",
+                    "h": "87",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "935",
+                    "y": "411"
+                },
+                {
+                    "ID": "16",
+                    "typeID": "TextArea",
+                    "zOrder": "9",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "636",
+                    "y": "317",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "10",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "935",
+                    "y": "317",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "TextArea",
+                    "zOrder": "11",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "336",
+                    "y": "498",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "19",
+                    "typeID": "TextArea",
+                    "zOrder": "12",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "636",
+                    "y": "498",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "20",
+                    "typeID": "TextArea",
+                    "zOrder": "13",
+                    "w": "116",
+                    "h": "72",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "935",
+                    "y": "498",
+                    "properties": {
+                        "text": "Star Wars\n\nNote : 9/10\n230 votes\n"
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "TextInput",
+                    "zOrder": "14",
+                    "w": "96",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "291",
+                    "y": "170",
+                    "properties": {
+                        "text": "DiCaprio"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "Label",
+                    "zOrder": "15",
+                    "measuredW": "59",
+                    "measuredH": "21",
+                    "x": "226",
+                    "y": "173",
+                    "properties": {
+                        "text": "Mots-clés"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "36",
+                    "measuredH": "21",
+                    "x": "396",
+                    "y": "176",
+                    "properties": {
+                        "text": "Genre"
+                    }
+                },
+                {
+                    "ID": "26",
+                    "typeID": "Label",
+                    "zOrder": "17",
+                    "measuredW": "120",
+                    "measuredH": "21",
+                    "x": "564",
+                    "y": "173",
+                    "properties": {
+                        "text": "Année de sortie  De"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "TextInput",
+                    "zOrder": "18",
+                    "w": "49",
+                    "measuredW": "46",
+                    "measuredH": "27",
+                    "x": "1054",
+                    "y": "170",
+                    "properties": {
+                        "text": "01:32"
+                    }
+                },
+                {
+                    "ID": "28",
+                    "typeID": "Label",
+                    "zOrder": "19",
+                    "measuredW": "58",
+                    "measuredH": "21",
+                    "x": "992",
+                    "y": "173",
+                    "properties": {
+                        "text": "Durée De"
+                    }
+                },
+                {
+                    "ID": "30",
+                    "typeID": "Label",
+                    "zOrder": "20",
+                    "measuredW": "28",
+                    "measuredH": "21",
+                    "x": "844",
+                    "y": "173",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "31",
+                    "typeID": "ComboBox",
+                    "zOrder": "21",
+                    "w": "103",
+                    "measuredW": "73",
+                    "measuredH": "58",
+                    "x": "447",
+                    "y": "170",
+                    "properties": {
+                        "text": "Policier\nDrame"
+                    }
+                },
+                {
+                    "ID": "32",
+                    "typeID": "Label",
+                    "zOrder": "22",
+                    "measuredW": "8",
+                    "measuredH": "21",
+                    "x": "752",
+                    "y": "173",
+                    "properties": {
+                        "text": "à"
+                    }
+                },
+                {
+                    "ID": "34",
+                    "typeID": "NumericStepper",
+                    "zOrder": "23",
+                    "measuredW": "63",
+                    "measuredH": "24",
+                    "x": "686",
+                    "y": "172",
+                    "properties": {
+                        "text": "2010"
+                    }
+                },
+                {
+                    "ID": "35",
+                    "typeID": "NumericStepper",
+                    "zOrder": "24",
+                    "measuredW": "63",
+                    "measuredH": "24",
+                    "x": "765",
+                    "y": "172",
+                    "properties": {
+                        "text": "2014"
+                    }
+                },
+                {
+                    "ID": "36",
+                    "typeID": "ComboBox",
+                    "zOrder": "25",
+                    "w": "103",
+                    "measuredW": "71",
+                    "measuredH": "58",
+                    "x": "878",
+                    "y": "170",
+                    "properties": {
+                        "text": "France\nUSA"
+                    }
+                },
+                {
+                    "ID": "37",
+                    "typeID": "Label",
+                    "zOrder": "26",
+                    "measuredW": "8",
+                    "measuredH": "21",
+                    "x": "1105",
+                    "y": "173",
+                    "properties": {
+                        "text": "à"
+                    }
+                },
+                {
+                    "ID": "38",
+                    "typeID": "TextInput",
+                    "zOrder": "27",
+                    "w": "49",
+                    "measuredW": "46",
+                    "measuredH": "27",
+                    "x": "1116",
+                    "y": "170",
+                    "properties": {
+                        "text": "01:47"
+                    }
+                },
+                {
+                    "ID": "39",
+                    "typeID": "TextInput",
+                    "zOrder": "28",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "210",
+                    "y": "133",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "allMovies.php",
+            "order": 439175.0631497222,
+            "parentID": null
+        },
+        "resourceID": "742A1D98-B0CD-4059-B63E-8494F2E70397",
+        "mockupH": "619",
+        "mockupW": "968",
+        "measuredW": "1178",
+        "measuredH": "677",
+        "version": "1.0"
+    }
+}

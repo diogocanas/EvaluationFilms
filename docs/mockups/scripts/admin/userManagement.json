@@ -1,0 +1,77 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "619",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "210",
+                    "y": "58",
+                    "properties": {
+                        "text": "Page de gestion des utilisateurs\nhttps://userManagement.php\n"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextArea",
+                    "zOrder": "1",
+                    "w": "968",
+                    "h": "34",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "210",
+                    "y": "616",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "42",
+                    "typeID": "DataGrid",
+                    "zOrder": "2",
+                    "w": "762",
+                    "h": "372",
+                    "measuredW": "273",
+                    "measuredH": "81",
+                    "x": "313",
+                    "y": "200",
+                    "properties": {
+                        "text": "Nickname, Email, Bloquer\nJohn, john.doe@gmail.com, [x]\nDiogo, diogo.cnslm@eduge.ch, []"
+                    }
+                },
+                {
+                    "ID": "43",
+                    "typeID": "TextInput",
+                    "zOrder": "3",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "210",
+                    "y": "133",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "userManagement.php",
+            "order": 426636.60749605467,
+            "parentID": null
+        },
+        "resourceID": "3DC330E8-40E8-4F80-9570-E2A9E90E19C1",
+        "mockupH": "619",
+        "mockupW": "968",
+        "measuredW": "1178",
+        "measuredH": "677",
+        "version": "1.0"
+    }
+}

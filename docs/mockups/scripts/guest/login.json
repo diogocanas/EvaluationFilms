@@ -1,0 +1,131 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "619",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "210",
+                    "y": "58",
+                    "properties": {
+                        "text": "Page de connexion\nhttps://login.php\n"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "388",
+                    "y": "231"
+                },
+                {
+                    "ID": "4",
+                    "typeID": "Paragraph",
+                    "zOrder": "2",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "388",
+                    "y": "205",
+                    "properties": {
+                        "text": "Adresse mail"
+                    }
+                },
+                {
+                    "ID": "5",
+                    "typeID": "TextInput",
+                    "zOrder": "3",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "388",
+                    "y": "311"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Paragraph",
+                    "zOrder": "4",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "388",
+                    "y": "285",
+                    "properties": {
+                        "text": "Mot de passe"
+                    }
+                },
+                {
+                    "ID": "7",
+                    "typeID": "Button",
+                    "zOrder": "5",
+                    "measuredW": "105",
+                    "measuredH": "27",
+                    "x": "388",
+                    "y": "365",
+                    "properties": {
+                        "text": "Se connecter"
+                    }
+                },
+                {
+                    "ID": "9",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "968",
+                    "h": "34",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "210",
+                    "y": "616",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "Link",
+                    "zOrder": "7",
+                    "measuredW": "256",
+                    "measuredH": "21",
+                    "x": "388",
+                    "y": "398",
+                    "properties": {
+                        "text": "Vous n'êtes pas encore inscrit? Cliquez-ici!"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "TextInput",
+                    "zOrder": "8",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "210",
+                    "y": "133",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "login.php",
+            "order": 938428.5264654435,
+            "parentID": null
+        },
+        "resourceID": "2278E287-509B-183B-1098-2EC38DDDB7D8",
+        "mockupH": "619",
+        "mockupW": "968",
+        "measuredW": "1178",
+        "measuredH": "677",
+        "version": "1.0"
+    }
+}

@@ -1,0 +1,191 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "968",
+                    "h": "619",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "210",
+                    "y": "58",
+                    "properties": {
+                        "text": "Page de profil\nhttps://profile.php"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "391",
+                    "y": "260"
+                },
+                {
+                    "ID": "4",
+                    "typeID": "Paragraph",
+                    "zOrder": "2",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "234",
+                    "properties": {
+                        "text": "Nom"
+                    }
+                },
+                {
+                    "ID": "5",
+                    "typeID": "TextInput",
+                    "zOrder": "3",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "391",
+                    "y": "329"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Paragraph",
+                    "zOrder": "4",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "303",
+                    "properties": {
+                        "text": "Prénom"
+                    }
+                },
+                {
+                    "ID": "7",
+                    "typeID": "Button",
+                    "zOrder": "5",
+                    "measuredW": "72",
+                    "measuredH": "27",
+                    "x": "391",
+                    "y": "531",
+                    "properties": {
+                        "text": "Modifier"
+                    }
+                },
+                {
+                    "ID": "9",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "968",
+                    "h": "34",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "210",
+                    "y": "616",
+                    "properties": {
+                        "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "TextInput",
+                    "zOrder": "7",
+                    "w": "554",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "391",
+                    "y": "198"
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Paragraph",
+                    "zOrder": "8",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "172",
+                    "properties": {
+                        "text": "Nickname"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Paragraph",
+                    "zOrder": "9",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "372",
+                    "properties": {
+                        "text": "Email"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Paragraph",
+                    "zOrder": "10",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "399",
+                    "properties": {
+                        "text": "john.doe@gmail.com"
+                    }
+                },
+                {
+                    "ID": "16",
+                    "typeID": "Paragraph",
+                    "zOrder": "11",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "441",
+                    "properties": {
+                        "text": "Médias à ajouter"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "Button",
+                    "zOrder": "12",
+                    "w": "172",
+                    "h": "27",
+                    "measuredW": "123",
+                    "measuredH": "27",
+                    "x": "391",
+                    "y": "467",
+                    "properties": {
+                        "text": "Choisir un fichier"
+                    }
+                },
+                {
+                    "ID": "19",
+                    "typeID": "TextInput",
+                    "zOrder": "13",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "210",
+                    "y": "133",
+                    "properties": {
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "profile.php",
+            "order": 938444.2852791186,
+            "parentID": null
+        },
+        "resourceID": "8DEEC7B8-C2A8-4218-94A8-A5F41EDF0FC1",
+        "mockupH": "619",
+        "mockupW": "968",
+        "measuredW": "1178",
+        "measuredH": "677",
+        "version": "1.0"
+    }
+}
