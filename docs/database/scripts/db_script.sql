@@ -18,11 +18,11 @@ USE `evaluationFilms` ;
 -- Table `evaluationFilms`.`ROLES`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`ROLES` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `role` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `role_UNIQUE` (`role` ASC))
+  `code` INT NOT NULL,
+  `label` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`code`),
+  UNIQUE INDEX `id_UNIQUE` (`code` ASC),
+  UNIQUE INDEX `role_UNIQUE` (`label` ASC))
 ENGINE = InnoDB;
 
 
@@ -38,15 +38,15 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`USERS` (
   `name` VARCHAR(50) NULL,
   `first_name` VARCHAR(50) NULL,
   `avatar` LONGTEXT NULL,
-  `roles_id` INT NOT NULL,
+  `roles_code` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_USERS_ROLES1_idx` (`roles_id` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  INDEX `fk_USERS_ROLES1_idx` (`roles_code` ASC),
   CONSTRAINT `fk_USERS_ROLES1`
-    FOREIGN KEY (`roles_id`)
-    REFERENCES `evaluationFilms`.`ROLES` (`id`)
+    FOREIGN KEY (`roles_code`)
+    REFERENCES `evaluationFilms`.`ROLES` (`code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -56,9 +56,9 @@ ENGINE = InnoDB;
 -- Table `evaluationFilms`.`GENDERS`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`GENDERS` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `gender` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id`))
+  `code` INT NOT NULL,
+  `label` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`code`))
 ENGINE = InnoDB;
 
 
@@ -102,10 +102,10 @@ ENGINE = InnoDB;
 -- Table `evaluationFilms`.`COUNTRIES`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`COUNTRIES` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `iso2` VARCHAR(2) NOT NULL,
   `country` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  PRIMARY KEY (`iso2`),
+  UNIQUE INDEX `id_UNIQUE` (`iso2` ASC),
   UNIQUE INDEX `country_UNIQUE` (`country` ASC))
 ENGINE = InnoDB;
 
@@ -122,17 +122,17 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
   `poster` LONGTEXT NOT NULL,
   `directors_id` INT NOT NULL,
   `companies_id` INT NOT NULL,
-  `countries_id` INT NOT NULL,
-  `genders_id` INT NOT NULL,
+  `countries_iso2` VARCHAR(2) NOT NULL,
+  `genders_code` INT NOT NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_MOVIES_DIRECTORS1_idx` (`directors_id` ASC),
   INDEX `fk_MOVIES_COMPANIES1_idx` (`companies_id` ASC),
-  INDEX `fk_MOVIES_COUNTRIES1_idx` (`countries_id` ASC),
-  INDEX `fk_MOVIES_GENDERS1_idx` (`genders_id` ASC),
   INDEX `fk_MOVIES_USERS1_idx` (`users_id` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `title_UNIQUE` (`title` ASC),
+  INDEX `fk_MOVIES_COUNTRIES1_idx` (`countries_iso2` ASC),
+  INDEX `fk_MOVIES_GENDERS1_idx` (`genders_code` ASC),
   CONSTRAINT `fk_MOVIES_DIRECTORS1`
     FOREIGN KEY (`directors_id`)
     REFERENCES `evaluationFilms`.`DIRECTORS` (`id`)
@@ -143,19 +143,19 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
     REFERENCES `evaluationFilms`.`COMPANIES` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_MOVIES_COUNTRIES1`
-    FOREIGN KEY (`countries_id`)
-    REFERENCES `evaluationFilms`.`COUNTRIES` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_MOVIES_GENDERS1`
-    FOREIGN KEY (`genders_id`)
-    REFERENCES `evaluationFilms`.`GENDERS` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_MOVIES_USERS1`
     FOREIGN KEY (`users_id`)
     REFERENCES `evaluationFilms`.`USERS` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_MOVIES_COUNTRIES1`
+    FOREIGN KEY (`countries_iso2`)
+    REFERENCES `evaluationFilms`.`COUNTRIES` (`iso2`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_MOVIES_GENDERS1`
+    FOREIGN KEY (`genders_code`)
+    REFERENCES `evaluationFilms`.`GENDERS` (`code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

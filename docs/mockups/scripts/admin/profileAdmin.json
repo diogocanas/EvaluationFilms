@@ -17,22 +17,10 @@
                     }
                 },
                 {
-                    "ID": "3",
-                    "typeID": "TextInput",
-                    "zOrder": "1",
-                    "w": "554",
-                    "measuredW": "38",
-                    "measuredH": "27",
-                    "x": "391",
-                    "y": "260",
-                    "properties": {
-                        "text": "Doe"
-                    }
-                },
-                {
                     "ID": "4",
                     "typeID": "Paragraph",
-                    "zOrder": "2",
+                    "zOrder": "1",
+                    "h": "19",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -42,22 +30,9 @@
                     }
                 },
                 {
-                    "ID": "5",
-                    "typeID": "TextInput",
-                    "zOrder": "3",
-                    "w": "554",
-                    "measuredW": "42",
-                    "measuredH": "27",
-                    "x": "391",
-                    "y": "329",
-                    "properties": {
-                        "text": "John"
-                    }
-                },
-                {
                     "ID": "6",
                     "typeID": "Paragraph",
-                    "zOrder": "4",
+                    "zOrder": "2",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -69,19 +44,19 @@
                 {
                     "ID": "7",
                     "typeID": "Button",
-                    "zOrder": "5",
-                    "measuredW": "72",
+                    "zOrder": "3",
+                    "measuredW": "69",
                     "measuredH": "27",
                     "x": "391",
-                    "y": "592",
+                    "y": "575",
                     "properties": {
-                        "text": "Modifier"
+                        "text": "Bloquer"
                     }
                 },
                 {
                     "ID": "9",
                     "typeID": "TextArea",
-                    "zOrder": "6",
+                    "zOrder": "4",
                     "w": "968",
                     "h": "34",
                     "measuredW": "200",
@@ -94,22 +69,10 @@
                     }
                 },
                 {
-                    "ID": "10",
-                    "typeID": "TextInput",
-                    "zOrder": "7",
-                    "w": "554",
-                    "measuredW": "67",
-                    "measuredH": "27",
-                    "x": "391",
-                    "y": "198",
-                    "properties": {
-                        "text": "johndoe7"
-                    }
-                },
-                {
                     "ID": "11",
                     "typeID": "Paragraph",
-                    "zOrder": "8",
+                    "zOrder": "5",
+                    "h": "23",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -121,7 +84,7 @@
                 {
                     "ID": "14",
                     "typeID": "Paragraph",
-                    "zOrder": "9",
+                    "zOrder": "6",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -133,7 +96,7 @@
                 {
                     "ID": "15",
                     "typeID": "Paragraph",
-                    "zOrder": "10",
+                    "zOrder": "7",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -145,7 +108,7 @@
                 {
                     "ID": "16",
                     "typeID": "Paragraph",
-                    "zOrder": "11",
+                    "zOrder": "8",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "391",
@@ -155,23 +118,9 @@
                     }
                 },
                 {
-                    "ID": "17",
-                    "typeID": "Button",
-                    "zOrder": "12",
-                    "w": "172",
-                    "h": "27",
-                    "measuredW": "123",
-                    "measuredH": "27",
-                    "x": "391",
-                    "y": "542",
-                    "properties": {
-                        "text": "Choisir un fichier"
-                    }
-                },
-                {
                     "ID": "19",
                     "typeID": "TextInput",
-                    "zOrder": "13",
+                    "zOrder": "9",
                     "w": "968",
                     "measuredW": "65",
                     "measuredH": "27",
@@ -186,20 +135,59 @@
                 {
                     "ID": "20",
                     "typeID": "Image",
-                    "zOrder": "14",
+                    "zOrder": "10",
                     "measuredW": "77",
                     "measuredH": "79",
                     "x": "391",
                     "y": "453"
+                },
+                {
+                    "ID": "21",
+                    "typeID": "Paragraph",
+                    "zOrder": "11",
+                    "h": "23",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "195",
+                    "properties": {
+                        "text": "johndoe7"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "Paragraph",
+                    "zOrder": "12",
+                    "h": "23",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "256",
+                    "properties": {
+                        "text": "Doe"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "Paragraph",
+                    "zOrder": "13",
+                    "h": "23",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "391",
+                    "y": "328",
+                    "properties": {
+                        "text": "John"
+                    }
                 }
             ]
         },
         "attributes": {
-            "name": "profile.php",
-            "order": 938444.2852791186,
+            "name": "profileAdmin.php",
+            "order": 938446.645960605,
             "parentID": null
         },
-        "resourceID": "8DEEC7B8-C2A8-4218-94A8-A5F41EDF0FC1",
+        "resourceID": "3543BC34-86A1-46A3-8A56-AC7496933A92",
         "mockupH": "668",
         "mockupW": "968",
         "measuredW": "1178",

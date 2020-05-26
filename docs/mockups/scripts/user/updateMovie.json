@@ -7,13 +7,13 @@
                     "typeID": "BrowserWindow",
                     "zOrder": "0",
                     "w": "968",
-                    "h": "939",
+                    "h": "1046",
                     "measuredW": "450",
                     "measuredH": "400",
                     "x": "244",
                     "y": "60",
                     "properties": {
-                        "text": "Page de modification et de suppression d'un film\nhttps://updateMovie.php\n"
+                        "text": "Page de modification de film\nhttps://updateMovie.php"
                     }
                 },
                 {
@@ -25,7 +25,7 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "244",
-                    "y": "940",
+                    "y": "1046",
                     "properties": {
                         "text": "Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©",
                         "align": "center"
@@ -36,10 +36,13 @@
                     "typeID": "TextInput",
                     "zOrder": "2",
                     "w": "554",
-                    "measuredW": "79",
+                    "measuredW": "100",
                     "measuredH": "27",
                     "x": "463",
-                    "y": "261"
+                    "y": "261",
+                    "properties": {
+                        "text": "Les Affranchis"
+                    }
                 },
                 {
                     "ID": "4",
@@ -60,7 +63,7 @@
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "462",
-                    "y": "297",
+                    "y": "294",
                     "properties": {
                         "text": "Description du film"
                     }
@@ -82,11 +85,14 @@
                     "typeID": "TextArea",
                     "zOrder": "6",
                     "w": "555",
-                    "h": "53",
+                    "h": "59",
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "461",
-                    "y": "318"
+                    "y": "315",
+                    "properties": {
+                        "text": "Basé sur le livre Wiseguy du journaliste Nicholas Pileggi publié en 1986, qui raconte l'histoire vraie de Henry Hill, un gangster new-yorkais, le film retrace la montée et la chute d'Henry Hill (interprété par Ray Liotta) et deux de ses amis."
+                    }
                 },
                 {
                     "ID": "13",
@@ -106,11 +112,11 @@
                     "zOrder": "8",
                     "w": "139",
                     "measuredW": "140",
-                    "measuredH": "58",
+                    "measuredH": "27",
                     "x": "462",
                     "y": "405",
                     "properties": {
-                        "text": "Leonardo DiCaprio\nAl Pacino"
+                        "text": "Leonardo DiCaprio"
                     }
                 },
                 {
@@ -131,11 +137,11 @@
                     "zOrder": "10",
                     "w": "139",
                     "measuredW": "127",
-                    "measuredH": "58",
+                    "measuredH": "27",
                     "x": "463",
                     "y": "492",
                     "properties": {
-                        "text": "Alfred Hitchcock\nMartin Scorsese"
+                        "text": "Alfred Hitchcock"
                     }
                 },
                 {
@@ -194,11 +200,11 @@
                     "zOrder": "15",
                     "w": "139",
                     "measuredW": "140",
-                    "measuredH": "58",
+                    "measuredH": "27",
                     "x": "669",
                     "y": "405",
                     "properties": {
-                        "text": "Leonardo DiCaprio\nAl Pacino"
+                        "text": "Leonardo DiCaprio"
                     }
                 },
                 {
@@ -207,11 +213,11 @@
                     "zOrder": "16",
                     "w": "139",
                     "measuredW": "140",
-                    "measuredH": "58",
+                    "measuredH": "101",
                     "x": "877",
                     "y": "405",
                     "properties": {
-                        "text": "Leonardo DiCaprio\nAl Pacino"
+                        "text": "Leonardo DiCaprio\nAl Pacino\nRobert De Niro\nJoe Pesci\nRay Liotta"
                     }
                 },
                 {
@@ -301,55 +307,35 @@
                     }
                 },
                 {
-                    "ID": "32",
-                    "typeID": "TextInput",
-                    "zOrder": "24",
-                    "w": "554",
-                    "measuredW": "79",
-                    "measuredH": "27",
-                    "x": "462",
-                    "y": "723"
-                },
-                {
                     "ID": "33",
                     "typeID": "Paragraph",
-                    "zOrder": "25",
+                    "zOrder": "24",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "464",
                     "y": "697",
                     "properties": {
-                        "text": "Liens (maximum 2)"
+                        "text": "Liens"
                     }
-                },
-                {
-                    "ID": "34",
-                    "typeID": "TextInput",
-                    "zOrder": "26",
-                    "w": "554",
-                    "measuredW": "79",
-                    "measuredH": "27",
-                    "x": "462",
-                    "y": "750"
                 },
                 {
                     "ID": "35",
                     "typeID": "Button",
-                    "zOrder": "27",
+                    "zOrder": "25",
                     "w": "172",
                     "h": "27",
-                    "measuredW": "123",
+                    "measuredW": "137",
                     "measuredH": "27",
                     "x": "462",
                     "y": "820",
                     "properties": {
-                        "text": "Choisir un fichier"
+                        "text": "Choisir des fichiers"
                     }
                 },
                 {
                     "ID": "36",
                     "typeID": "Paragraph",
-                    "zOrder": "28",
+                    "zOrder": "26",
                     "measuredW": "275",
                     "measuredH": "80",
                     "x": "464",
@@ -359,33 +345,9 @@
                     }
                 },
                 {
-                    "ID": "37",
-                    "typeID": "Button",
-                    "zOrder": "29",
-                    "measuredW": "110",
-                    "measuredH": "27",
-                    "x": "778",
-                    "y": "874",
-                    "properties": {
-                        "text": "Modifier le film"
-                    }
-                },
-                {
                     "ID": "38",
-                    "typeID": "Button",
-                    "zOrder": "30",
-                    "measuredW": "124",
-                    "measuredH": "27",
-                    "x": "892",
-                    "y": "874",
-                    "properties": {
-                        "text": "Supprimer le film"
-                    }
-                },
-                {
-                    "ID": "39",
                     "typeID": "ComboBox",
-                    "zOrder": "31",
+                    "zOrder": "27",
                     "w": "139",
                     "measuredW": "73",
                     "measuredH": "27",
@@ -396,34 +358,35 @@
                     }
                 },
                 {
-                    "ID": "40",
-                    "typeID": "Paragraph",
-                    "zOrder": "32",
-                    "measuredW": "275",
-                    "measuredH": "80",
-                    "x": "473",
-                    "y": "264",
+                    "ID": "39",
+                    "typeID": "TextInput",
+                    "zOrder": "28",
+                    "w": "968",
+                    "measuredW": "65",
+                    "measuredH": "27",
+                    "x": "244",
+                    "y": "131",
                     "properties": {
-                        "text": "Les Affranchis"
-                    }
-                },
-                {
-                    "ID": "41",
-                    "typeID": "Paragraph",
-                    "zOrder": "33",
-                    "w": "532",
-                    "measuredW": "275",
-                    "measuredH": "80",
-                    "x": "473",
-                    "y": "318",
-                    "properties": {
-                        "text": "Basé sur le livre Wiseguy du journaliste Nicholas Pileggi publié en 1986, qui raconte l'histoire vraie de Henry Hill, un gangster new-yorkais, le film retrace la montée et la chute d'Henry Hill (interprété par Ray Liotta) et deux de ses amis."
+                        "text": "NAVBAR",
+                        "align": "center",
+                        "bold": "true"
                     }
                 },
                 {
                     "ID": "42",
+                    "typeID": "TextArea",
+                    "zOrder": "29",
+                    "w": "552",
+                    "h": "69",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "464",
+                    "y": "718"
+                },
+                {
+                    "ID": "43",
                     "typeID": "Link",
-                    "zOrder": "34",
+                    "zOrder": "30",
                     "measuredW": "335",
                     "measuredH": "21",
                     "x": "473",
@@ -435,42 +398,93 @@
                 {
                     "ID": "44",
                     "typeID": "Link",
-                    "zOrder": "35",
+                    "zOrder": "31",
                     "measuredW": "355",
                     "measuredH": "21",
                     "x": "473",
-                    "y": "753",
+                    "y": "742",
                     "properties": {
                         "text": "https://www.imdb.com/title/tt0099685/?ref_=nv_sr_srsg_0"
                     }
                 },
                 {
                     "ID": "45",
-                    "typeID": "TextInput",
-                    "zOrder": "36",
-                    "w": "968",
-                    "measuredW": "65",
+                    "typeID": "Image",
+                    "zOrder": "32",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "464",
+                    "y": "882"
+                },
+                {
+                    "ID": "46",
+                    "typeID": "Button",
+                    "zOrder": "33",
+                    "measuredW": "29",
                     "measuredH": "27",
-                    "x": "244",
-                    "y": "132",
+                    "x": "552",
+                    "y": "934",
                     "properties": {
-                        "text": "NAVBAR",
-                        "align": "center",
-                        "bold": "true"
+                        "text": "-"
+                    }
+                },
+                {
+                    "ID": "47",
+                    "typeID": "Image",
+                    "zOrder": "34",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "634",
+                    "y": "882"
+                },
+                {
+                    "ID": "48",
+                    "typeID": "Button",
+                    "zOrder": "35",
+                    "measuredW": "29",
+                    "measuredH": "27",
+                    "x": "722",
+                    "y": "934",
+                    "properties": {
+                        "text": "-"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Button",
+                    "zOrder": "36",
+                    "measuredW": "110",
+                    "measuredH": "27",
+                    "x": "778",
+                    "y": "977",
+                    "properties": {
+                        "text": "Modifier le film"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "Button",
+                    "zOrder": "37",
+                    "measuredW": "124",
+                    "measuredH": "27",
+                    "x": "892",
+                    "y": "977",
+                    "properties": {
+                        "text": "Supprimer le film"
                     }
                 }
             ]
         },
         "attributes": {
             "name": "updateMovie.php",
-            "order": 938466.5898113953,
+            "order": 938467.5599897521,
             "parentID": null
         },
-        "resourceID": "A68EC349-4DED-4E54-A6E0-7F7E39D9234E",
-        "mockupH": "939",
+        "resourceID": "B6ACF056-2C75-4209-9411-5852C1560423",
+        "mockupH": "1046",
         "mockupW": "968",
         "measuredW": "1212",
-        "measuredH": "999",
+        "measuredH": "1106",
         "version": "1.0"
     }
 }

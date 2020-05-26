@@ -29,7 +29,15 @@
      */
     function __construct($title, $description, $releaseYear, $duration, $poster, $directors_id, $companies_id, $countries_id, $genders_id, $users_id)
     {
-        
+        $this->Title = $title;
+        $this->Description = $description;
+        $this->ReleaseYear = $releaseYear;
+        $this->Duration = $duration;
+        $this->Poster = $poster;
+        $this->Directors_id = $directors_id;
+        $this->Companies_id = $companies_id;
+        $this->Countries_id = $countries_id;
+        $this->Genders_id = 
     }
 
     function __clone()
@@ -53,14 +61,14 @@
     /**
      * L'année de sortie du film
      *
-     * @var string
+     * @var int
      */
     public $ReleaseYear;
 
     /**
      * La durée du film
      *
-     * @var string
+     * @var Datetime
      */
     public $Duration;
 
@@ -74,14 +82,14 @@
     /**
      * L'identifiant numérique du réalisateur du film
      *
-     * @var string
+     * @var int
      */
     public $Directors_id;
 
     /**
      * L'identifiant numérique de la société de production du film
      *
-     * @var string
+     * @var int
      */
     public $Companies_id;
 
@@ -93,10 +101,17 @@
     public $Countries_id;
 
     /**
-     * L'identifiant numérique de l'utilisateur qui a créé le film
+     * L'identifiant numérique du genre du film
      *
      * @var int
      */
     public $Genders_id;
+
+    /**
+     * L'identifiant numérique de l'utilisateur qui a créé le film
+     *
+     * @var int
+     */
+    public $Users_id;
  }
  ?>

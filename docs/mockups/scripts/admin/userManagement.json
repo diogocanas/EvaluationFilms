@@ -37,12 +37,12 @@
                     "zOrder": "2",
                     "w": "762",
                     "h": "372",
-                    "measuredW": "273",
+                    "measuredW": "456",
                     "measuredH": "81",
                     "x": "313",
                     "y": "200",
                     "properties": {
-                        "text": "Nickname, Email, Bloquer\nJohn, john.doe@gmail.com, [x]\nDiogo, diogo.cnslm@eduge.ch, []"
+                        "text": "Nickname, Email, Nom, Prénom, Statut,           \nJohn, john.doe@gmail.com, Doe, John, Bloqué,\nDiogo, diogo.cnslm@eduge.ch, Canas, Diogo, Non bloqué,"
                     }
                 },
                 {
@@ -58,6 +58,30 @@
                         "text": "NAVBAR",
                         "align": "center",
                         "bold": "true"
+                    }
+                },
+                {
+                    "ID": "44",
+                    "typeID": "Link",
+                    "zOrder": "4",
+                    "measuredW": "70",
+                    "measuredH": "21",
+                    "x": "996",
+                    "y": "221",
+                    "properties": {
+                        "text": "Voir le profil"
+                    }
+                },
+                {
+                    "ID": "45",
+                    "typeID": "Link",
+                    "zOrder": "5",
+                    "measuredW": "70",
+                    "measuredH": "21",
+                    "x": "996",
+                    "y": "251",
+                    "properties": {
+                        "text": "Voir le profil"
                     }
                 }
             ]
