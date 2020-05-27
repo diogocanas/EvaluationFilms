@@ -1,7 +1,7 @@
 <?php
 /**
  * Nom du projet  : Evaluation Films
- * Nom du fichier : MovieContainer.php
+ * Nom du fichier : Movie.php
  * Auteur         : Diogo Canas Almeida
  * Date           : 26 mai 2020
  * Description    : Fichier du container Movie
@@ -11,38 +11,48 @@
  /**
   * @brief Classe container de Movie
   */
- class MovieContainer {
+ class Movie {
 
     /**
      * @brief Constructeur de la classe
      *
+     * @param int $id L'identifiant numérique du film
      * @param string $title Le titre du film
      * @param string $description La description du film (résumé)
      * @param int $releaseYear L'année de sortie du film
      * @param Datetime $duration La durée du film
      * @param string $poster L'affiche du film (en base64)
-     * @param int $directors_id L'identifiant numérique du réalisateur du film
-     * @param int $companies_id L'identifiant numérique de la société de production du film
-     * @param int $countries_id L'identifiant numérique du pays d'origine du film
-     * @param int $genders_id L'identifiant numérique du genre du film
-     * @param int $users_id L'identifiant numérique de l'utilisateur qui a créé le film
+     * @param int $directorsId L'identifiant numérique du réalisateur du film
+     * @param int $companiesId L'identifiant numérique de la société de production du film
+     * @param int $countriesId L'identifiant numérique du pays d'origine du film
+     * @param int $gendersCode L'identifiant numérique du genre du film
+     * @param int $usersId L'identifiant numérique de l'utilisateur qui a créé le film
      */
-    function __construct($title, $description, $releaseYear, $duration, $poster, $directors_id, $companies_id, $countries_id, $genders_id, $users_id)
+    function __construct($id, $title, $description, $releaseYear, $duration, $poster, $directorsId, $companiesId, $countriesId, $gendersCode, $usersId)
     {
+        $this->Id = $id;
         $this->Title = $title;
         $this->Description = $description;
         $this->ReleaseYear = $releaseYear;
         $this->Duration = $duration;
         $this->Poster = $poster;
-        $this->Directors_id = $directors_id;
-        $this->Companies_id = $companies_id;
-        $this->Countries_id = $countries_id;
-        $this->Genders_id = 
+        $this->DirectorsId = $directorsId;
+        $this->CompaniesId = $companiesId;
+        $this->CountriesId = $countriesId;
+        $this->GendersCode = $gendersCode;
+        $this->UsersId = $usersId;
     }
 
     function __clone()
     {
     }
+
+    /**
+     * L'identifiant numérique du film
+     *
+     * @var int
+     */
+    public $Id;
 
     /**
      * Le titre du film
@@ -84,34 +94,34 @@
      *
      * @var int
      */
-    public $Directors_id;
+    public $DirectorsId;
 
     /**
      * L'identifiant numérique de la société de production du film
      *
      * @var int
      */
-    public $Companies_id;
+    public $CompaniesId;
 
     /**
      * L'identifiant numérique du pays d'origine du film
      *
      * @var int
      */
-    public $Countries_id;
+    public $CountriesId;
 
     /**
      * L'identifiant numérique du genre du film
      *
      * @var int
      */
-    public $Genders_id;
+    public $GendersCode;
 
     /**
      * L'identifiant numérique de l'utilisateur qui a créé le film
      *
      * @var int
      */
-    public $Users_id;
+    public $UsersId;
  }
  ?>
