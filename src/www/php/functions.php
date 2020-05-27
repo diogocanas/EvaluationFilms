@@ -7,4 +7,6 @@
  * Description    : Fichier de fonctions
  * Version        : 1.0
  */
+
+require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 ?>

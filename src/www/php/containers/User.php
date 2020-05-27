@@ -8,6 +8,8 @@
  * Version        : 1.0
  */
 
+require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
+
  /**
   * @brief Classe container de User
   */
@@ -20,6 +22,7 @@
      * @param string $nickname Le surnom de l'utilisateur
      * @param string $email L'adresse mail de l'utilisateur
      * @param string $password Le mot de passe de l'utilisateur
+     * @param string $salt Le salt de l'utilisateur
      * @param string $token Le token de l'utilisateur
      * @param int $rolesCode Identifiant numérique du rôle de l'utilisateur
      * @param int $statusId Identifiant numérique du status de l'utilisateur
@@ -27,12 +30,13 @@
      * @param string $firstName Le prénom de l'utilisateur
      * @param string $avatar La photo de profil de l'utilisateur (en base64)
      */
-    function __construct($id, $nickname, $email, $password, $token, $rolesCode, $statusId, $name = null, $firstName = null, $avatar = null)
+    function __construct($id, $nickname, $email, $password, $salt, $token, $rolesCode, $statusId, $name = null, $firstName = null, $avatar = null)
     {
         $this->Id = $id;
         $this->Nickname = $nickname;
         $this->Email = $email;
         $this->Password = $password;
+        $this->Salt = $salt;
         $this->Token = $token;
         $this->RolesCode = $rolesCode;
         $this->StatusId = $statusId;
@@ -72,6 +76,13 @@
      * @var string
      */
     public $Password;
+
+    /**
+     * Le salt de l'utilisateur
+     *
+     * @var string
+     */
+    public $Salt;
 
     /**
      * Le token de l'utilisateur

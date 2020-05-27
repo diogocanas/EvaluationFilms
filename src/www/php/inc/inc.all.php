@@ -33,5 +33,4 @@
 
  // Fichiers de configuration
  require_once $_SERVER['DOCUMENT_ROOT'] . 'config/conparam.php';
- require_once $_SERVER['DOCUMENT_ROOT'] . 'config/mailparam.php';
 ?>
