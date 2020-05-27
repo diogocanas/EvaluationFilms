@@ -154,6 +154,78 @@
                         "align": "center",
                         "bold": "true"
                     }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "TextInput",
+                    "zOrder": "12",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "455"
+                },
+                {
+                    "ID": "15",
+                    "typeID": "TextInput",
+                    "zOrder": "13",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "479"
+                },
+                {
+                    "ID": "16",
+                    "typeID": "TextInput",
+                    "zOrder": "14",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "503"
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextInput",
+                    "zOrder": "15",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "527"
+                },
+                {
+                    "ID": "18",
+                    "typeID": "TextInput",
+                    "zOrder": "16",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "546"
+                },
+                {
+                    "ID": "19",
+                    "typeID": "TextInput",
+                    "zOrder": "17",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "570"
+                },
+                {
+                    "ID": "20",
+                    "typeID": "Label",
+                    "zOrder": "18",
+                    "measuredW": "86",
+                    "measuredH": "21",
+                    "x": "811",
+                    "y": "432",
+                    "properties": {
+                        "text": "Commentaires"
+                    }
                 }
             ]
         },

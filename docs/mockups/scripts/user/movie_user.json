@@ -147,7 +147,7 @@
                     "measuredW": "140",
                     "measuredH": "21",
                     "x": "281",
-                    "y": "517",
+                    "y": "515",
                     "properties": {
                         "text": "Noter le film (de 0 à 10)"
                     }
@@ -159,7 +159,7 @@
                     "measuredW": "47",
                     "measuredH": "24",
                     "x": "426",
-                    "y": "515",
+                    "y": "513",
                     "properties": {
                         "text": "10"
                     }
@@ -170,8 +170,8 @@
                     "zOrder": "13",
                     "measuredW": "58",
                     "measuredH": "27",
-                    "x": "491",
-                    "y": "513",
+                    "x": "480",
+                    "y": "566",
                     "properties": {
                         "text": "Noter"
                     }
@@ -189,6 +189,92 @@
                         "text": "NAVBAR",
                         "align": "center",
                         "bold": "true"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "TextArea",
+                    "zOrder": "15",
+                    "w": "192",
+                    "h": "53",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "281",
+                    "y": "540",
+                    "properties": {
+                        "text": "Ajouter un commentaire..."
+                    }
+                },
+                {
+                    "ID": "20",
+                    "typeID": "TextInput",
+                    "zOrder": "16",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "455"
+                },
+                {
+                    "ID": "21",
+                    "typeID": "TextInput",
+                    "zOrder": "17",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "479"
+                },
+                {
+                    "ID": "22",
+                    "typeID": "TextInput",
+                    "zOrder": "18",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "503"
+                },
+                {
+                    "ID": "23",
+                    "typeID": "TextInput",
+                    "zOrder": "19",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "527"
+                },
+                {
+                    "ID": "24",
+                    "typeID": "TextInput",
+                    "zOrder": "20",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "546"
+                },
+                {
+                    "ID": "25",
+                    "typeID": "TextInput",
+                    "zOrder": "21",
+                    "w": "355",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "810",
+                    "y": "570"
+                },
+                {
+                    "ID": "26",
+                    "typeID": "Label",
+                    "zOrder": "22",
+                    "measuredW": "86",
+                    "measuredH": "21",
+                    "x": "811",
+                    "y": "432",
+                    "properties": {
+                        "text": "Commentaires"
                     }
                 }
             ]

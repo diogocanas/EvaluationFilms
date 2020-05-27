@@ -32,7 +32,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`STATUS` (
   `code` INT NOT NULL,
   `label` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`code`))
+  PRIMARY KEY (`code`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC))
 ENGINE = InnoDB;
 
 
@@ -44,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`USERS` (
   `nickname` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
+  `salt` VARCHAR(100) NOT NULL,
   `token` VARCHAR(100) NOT NULL,
   `name` VARCHAR(50) NULL,
   `first_name` VARCHAR(50) NULL,
@@ -51,11 +53,12 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`USERS` (
   `roles_code` INT NOT NULL,
   `status_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   INDEX `fk_USERS_ROLES1_idx` (`roles_code` ASC),
   INDEX `fk_USERS_STATUS1_idx` (`status_id` ASC),
+  UNIQUE INDEX `salt_UNIQUE` (`salt` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_USERS_ROLES1`
     FOREIGN KEY (`roles_code`)
     REFERENCES `evaluationFilms`.`ROLES` (`code`)
@@ -137,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
   `release_year` INT NOT NULL,
   `duration` DATETIME NOT NULL,
   `poster` LONGTEXT NOT NULL,
+  `links` LONGTEXT NULL,
   `directors_id` INT NOT NULL,
   `companies_id` INT NOT NULL,
   `countries_iso2` VARCHAR(2) NOT NULL,
@@ -182,38 +186,19 @@ ENGINE = InnoDB;
 -- Table `evaluationFilms`.`RATINGS`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`RATINGS` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `score` INT NOT NULL,
   `users_id` INT NOT NULL,
   `movies_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  `score` INT NOT NULL,
+  `remark` LONGTEXT NULL,
   INDEX `fk_NOTES_USERS1_idx` (`users_id` ASC),
   INDEX `fk_NOTES_MOVIES1_idx` (`movies_id` ASC),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  PRIMARY KEY (`users_id`, `movies_id`),
   CONSTRAINT `fk_NOTES_USERS1`
     FOREIGN KEY (`users_id`)
     REFERENCES `evaluationFilms`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NOTES_MOVIES1`
-    FOREIGN KEY (`movies_id`)
-    REFERENCES `evaluationFilms`.`MOVIES` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `evaluationFilms`.`LINKS`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `evaluationFilms`.`LINKS` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `link` LONGTEXT NOT NULL,
-  `movies_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_LINKS_MOVIES1_idx` (`movies_id` ASC),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_LINKS_MOVIES1`
     FOREIGN KEY (`movies_id`)
     REFERENCES `evaluationFilms`.`MOVIES` (`id`)
     ON DELETE NO ACTION
@@ -256,30 +241,6 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`PARTICIPATE` (
   CONSTRAINT `fk_ACTORS_has_MOVIES_MOVIES1`
     FOREIGN KEY (`movies_id`)
     REFERENCES `evaluationFilms`.`MOVIES` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `evaluationFilms`.`COMMENTS`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `evaluationFilms`.`COMMENTS` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `comment` LONGTEXT NOT NULL,
-  `movies_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_COMMENTS_MOVIES1_idx` (`movies_id` ASC),
-  INDEX `fk_COMMENTS_USERS1_idx` (`users_id` ASC),
-  CONSTRAINT `fk_COMMENTS_MOVIES1`
-    FOREIGN KEY (`movies_id`)
-    REFERENCES `evaluationFilms`.`MOVIES` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_COMMENTS_USERS1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `evaluationFilms`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
