@@ -17,37 +17,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 
     /**
      * @brief Constructeur de la classe
-     *
-     * @param int $id L'identifiant numérique de la note
-     * @param string $score La note donnée par l'utilisateur
      * @param int $usersId L'identifiant numérique de l'utilisateur
      * @param int $moviesId L'identifiant numérique du film
+     * @param string $score La note donnée par l'utilisateur
+     * @param string $remark Le commentaire de la note
      */
-    function __construct($id, $score, $usersId, $moviesId)
+    function __construct($usersId, $moviesId, $score, $remark)
     {
-        $this->Id = $id;
-        $this->Score = $score;
         $this->UsersId = $usersId;
         $this->MoviesId = $moviesId;
+        $this->Score = $score;
+        $this->Remark = $remark;
     }
 
     function __clone()
     {
     }
-
-    /**
-     * L'identifiant numérique de la note
-     *
-     * @var int
-     */
-    public $Id;
-
-    /**
-     * La note donnée par l'utilisateur
-     *
-     * @var string
-     */
-    public $Score;
 
     /**
      * L'identifiant numérique de l'utilisateur
@@ -62,5 +47,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @var int
      */
     public $MoviesId;
+
+    /**
+     * La note donnée par l'utilisateur
+     *
+     * @var string
+     */
+    public $Score;
+    
+    /**
+     * Le commentaire de la note
+     *
+     * @var string
+     */
+    public $Remark;
  }
  ?>

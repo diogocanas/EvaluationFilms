@@ -21,15 +21,15 @@
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Company.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Country.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Rating.php';
- require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Link.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Media.php';
- require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Comment.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/containers/Status.php';
 
  // Managers
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/DatabaseManager.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/SessionManager.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/UserManager.php';
+ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/MovieManager.php';
+ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/CodeManager.php';
 
  // Fichiers de configuration
  require_once $_SERVER['DOCUMENT_ROOT'] . 'config/conparam.php';

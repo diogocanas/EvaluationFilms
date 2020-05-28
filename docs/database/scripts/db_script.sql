@@ -15,6 +15,17 @@ CREATE SCHEMA IF NOT EXISTS `evaluationFilms` DEFAULT CHARACTER SET utf8 ;
 USE `evaluationFilms` ;
 
 -- -----------------------------------------------------
+-- Table `evaluationFilms`.`STATUS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `evaluationFilms`.`STATUS` (
+  `code` INT NOT NULL,
+  `label` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`code`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `evaluationFilms`.`ROLES`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`ROLES` (
@@ -27,26 +38,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `evaluationFilms`.`STATUS`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `evaluationFilms`.`STATUS` (
-  `code` INT NOT NULL,
-  `label` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`code`),
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `evaluationFilms`.`USERS`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`USERS` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nickname` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
-  `salt` VARCHAR(100) NOT NULL,
-  `token` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `salt` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
   `name` VARCHAR(50) NULL,
   `first_name` VARCHAR(50) NULL,
   `avatar` LONGTEXT NULL,
@@ -55,18 +55,18 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`USERS` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  INDEX `fk_USERS_ROLES1_idx` (`roles_code` ASC),
   INDEX `fk_USERS_STATUS1_idx` (`status_id` ASC),
   UNIQUE INDEX `salt_UNIQUE` (`salt` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_USERS_ROLES1`
-    FOREIGN KEY (`roles_code`)
-    REFERENCES `evaluationFilms`.`ROLES` (`code`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_USERS_ROLES1_idx` (`roles_code` ASC),
   CONSTRAINT `fk_USERS_STATUS1`
     FOREIGN KEY (`status_id`)
     REFERENCES `evaluationFilms`.`STATUS` (`code`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_USERS_ROLES1`
+    FOREIGN KEY (`roles_code`)
+    REFERENCES `evaluationFilms`.`ROLES` (`code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
   `title` VARCHAR(50) NOT NULL,
   `description` LONGTEXT NOT NULL,
   `release_year` INT NOT NULL,
-  `duration` DATETIME NOT NULL,
+  `duration` INT NOT NULL,
   `poster` LONGTEXT NOT NULL,
   `links` LONGTEXT NULL,
   `directors_id` INT NOT NULL,

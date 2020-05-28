@@ -326,8 +326,8 @@
                     "h": "27",
                     "measuredW": "137",
                     "measuredH": "27",
-                    "x": "462",
-                    "y": "820",
+                    "x": "727",
+                    "y": "825",
                     "properties": {
                         "text": "Choisir des fichiers"
                     }
@@ -338,8 +338,8 @@
                     "zOrder": "26",
                     "measuredW": "275",
                     "measuredH": "80",
-                    "x": "464",
-                    "y": "794",
+                    "x": "727",
+                    "y": "793",
                     "properties": {
                         "text": "Médias à ajouter"
                     }
@@ -425,8 +425,8 @@
                     "zOrder": "33",
                     "measuredW": "77",
                     "measuredH": "79",
-                    "x": "464",
-                    "y": "882"
+                    "x": "727",
+                    "y": "881"
                 },
                 {
                     "ID": "46",
@@ -434,8 +434,8 @@
                     "zOrder": "34",
                     "measuredW": "29",
                     "measuredH": "27",
-                    "x": "552",
-                    "y": "934",
+                    "x": "815",
+                    "y": "933",
                     "properties": {
                         "text": "-"
                     }
@@ -446,8 +446,8 @@
                     "zOrder": "35",
                     "measuredW": "77",
                     "measuredH": "79",
-                    "x": "634",
-                    "y": "882"
+                    "x": "897",
+                    "y": "881"
                 },
                 {
                     "ID": "48",
@@ -455,8 +455,53 @@
                     "zOrder": "36",
                     "measuredW": "29",
                     "measuredH": "27",
-                    "x": "722",
-                    "y": "934",
+                    "x": "985",
+                    "y": "933",
+                    "properties": {
+                        "text": "-"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Paragraph",
+                    "zOrder": "37",
+                    "measuredW": "275",
+                    "measuredH": "80",
+                    "x": "464",
+                    "y": "793",
+                    "properties": {
+                        "text": "Affiche du film"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "Button",
+                    "zOrder": "38",
+                    "measuredW": "123",
+                    "measuredH": "27",
+                    "x": "464",
+                    "y": "825",
+                    "properties": {
+                        "text": "Choisir un fichier"
+                    }
+                },
+                {
+                    "ID": "51",
+                    "typeID": "Image",
+                    "zOrder": "39",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "467",
+                    "y": "881"
+                },
+                {
+                    "ID": "52",
+                    "typeID": "Button",
+                    "zOrder": "40",
+                    "measuredW": "29",
+                    "measuredH": "27",
+                    "x": "555",
+                    "y": "933",
                     "properties": {
                         "text": "-"
                     }

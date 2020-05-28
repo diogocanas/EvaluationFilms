@@ -24,13 +24,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @param string $password Le mot de passe de l'utilisateur
      * @param string $salt Le salt de l'utilisateur
      * @param string $token Le token de l'utilisateur
-     * @param int $rolesCode Identifiant numérique du rôle de l'utilisateur
-     * @param int $statusId Identifiant numérique du status de l'utilisateur
+     * @param Role $role Rôle de l'utilisateur
+     * @param Status $status Status de l'utilisateur
      * @param string $name Le nom de l'utilisateur
      * @param string $firstName Le prénom de l'utilisateur
      * @param string $avatar La photo de profil de l'utilisateur (en base64)
      */
-    function __construct($id, $nickname, $email, $password, $salt, $token, $rolesCode, $statusId, $name = null, $firstName = null, $avatar = null)
+    function __construct($id, $nickname, $email, $password, $salt, $token, $role, $status, $name = null, $firstName = null, $avatar = null)
     {
         $this->Id = $id;
         $this->Nickname = $nickname;
@@ -38,8 +38,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Password = $password;
         $this->Salt = $salt;
         $this->Token = $token;
-        $this->RolesCode = $rolesCode;
-        $this->StatusId = $statusId;
+        $this->Role = $role;
+        $this->Status = $status;
         $this->Name = $name;
         $this->FirstName = $firstName;
         $this->Avatar = $avatar;
@@ -92,18 +92,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     public $Token;
 
     /**
-     * Identifiant numérique du rôle de l'utilisateur
+     * Rôle de l'utilisateur
      *
-     * @var int
+     * @var Role
      */
-    public $RolesCode;
+    public $Role;
 
     /**
-     * Identifiant numérique du statut de l'utilisateur
+     * Statut de l'utilisateur
      *
-     * @var int
+     * @var Status
      */
-    public $StatusId;
+    public $Status;
 
     /**
      * Le nom de l'utilisateur

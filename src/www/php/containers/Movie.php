@@ -22,15 +22,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @param string $title Le titre du film
      * @param string $description La description du film (résumé)
      * @param int $releaseYear L'année de sortie du film
-     * @param Datetime $duration La durée du film
+     * @param int $duration La durée du film en minutes
      * @param string $poster L'affiche du film (en base64)
-     * @param int $directorsId L'identifiant numérique du réalisateur du film
-     * @param int $companiesId L'identifiant numérique de la société de production du film
-     * @param int $countriesId L'identifiant numérique du pays d'origine du film
-     * @param int $gendersCode L'identifiant numérique du genre du film
-     * @param int $usersId L'identifiant numérique de l'utilisateur qui a créé le film
+     * @param string $links Les liens reliés au film
+     * @param string $medias Les médias reliés au film
+     * @param int $director Le réalisateur du film
+     * @param int $company La société de production du film
+     * @param int $country Le pays d'origine du film
+     * @param int $gender Le genre du film
+     * @param int $user L'utilisateur qui a créé le film
      */
-    function __construct($id, $title, $description, $releaseYear, $duration, $poster, $directorsId, $companiesId, $countriesId, $gendersCode, $usersId)
+    function __construct($id, $title, $description, $releaseYear, $duration, $poster, $links, $medias, $actors, $director, $company, $country, $gender, $user)
     {
         $this->Id = $id;
         $this->Title = $title;
@@ -38,11 +40,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->ReleaseYear = $releaseYear;
         $this->Duration = $duration;
         $this->Poster = $poster;
-        $this->DirectorsId = $directorsId;
-        $this->CompaniesId = $companiesId;
-        $this->CountriesId = $countriesId;
-        $this->GendersCode = $gendersCode;
-        $this->UsersId = $usersId;
+        $this->Links = $links;
+        $this->Medias = $medias;
+        $this->Actors = $actors;
+        $this->Director = $director;
+        $this->Company = $company;
+        $this->Country = $country;
+        $this->Gender = $gender;
+        $this->User = $user;
     }
 
     function __clone()
@@ -78,9 +83,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     public $ReleaseYear;
 
     /**
-     * La durée du film
+     * La durée du film en minutes
      *
-     * @var Datetime
+     * @var int
      */
     public $Duration;
 
@@ -92,38 +97,59 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     public $Poster;
 
     /**
-     * L'identifiant numérique du réalisateur du film
+     * Liens reliés au film
      *
-     * @var int
+     * @var string
      */
-    public $DirectorsId;
+    public $Links;
 
     /**
-     * L'identifiant numérique de la société de production du film
+     * Médias reliés au film
      *
-     * @var int
+     * @var Media[]
      */
-    public $CompaniesId;
+    public $Medias;
 
     /**
-     * L'identifiant numérique du pays d'origine du film
+     * Acteurs du film
      *
-     * @var int
+     * @var Actor[]
      */
-    public $CountriesId;
+    public $Actors;
 
     /**
-     * L'identifiant numérique du genre du film
+     * Réalisateur du film
      *
-     * @var int
+     * @var Director
      */
-    public $GendersCode;
+    public $Director;
 
     /**
-     * L'identifiant numérique de l'utilisateur qui a créé le film
+     * Société de production du film
      *
-     * @var int
+     * @var Company
      */
-    public $UsersId;
+    public $Company;
+
+    /**
+     * Pays d'origine du film
+     *
+     * @var Country
+     */
+    public $Country;
+
+    /**
+     * Genre du film
+     *
+     * @var Gender
+     */
+    public $Gender;
+
+    /**
+     * Utilisateur qui a créé le film
+     *
+     * @var User
+     */
+    public $User;
  }
  ?>
