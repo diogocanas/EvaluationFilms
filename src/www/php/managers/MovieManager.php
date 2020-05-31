@@ -45,7 +45,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     {
         try {
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'INSERT INTO MOVIES(title, description, release_year, duration, poster, links, directors_id, companies_id, countries_iso2, genders_code, users_id) VALUES(:title, :description, :release_year, :duration, :poster, :links, :directors_id, :companies_id, :countries_iso2, :genders_code, :users_id)';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
@@ -60,12 +59,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
             $stmt->bindParam(':genders_code', $gendersCode, PDO::PARAM_INT);
             $stmt->bindParam(':users_id', $usersId, PDO::PARAM_INT);
             $stmt->execute();
-            return $db->commit();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
+        return true;
     }
 
     /**
@@ -81,7 +79,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     {
         try {
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'UPDATE MOVIES SET title = :title, description = :description, release_year = :release_year, duration = :duration, poster = :poster, links = :links, directors_id = :directors_id, companies_id = :companies_id, countries_iso2 = :countries_iso2, genders_code = :genders_code, users_id = :users_id WHERE id LIKE :id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
@@ -97,12 +94,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
             $stmt->bindParam(':users_id', $usersId, PDO::PARAM_INT);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $db->commit();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
             $db->rollBack();
             return false;
         }
+        return true;
     }
 
     /**
@@ -115,17 +112,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     {
         try {
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'DELETE FROM MOVIES WHERE id LIKE :id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $db->commit();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
+        return true;
     }
 
     /**
@@ -135,23 +130,20 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      */
     public static function getAll()
     {
+        $moviesArray = array();
         try {
-            $moviesArray = array();
             $db = DatabaseManager::getInstance();
             $sql = 'SELECT id, title, description, release_year, duration, poster, links, directors_id, companies_id, countries_iso2, genders_code, users_id FROM MOVIES';
-            $db->beginTransaction();
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $db->commit();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push($moviesArray, new Movie($row['id'], $row['title'], $row['description'], $row['release_year'], $row['duration'], $row['poster'], $row['links'], CodeManager::getMediasByMovieId($row['id']), CodeManager::getMediasByMovieId($row['id']), CodeManager::getDirectorById($row['directors_id']), CodeManager::getCompanyById($row['companies_id']), CodeManager::getCountryByIso2($row['countries_iso2']), CodeManager::getGenderByCode($row['genders_code']), UserManager::getById($row['users_id'])));
             }
-            return $moviesArray;
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
+        return $moviesArray;
     }
 
     /**
@@ -164,16 +156,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         try {
             $db = DatabaseManager::getInstance();
             $sql = 'SELECT id, title, description, release_year, duration, poster, links, directors_id, companies_id, countries_iso2, genders_code, users_id FROM MOVIES WHERE id LIKE :id';
-            $db->beginTransaction();
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            $db->commit();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new Movie($row['id'], $row['title'], $row['description'], $row['release_year'], $row['duration'], $row['poster'], $row['links'], CodeManager::getMediasByMovieId($row['id']), CodeManager::getMediasByMovieId($row['id']), CodeManager::getDirectorById($row['directors_id']), CodeManager::getCompanyById($row['companies_id']), CodeManager::getCountryByIso2($row['countries_iso2']), CodeManager::getGenderByCode($row['genders_code']), UserManager::getById($row['users_id']));
+            return new Movie($row['id'], $row['title'], $row['description'], $row['release_year'], $row['duration'], $row['poster'], $row['links'], CodeManager::getMediasByMovieId($row['id']), CodeManager::getActorsByMovieId($row['id']), CodeManager::getDirectorById($row['directors_id']), CodeManager::getCompanyById($row['companies_id']), CodeManager::getCountryByIso2($row['countries_iso2']), CodeManager::getGenderByCode($row['genders_code']), UserManager::getById($row['users_id']));
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
     }

@@ -33,19 +33,20 @@ class UserManager
      * @param string $nickname Le surnom de l'utilisateur
      * @param string $email L'email de l'utilisateur
      * @param string $password Le mot de passe de l'utilisateur
-     * @param int $rolesCode L'identifiant numérique du rôle de l'utilisateur
-     * @param int $statusId L'identifiant numérique du statut de l'utilisateur
      * @return bool true si l'insertion a fonctionné | false sinon
      */
-    public static function create($nickname, $email, $password, $rolesCode, $statusId)
+    public static function create($nickname, $email, $password)
     {
         try {
             $salt = hash('sha256', microtime());
             $token = hash('sha256', $email . date('Y-m-d H:i:s'));
             $password = hash('sha256', $password) . $salt;
+            $rolesCode = 1;
+            $statusId = 1;
+
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'INSERT INTO USERS(nickname, email, password, salt, token, roles_code, status_id) VALUES(:nickname, :email, :password, :salt, :token, :roles_code, :status_id)';
+            $db->beginTransaction();
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -55,12 +56,14 @@ class UserManager
             $stmt->bindParam(':roles_code', $rolesCode, PDO::PARAM_INT);
             $stmt->bindParam(':status_id', $statusId, PDO::PARAM_INT);
             $stmt->execute();
-            return $db->commit();
+            MailManager::sendConfirmAccount($email);
+            $db->commit();
         } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
             $db->rollBack();
+            echo 'Erreur : ' . $e->getMessage();
             return false;
         }
+        return true;
     }
 
     /**
@@ -76,7 +79,6 @@ class UserManager
     {
         try {
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'UPDATE USERS SET nickname = :nickname, name = :name, first_name = :first_name, avatar = :avatar WHERE email LIKE :email';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
@@ -85,12 +87,34 @@ class UserManager
             $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-            return $db->commit();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
+        return true;
+    }
+
+    /**
+     * @brief Méthode qui vérifie le compte d'un utilisateur
+     *
+     * @param string $nickname Le surnom de l'utilisateur
+     * @param string $token Le token de l'utilisateur
+     * @return bool true si le compte est vérifié | false sinon
+     */
+    public static function confirmAccount($nickname, $token)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+            $sql = 'UPDATE USERS SET status_id = 2 WHERE nickname LIKE :nickname AND token LIKE :token';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -104,15 +128,15 @@ class UserManager
     {
         try {
             $db = DatabaseManager::getInstance();
-            $sql = 'SELECT password, salt, status_id FROM USERS WHERE email LIKE :email';
-            $db->beginTransaction();
+            $sql = 'SELECT id, password, salt, status_id FROM USERS WHERE email LIKE :email';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-            $db->commit();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($row['password'] == hash('sha256', $password) . $row['salt']) {
-                    if ($row['status_id'] == 1) {
+                    if ($row['status_id'] == 2) {
+                        SessionManager::setIsLogged(true);
+                        SessionManager::setLoggedUser(self::getById($row['id']));
                         return true;
                     } else {
                         return false;
@@ -123,36 +147,34 @@ class UserManager
             }
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
     }
 
     /**
-     * @brief Méthode qui indique si l'email est déjà utilisé par un autre compte
+     * @brief Méthode qui indique si le nickname ou l'email est déjà utilisé par un autre compte
      *
+     * @param string $nickname Le nickname de l'utilisateur
      * @param string $email L'adresse mail de l'utilisateur
      * @return bool true si l'email est libre | false sinon
      */
-    public static function exist($email)
+    public static function exist($nickname, $email)
     {
         try {
             $db = DatabaseManager::getInstance();
-            $sql = 'SELECT COUNT(email) as nb_users FROM USERS WHERE email LIKE :email';
-            $db->beginTransaction();
+            $sql = 'SELECT COUNT(*) as nb_users FROM USERS WHERE nickname LIKE :nickname OR email LIKE :email';
             $stmt = $db->prepare($sql);
+            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-            $db->commit();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row['nb_users'] == 0) {
-                return true;
-            } else {
+            if ($row['nb_users'] > 0) {
                 return false;
+            } else {
+                return true;
             }
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
     }
@@ -164,27 +186,24 @@ class UserManager
      */
     public static function getAll()
     {
+        $usersArray = array();
         try {
-            $usersArray = array();
             $db = DatabaseManager::getInstance();
             $sql = 'SELECT id, nickname, email, password, salt, token, name, first_name, avatar, roles_code, status_id FROM USERS';
-            $db->beginTransaction();
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $db->commit();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push($usersArray, new User($row['id'], $row['nickname'], $row['email'], $row['password'], $row['token'], $row['name'], $row['first_name'], $row['avatar'], $row['roles_code'], $row['status_id']));
             }
-            return $usersArray;
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
+        return $usersArray;
     }
 
     /**
-     * @brief Méthode qui récupère l'utilisateur par l'identifiant numérique 
+     * @brief Méthode qui récupère l'utilisateur par l'identifiant numérique
      *
      * @param int $id L'identifiant numérique de l'utilisateur
      * @return User objet User | false sinon
@@ -193,17 +212,36 @@ class UserManager
     {
         try {
             $db = DatabaseManager::getInstance();
-            $db->beginTransaction();
             $sql = 'SELECT id, nickname, email, password, salt, token, name, first_name, avatar, roles_code, status_id FROM USERS WHERE id LIKE :id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            $db->commit();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             return new User($row['id'], $row['nickname'], $row['email'], $row['password'], $row['salt'], $row['token'], CodeManager::getRoleByCode($row['roles_code']), CodeManager::getStatusByCode(($row['status_id'])), $row['name'], $row['first_name'], $row['avatar']);
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
+            return false;
+        }
+    }
+
+    /**
+     * @brief Méthode qui récupère l'utilisateur par l'adresse mail
+     *
+     * @param string $email L'adresse mail de l'utilisateur
+     * @return User objet User | false sinon
+     */
+    public static function getByEmail($email)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+            $sql = 'SELECT id, nickname, email, password, salt, token, name, first_name, avatar, roles_code, status_id FROM USERS WHERE email LIKE :email';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return new User($row['id'], $row['nickname'], $row['email'], $row['password'], $row['salt'], $row['token'], CodeManager::getRoleByCode($row['roles_code']), CodeManager::getStatusByCode(($row['status_id'])), $row['name'], $row['first_name'], $row['avatar']);
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
             return false;
         }
     }

@@ -30,7 +30,9 @@
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/UserManager.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/MovieManager.php';
  require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/CodeManager.php';
+ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/managers/MailManager.php';
 
  // Fichiers de configuration
  require_once $_SERVER['DOCUMENT_ROOT'] . 'config/conparam.php';
+ require_once $_SERVER['DOCUMENT_ROOT'] . 'config/mailparam.php';
 ?>
