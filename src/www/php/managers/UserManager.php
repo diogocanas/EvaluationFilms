@@ -83,6 +83,9 @@ class UserManager
                 $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $mime = $finfo->file($img);
                 $avatar = 'data:' . $mime . ';base64,' . base64_encode($data);
+                if (!strpos($mime, 'image')) {
+                    return false;
+                }
             } else {
                 $avatar = null;
             }

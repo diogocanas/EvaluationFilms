@@ -11,6 +11,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
+if (!SessionManager::getIsLogged()) {
+    header('Location: index.php');
+}
+
 $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_STRING);
 $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
@@ -65,7 +69,7 @@ $updateButton = filter_input(INPUT_POST, 'update');
             <div class="form-group">
                 <label for="avatar">Avatar</label><br/>
                 <img src="<?= SessionManager::getLoggedUser()->Avatar ?>" width="250">
-                <input type="file" class="form-control-file" id="avatar" name="avatar">
+                <input type="file" class="form-control-file" id="avatar" name="avatar" accept="image/*">
             </div>
             <button type="submit" class="btn btn-primary" name="update">Modifier</button>
         </form>

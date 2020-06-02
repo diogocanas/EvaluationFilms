@@ -10,5 +10,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 SessionManager::setIsLogged(false);
+SessionManager::setLoggedUser(null);
 header('Location: index.php');
 ?>

@@ -12,6 +12,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
+if (!SessionManager::getIsLogged()) {
+    header('Location: index.php');
+}
+
 $genders = CodeManager::getAllGenders();
 $actors = CodeManager::getAllActors();
 $directors = CodeManager::getAllDirectors();
@@ -53,13 +57,14 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
     <div class="container overflow-hidden">
         <?php
-            if (isset($createButton)) {
-                if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
-                    showError('Problème de transfert');
-                    exit;
-                }
-                if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
-                    if (MovieManager::exist($title)) {
+        if (isset($createButton)) {
+            if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
+                showError('Problème de transfert');
+                exit;
+            }
+            if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
+                if (MovieManager::exist($title)) {
+                    if ($firstActor != $secondActor && $firstActor != $thirdActor && $secondActor != $thirdActor) {
                         if (MovieManager::create($title, $description, $releaseYear, timeToMinutes($durationHours, $durationMinutes), $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
                             if (CodeManager::setActorsToMovie($actorsArray, $title)) {
                                 if (CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
@@ -74,12 +79,15 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                             showError("La création du film a échoué.");
                         }
                     } else {
-                        showError("La référence que vous tentez de créer existe déjà.");
+                        showError("Les trois acteurs doivent être différents.");
                     }
                 } else {
-                    showError("Veuillez remplir tous les champs.");
+                    showError("La référence que vous tentez de créer existe déjà.");
                 }
+            } else {
+                showError("Veuillez remplir tous les champs.");
             }
+        }
         ?>
         <form method="POST" action="createMovie.php" enctype="multipart/form-data">
             <div class="form-group">
@@ -174,8 +182,8 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="medias">Médias à ajouter</label>
             </div>
             <div class="form-group row">
-                <input type="file" class="form-control-file col" id="poster" name="poster">
-                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple>
+                <input type="file" class="form-control-file col" id="poster" name="poster" accept="image/*">
+                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
             </div>
             <button type="submit" class="btn btn-primary" name="create">Créer le film</button>
         </form>

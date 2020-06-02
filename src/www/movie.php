@@ -88,7 +88,13 @@ $rateButton = filter_input(INPUT_POST, 'rate');
                 echo '<a href="' . $link . '" target="_blank">' . $link . '</a></br>';
             }
             foreach ($movie->Medias as $media) {
-                echo '<img src="' . $media->Media . '" width="250"></br>';
+                if (strpos($media->Media, 'image')) {
+                    echo '<img src="' . $media->Media . '" width="250"></br>';
+                } else if (strpos($media->Media, 'video')) {
+                    echo '<video width="250" controls><source src="' . $media->Media . '"></video>';
+                } else if (strpos($media->Media, 'audio')) {
+                    echo '<audio controls><source src="' . $media->Media . '"></audio>';
+                }
             }
             echo '<h2>Commentaires</h2>';
             foreach ($ratings as $rating) {
@@ -97,7 +103,7 @@ $rateButton = filter_input(INPUT_POST, 'rate');
             ?>
         </div>
         <?php
-        if (CodeManager::alreadyRated($movieId)) {
+        if (CodeManager::alreadyRated($movieId) && SessionManager::getIsLogged()) {
         ?>
             <form method="POST" action='' class="w-25 ml-3">
                 <div class="form-group">

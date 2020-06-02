@@ -48,6 +48,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $mime = $finfo->file($file['tmp_name']);
             $poster = 'data:' . $mime . ';base64,' . base64_encode($data);
+            if (!strpos($mime, 'image')) {
+                return false;
+            }
 
             $db = DatabaseManager::getInstance();
             $sql = 'INSERT INTO MOVIES(title, description, release_year, duration, poster, links, directors_id, companies_id, countries_iso2, genders_code, users_id) VALUES(:title, :description, :release_year, :duration, :poster, :links, :directors_id, :companies_id, :countries_iso2, :genders_code, :users_id)';

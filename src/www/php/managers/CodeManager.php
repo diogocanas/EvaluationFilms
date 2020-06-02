@@ -495,6 +495,9 @@ class CodeManager
                 $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $mime = $finfo->file($file);
                 $media = 'data:' . $mime . ';base64,' . base64_encode($data);
+                if (!strpos($mime, 'image') || !strpos($mime, 'video') || !strpos($mime, 'audio')) {
+                    return false;
+                }
 
                 $stmt->bindParam(':media', $media, PDO::PARAM_STR);
                 $stmt->bindParam(':movies_id', MovieManager::getByTitle($title)->Id, PDO::PARAM_INT);

@@ -91,7 +91,7 @@ class MailManager
             '<html>' .
             ' <head></head>' .
             ' <body>' .
-            '  <p>Un utilisateur a noté le film que vous avez créé : ' . $movie->Title . '. Voici la note : ' . $score . '/10.</p></br><a href="localhost/movie.php?movieId=' . $movieId . '">Cliquez-ici pour voir la référence du film.</a>';
+            '  <p>L\'utilisateur suivant : ' . $movie->User->Nickname . ' a noté le film suivant : ' . $movie->Title . ' le ' . date('d MMM Y') . ' à ' . date('H:i') . '. Voici la note : ' . $score . '/10.</p></br><a href="localhost/movie.php?movieId=' . $movieId . '">Cliquez-ici pour voir la référence du film.</a>';
         ' </body>' .
             '</html>';
 

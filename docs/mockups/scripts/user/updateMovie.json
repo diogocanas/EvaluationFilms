@@ -387,7 +387,7 @@
                     "zOrder": "30",
                     "measuredW": "110",
                     "measuredH": "27",
-                    "x": "778",
+                    "x": "660",
                     "y": "977",
                     "properties": {
                         "text": "Modifier le film"
@@ -514,6 +514,18 @@
                     "y": "825",
                     "properties": {
                         "text": "Choisir des fichiers"
+                    }
+                },
+                {
+                    "ID": "63",
+                    "typeID": "Button",
+                    "zOrder": "42",
+                    "measuredW": "106",
+                    "measuredH": "27",
+                    "x": "777",
+                    "y": "977",
+                    "properties": {
+                        "text": "Cacher le film"
                     }
                 }
             ]
