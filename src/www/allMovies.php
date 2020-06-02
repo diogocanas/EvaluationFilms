@@ -2,10 +2,10 @@
 
 /**
  * Nom du projet  : Evaluation Films
- * Nom du fichier : index.php
+ * Nom du fichier : allMovies.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 29 mai 2020
- * Description    : Page d'accueil du site
+ * Date           : 02 juin 2020
+ * Description    : Page où se trouvent tous les films du site
  * Version        : 1.0
  */
 
@@ -49,7 +49,6 @@ $movies = MovieManager::getAll();
     }
     ?>
   </div>
-  <a href="allMovies.php">Voir tous les films</a>
   <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

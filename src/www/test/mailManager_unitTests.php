@@ -19,3 +19,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 } else {
     echo "Don't works";
 }
+
+/**
+ * Test de la méthode sendRatingMail()
+ */
+/*if (MailManager::sendRatingMail(5, 10)) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}

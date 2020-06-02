@@ -19,6 +19,12 @@ if (isset($_GET['movieId'])) {
 }
 
 $movie = MovieManager::getById($movieId);
+$links = getLinks($movie->Links);
+$ratings = CodeManager::getRatingsByMovieId($movieId);
+
+$rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
+$remark = filter_input(INPUT_POST, 'remark', FILTER_SANITIZE_STRING);
+$rateButton = filter_input(INPUT_POST, 'rate');
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,21 +42,75 @@ $movie = MovieManager::getById($movieId);
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
-    <div class="container">
+    <div class="container m-auto row center w-100">
         <?php
-        echo '<img src="' . $movie->Poster . '" width="250">';
-        echo $movie->Title;
-        echo "Genre : " . $movie->Gender->Label;
-        echo "Réalisateur : " . $movie->Director->Director;
-        echo "Acteurs principaux : ";
-        foreach ($movie->Actors as $actor) {
-            echo $actor->Actor;
+        if (isset($rateButton)) {
+            if (!empty($rating)) {
+                if ($rating >= 0 && $rating <= 10) {
+                    if (CodeManager::addRateToMovie($movie->Id, $rating, $remark)) {
+                        header('Location: movie.php?movieId=' . $movie->Id);
+                    } else {
+                        showError("La notation du film a échoué.");
+                    }
+                } else {
+                    showError("La note doit être entre 0 et 10.");
+                }
+            }
         }
-        echo "Société de production : " . $movie->Company->Company;
-        echo "Pays d'origine : " . $movie->Country->Country;
-        echo "Année de sortie : " . $movie->ReleaseYear;
-        echo "Durée du film : " . $movie->Duration;
         ?>
+        <div class="col-6 row">
+            <?php
+            echo '<img src="' . $movie->Poster . '" width="250" class="col-6">';
+            echo '<div class="col-6">';
+            echo '<h1>' . $movie->Title . '</h1>';
+            echo "Genre : " . $movie->Gender->Label . '</br>';
+            echo "Réalisateur : " . $movie->Director->Director . '</br>';
+            echo "Acteurs principaux : </br><ul>";
+            foreach ($movie->Actors as $actor) {
+                echo '<li>' . $actor->Actor . '</li>';
+            }
+            echo "</ul>Société de production : " . $movie->Company->Company . '</br>';
+            echo "Pays d'origine : " . $movie->Country->Country . '</br>';
+            echo "Année de sortie : " . $movie->ReleaseYear . '</br>';
+            echo "Durée du film : " . $movie->Duration . ' minutes</br></br>';
+            echo "Note moyenne : " . CodeManager::getAvgRatingByMovieId($movie->Id) . "/10</br>";
+            echo "Nombre de votes : " . CodeManager::getNumberRatingsByMovieId($movieId);
+            echo '</div>';
+            echo '<div class="ml-3"><h2 class="m-0">Description</h2></br>';
+            echo $movie->Description . '</div>';
+            ?>
+
+        </div>
+        <div class="col-6">
+            <h1>Liens et vidéos</h1>
+            <?php 
+            foreach ($links as $link) {
+                echo '<a href="' . $link . '" target="_blank">' . $link . '</a></br>';
+            }
+            foreach ($movie->Medias as $media) {
+                echo '<img src="' . $media->Media . '" width="250"></br>';
+            }
+            echo '<h2>Commentaires</h2>';
+            foreach ($ratings as $rating) {
+                echo $rating->Remark . '</br>';
+            }
+            ?>
+        </div>
+        <?php
+        if (CodeManager::alreadyRated($movieId)) {
+        ?>
+            <form method="POST" action='' class="w-25 ml-3">
+                <div class="form-group">
+                    <label for="rating">Noter le film (de 0 à 10)</label>
+                    <input type="number" min="0" max="10" class="form-control" id="rating" name="rating">
+                </div>
+                <div class="form-group">
+                    <label for="remark">Commentaires</label>
+                    <textarea class="form-control" id="remark" name="remark" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" name="rate">Noter le film</button>
+            </form>
+        <?php } ?>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>
     <!-- Optional JavaScript -->

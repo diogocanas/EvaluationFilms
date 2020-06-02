@@ -30,24 +30,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
       <?php
       } else {
       ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Gestion de films
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="createMovie.php">Créer un film</a>
+            <a class="dropdown-item" href="#">Modifier un film</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php">Profil</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Déconnexion</a>
         </li>
       <?php
       }
       ?>
-      <!--<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
+
+      <!--<li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>-->
     </ul>

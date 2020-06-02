@@ -34,7 +34,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     /**
      * L'identifiant numérique de la société de production
      *
-     * @var int
+     * @var string
      */
     public $Iso2;
 

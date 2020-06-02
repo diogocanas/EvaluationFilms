@@ -39,9 +39,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 }
 
 /**
+ * Test de la méthode exist()
+ */
+/*if (MovieManager::exist("Les affranchis")) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
  * Test de la méthode getAll()
  */
-if (!MovieManager::getAll()) {
+/*if (!MovieManager::getAll()) {
     echo "Don't works";
 } else {
     var_dump(MovieManager::getAll());
@@ -50,8 +59,17 @@ if (!MovieManager::getAll()) {
 /**
  * Test de la méthode getById()
  */
-/*if (!MovieManager::getById(1)) {
+/*if (!MovieManager::getById(5)) {
     echo "Don't works";
 } else {
-    var_dump(MovieManager::getAll());
+    var_dump(MovieManager::getById(5));
+}
+
+/**
+ * Test de la méthode getByTitle()
+ */
+/*if (!MovieManager::getByTitle("TPI")) {
+    echo "Don't works";
+} else {
+    var_dump(MovieManager::getByTitle("TPI"));
 }

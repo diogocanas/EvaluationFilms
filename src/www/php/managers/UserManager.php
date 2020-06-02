@@ -75,22 +75,39 @@ class UserManager
      * @param string $avatar La photo de profil de l'utilisateur
      * @return bool true si la modification a fonctionné | false sinon
      */
-    public static function update($nickname, $name, $firstName, $avatar, $email)
+    public static function update($nickname, $name, $firstName, $img, $email)
     {
         try {
+            if ($img != null) {
+                $data = file_get_contents($img);
+                $finfo = new finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($img);
+                $avatar = 'data:' . $mime . ';base64,' . base64_encode($data);
+            } else {
+                $avatar = null;
+            }
+
             $db = DatabaseManager::getInstance();
-            $sql = 'UPDATE USERS SET nickname = :nickname, name = :name, first_name = :first_name, avatar = :avatar WHERE email LIKE :email';
+            $sql = 'UPDATE USERS SET nickname = :nickname, name = :name, first_name = :first_name';
+            if ($avatar != null) {
+                $sql .= ', avatar = :avatar';
+            }
+            $sql .= ' WHERE email LIKE :email';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
             $stmt->bindParam(':name', $name, PDO::PARAM_STR);
             $stmt->bindParam(':first_name', $firstName, PDO::PARAM_STR);
-            $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+            if ($avatar != null) {
+                $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+            }
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
             return false;
         }
+        $user = SessionManager::getLoggedUser();
+        SessionManager::setLoggedUser(self::getById($user->Id));
         return true;
     }
 

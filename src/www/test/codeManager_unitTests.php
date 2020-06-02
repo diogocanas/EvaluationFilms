@@ -47,6 +47,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 }
 
 /**
+ * Test de la méthode getAllGenders()
+ */
+/*if (!CodeManager::getAllGenders()) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getAllGenders());
+}
+
+/**
  * Tests de Director
  */
 
@@ -57,6 +66,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     echo "Don't works";
 } else {
     var_dump(CodeManager::getDirectorById(1));
+}
+
+/**
+ * Test de la méthode getDirectorByName()
+ */
+/*if (!CodeManager::getDirectorByName("Alfred Hitchcock")) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getDirectorByName("Alfred Hitchcock"));
+}
+
+/**
+ * Test de la méthode getAllDirectors()
+ */
+/*if (!CodeManager::getAllDirectors()) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getAllDirectors());
 }
 
 /**
@@ -91,6 +118,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 }
 
 /**
+ * Test de la méthode getAllActors()
+ */
+/*if (!CodeManager::getAllActors()) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getAllActors());
+}
+
+/**
  * Tests de Company
  */
 
@@ -104,6 +140,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 }
 
 /**
+ * Test de la méthode getCompanyByName()
+ */
+/*if (!CodeManager::getCompanyByName("Warner Bros.")) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getCompanyByName("Warner Bros."));
+}
+
+/**
+ * Test de la méthode getAllCompanies()
+ */
+/*if (!CodeManager::getAllCompanies()) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getAllCompanies());
+}
+
+/**
  * Tests de Country
  */
 
@@ -114,6 +168,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     echo "Don't works";
 } else {
     var_dump(CodeManager::getCountryByIso2("FR"));
+}
+
+/**
+ * Test de la méthode getCountryByName()
+ */
+/*if (!CodeManager::getCountryByName("France")) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getCountryByName("France"));
+}
+
+/**
+ * Test de la méthode getAllCountries()
+ */
+/*if (!CodeManager::getAllCountries()) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getAllCountries());
 }
 
 /**
@@ -138,6 +210,45 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 }
 
 /**
+ * Tests de Rating
+ */
+/**
+ * Test de la méthode getAvgRatingByMovieId()
+ */
+/*if (CodeManager::getAvgRatingByMovieId(5) != 0) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
+ * Test de la méthode getNumberRatingsByMovieId()
+ */
+/*if (CodeManager::getNumberRatingsByMovieId(5) > 0) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
+ * Test de la méthode addRateToMovie()
+ */
+/*if (CodeManager::addRateToMovie(5, 10, "oui")) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
+ * Test de la méthode alreadyRated()
+ */
+/*if (!CodeManager::alreadyRated(5)) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
  * Tests de Status
  */
 
@@ -148,4 +259,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     echo "Don't works";
 } else {
     var_dump(CodeManager::getStatusByCode(1));
-}*/
+}
+
+/**
+ * Tests de la table PARTICIPATE
+ */
+if (CodeManager::setActorsToMovie(array("Robert De Niro", "Brad Pitt", "Al Pacino"), "TPI")) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}

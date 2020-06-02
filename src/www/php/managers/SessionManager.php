@@ -26,9 +26,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * @brief Fonction qui modifie la valeur de la variable de session 'isLogged'
+     * @brief Méthode qui modifie la valeur de la variable de session 'isLogged'
      *
-     * @param bool $isLogged Vrai si l'utilisateur est connecté, faux sinon
+     * @param bool $isLogged true si l'utilisateur est connecté, false sinon
      */
     public static function setIsLogged($isLogged)
     {
@@ -36,7 +36,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * @brief Fonction qui retourne la valeur de la variable de session 'isLogged'
+     * @brief Méthode qui retourne la valeur de la variable de session 'isLogged'
      *
      * @return bool $_SESSION['isLogged'] La variable de session
      */
@@ -49,9 +49,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * @brief Fonction qui modifie la valeur de la variable de session 'loggedUser' 
+     * @brief Méthode qui modifie la valeur de la variable de session 'loggedUser' 
      *
-     * @param User $value Instance de la classe User
+     * @param User $user Instance de la classe User
      */
     public static function setLoggedUser($user)
     {
@@ -59,7 +59,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * @brief Fonction qui retourne la valeur de la variable de session 'loggedUser'
+     * @brief Méthode qui retourne la valeur de la variable de session 'loggedUser'
      *
      * @return User $_SESSION['loggedUser'] La variable de session
      */

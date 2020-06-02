@@ -12,13 +12,28 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
-if (isset($_GET['movieId'])) {
-    $movieId = $_GET['movieId'];
-} else {
-    header('Location: index.php');
-}
+$genders = CodeManager::getAllGenders();
+$actors = CodeManager::getAllActors();
+$directors = CodeManager::getAllDirectors();
+$companies = CodeManager::getAllCompanies();
+$countries = CodeManager::getAllCountries();
 
-$movie = MovieManager::getById($movieId);
+$gender = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_STRING);
+$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+$firstActor = filter_input(INPUT_POST, 'firstActor', FILTER_SANITIZE_STRING);
+$secondActor = filter_input(INPUT_POST, 'secondActor', FILTER_SANITIZE_STRING);
+$thirdActor = filter_input(INPUT_POST, 'thirdActor', FILTER_SANITIZE_STRING);
+$director = filter_input(INPUT_POST, 'director', FILTER_SANITIZE_STRING);
+$company = filter_input(INPUT_POST, 'company', FILTER_SANITIZE_STRING);
+$country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
+$releaseYear = filter_input(INPUT_POST, 'releaseYear', FILTER_VALIDATE_INT);
+$durationHours = filter_input(INPUT_POST, 'durationHours', FILTER_VALIDATE_INT);
+$durationMinutes = filter_input(INPUT_POST, 'durationMinutes', FILTER_VALIDATE_INT);
+$links = filter_input(INPUT_POST, 'links', FILTER_SANITIZE_STRING);
+$createButton = filter_input(INPUT_POST, 'create');
+
+$actorsArray = array($firstActor, $secondActor, $thirdActor);
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,13 +46,139 @@ $movie = MovieManager::getById($movieId);
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Page d'accueil</title>
+    <title>Page de création de films</title>
 </head>
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
-    <div class="container">
-        
+    <div class="container overflow-hidden">
+        <?php
+            if (isset($createButton)) {
+                if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
+                    showError('Problème de transfert');
+                    exit;
+                }
+                if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
+                    if (MovieManager::exist($title)) {
+                        if (MovieManager::create($title, $description, $releaseYear, timeToMinutes($durationHours, $durationMinutes), $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
+                            if (CodeManager::setActorsToMovie($actorsArray, $title)) {
+                                if (CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
+                                    showSuccess("Le film a été créé avec succès.");
+                                } else {
+                                    showError("L'ajout des médias a échoué.");
+                                }
+                            } else {
+                                showError("L'ajout des acteurs a échoué.");
+                            }
+                        } else {
+                            showError("La création du film a échoué.");
+                        }
+                    } else {
+                        showError("La référence que vous tentez de créer existe déjà.");
+                    }
+                } else {
+                    showError("Veuillez remplir tous les champs.");
+                }
+            }
+        ?>
+        <form method="POST" action="createMovie.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="gender">Genre</label>
+                <select class="form-control" id="gender" name="gender">
+                    <?php
+                    foreach ($genders as $gender) {
+                        echo "<option>" . $gender->Label . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <label for="firstActor">Acteurs principaux</label>
+            <div class="form-group row">
+                <select class="form-control col" id="firstActor" name="firstActor">
+                    <?php
+                    foreach ($actors as $actor) {
+                        echo "<option>" . $actor->Actor . "</option>";
+                    }
+                    ?>
+                </select>
+                <select class="form-control col" id="secondActor" name="secondActor">
+                    <?php
+                    foreach ($actors as $actor) {
+                        echo "<option>" . $actor->Actor . "</option>";
+                    }
+                    ?>
+                </select>
+                <select class="form-control col" id="thirdActor" name="thirdActor">
+                    <?php
+                    foreach ($actors as $actor) {
+                        echo "<option>" . $actor->Actor . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="director">Réalisateur</label>
+                <select class="form-control" id="director" name="director">
+                    <?php
+                    foreach ($directors as $director) {
+                        echo "<option>" . $director->Director . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="w-100">
+                <label for="company" class="w-50">Société de production</label>
+                <label for="country">Pays d'origine</label>
+            </div>
+            <div class="form-group row">
+                <select class="form-control col" id="company" name="company">
+                    <?php
+                    foreach ($companies as $company) {
+                        echo "<option>" . $company->Company . "</option>";
+                    }
+                    ?>
+                </select>
+                <select class="form-control col" id="country" name="country">
+                    <?php
+                    foreach ($countries as $country) {
+                        echo "<option>" . $country->Country . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="w-100">
+                <label for="releaseYear" class="w-50">Année de sortie</label>
+                <label for="durationHours">Durée du film</label>
+            </div>
+            <div class="form-group row">
+                <input type="number" value="2020" class="form-control col" id="releaseYear" name="releaseYear">
+                <div class="col row">
+                    <input type="number" class="form-control col" id="durationHours" name="durationHours"> heures et
+                    <input type="number" class="form-control col" id="durationMinutes" name="durationMinutes"> minutes
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="links">Liens</label>
+                <textarea class="form-control" id="links" name="links" rows="3"></textarea>
+            </div>
+            <div class="w-100">
+                <label for="poster" class="w-50">Affiche du film</label>
+                <label for="medias">Médias à ajouter</label>
+            </div>
+            <div class="form-group row">
+                <input type="file" class="form-control-file col" id="poster" name="poster">
+                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary" name="create">Créer le film</button>
+        </form>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>
     <!-- Optional JavaScript -->

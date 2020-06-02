@@ -74,4 +74,27 @@ class MailManager
 
         return self::send($subject, $email, $message);
     }
+
+    /**
+     * @brief Méthode qui envoie un mail pour informer l'utilisateur que son film a été noté
+     *
+     * @param int $movieId L'identifiant numérique du film
+     * @param int $score La note donnée au film
+     * @return bool true si le mail est envoyé | false sinon 
+     */
+    public static function sendRatingMail($movieId, $score)
+    {
+        $movie = MovieManager::getById($movieId);
+        $user = $movie->User;
+        $subject = "Nouvelle note sur votre film";
+        $message =
+            '<html>' .
+            ' <head></head>' .
+            ' <body>' .
+            '  <p>Un utilisateur a noté le film que vous avez créé : ' . $movie->Title . '. Voici la note : ' . $score . '/10.</p></br><a href="localhost/movie.php?movieId=' . $movieId . '">Cliquez-ici pour voir la référence du film.</a>';
+        ' </body>' .
+            '</html>';
+
+        return self::send($subject, $user->Email, $message);
+    }
 }
