@@ -2,10 +2,10 @@
 
 /**
  * Nom du projet  : Evaluation Films
- * Nom du fichier : createMovie.php
+ * Nom du fichier : updateMovie.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 29 mai 2020
- * Description    : Page de détail du film
+ * Date           : 03 juin 2020
+ * Description    : Page de modification de film
  * Version        : 1.0
  */
 
@@ -15,6 +15,14 @@ session_start();
 if (!SessionManager::getIsLogged()) {
     header('Location: index.php');
 }
+
+if (isset($_GET['movieId'])) {
+    $movieId = $_GET['movieId'];
+} else {
+    header('Location: myMovies.php');
+}
+
+$movie = MovieManager::getById($movieId);
 
 $genders = CodeManager::getAllGenders();
 $actors = CodeManager::getAllActors();
@@ -35,7 +43,8 @@ $releaseYear = filter_input(INPUT_POST, 'releaseYear', FILTER_VALIDATE_INT);
 $durationHours = filter_input(INPUT_POST, 'durationHours', FILTER_VALIDATE_INT);
 $durationMinutes = filter_input(INPUT_POST, 'durationMinutes', FILTER_VALIDATE_INT);
 $links = filter_input(INPUT_POST, 'links', FILTER_SANITIZE_STRING);
-$createButton = filter_input(INPUT_POST, 'create');
+$hideButton = filter_input(INPUT_POST, 'hide');
+$deleteButton = filter_input(INPUT_POST, 'delete');
 
 $actorsArray = array($firstActor, $secondActor, $thirdActor);
 ?>
@@ -50,84 +59,71 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Page de création de films</title>
+    <title>Page de modification de films</title>
 </head>
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
     <div class="container overflow-hidden">
         <?php
-        if (isset($createButton)) {
-            if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
-                showError('Problème de transfert');
-                exit;
-            }
-            if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
-                if (MovieManager::exist($title)) {
-                    if ($firstActor != $secondActor && $firstActor != $thirdActor && $secondActor != $thirdActor) {
-                        if (MovieManager::create($title, $description, $releaseYear, timeToMinutes($durationHours, $durationMinutes), $_FILES['poster'], 0, $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
-                            if (CodeManager::setActorsToMovie($actorsArray, $title)) {
-                                if ($_FILES['medias']['name'][0] != "") {
-                                    if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
-                                        showError("L'ajout des médias a échoué.");
-                                    }
-                                } showSuccess("Le film a été créé avec succès.");
-                            } else {
-                                showError("L'ajout des acteurs a échoué.");
-                            }
-                        } else {
-                            showError("La création du film a échoué.");
-                        }
-                    } else {
-                        showError("Les trois acteurs doivent être différents.");
-                    }
-                } else {
-                    showError("La référence que vous tentez de créer existe déjà.");
+            if (isset($hideButton)) {
+                if (MovieManager::hideMovie($movie)) {
+                    header('Location: updateMovie.php?movieId=' . $movieId);
                 }
-            } else {
-                showError("Veuillez remplir tous les champs.");
             }
-        }
+            if (isset($deleteButton)) {
+                if (MovieManager::delete($movieId)) {
+                    header('Location: myMovies.php');
+                }
+            }
         ?>
-        <form method="POST" action="createMovie.php" enctype="multipart/form-data">
+        <form method="POST" action="">
             <div class="form-group">
                 <label for="gender">Genre</label>
-                <select class="form-control" id="gender" name="gender">
+                <select class="form-control" id="gender" name="gender" value="<?= $movie->Gender->Label ?>">
                     <?php
                     foreach ($genders as $gender) {
-                        echo "<option>" . $gender->Label . "</option>";
+                    ?>
+                        <option <?php if ($gender->Label == $movie->Gender->Label) echo 'selected' ?>><?= $gender->Label ?></option>
+                    <?php
                     }
                     ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" value="<?= $movie->Title ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3"><?= $movie->Description ?></textarea>
             </div>
             <label for="firstActor">Acteurs principaux</label>
             <div class="form-group row">
                 <select class="form-control col" id="firstActor" name="firstActor">
                     <?php
                     foreach ($actors as $actor) {
-                        echo "<option>" . $actor->Actor . "</option>";
+                    ?>
+                        <option <?php if ($actor->Actor == $movie->Actors[0]->Actor) echo 'selected' ?>><?= $actor->Actor ?></option>
+                    <?php
                     }
                     ?>
                 </select>
                 <select class="form-control col" id="secondActor" name="secondActor">
                     <?php
                     foreach ($actors as $actor) {
-                        echo "<option>" . $actor->Actor . "</option>";
+                    ?>
+                        <option <?php if ($actor->Actor == $movie->Actors[1]->Actor) echo 'selected' ?>><?= $actor->Actor ?></option>
+                    <?php
                     }
                     ?>
                 </select>
                 <select class="form-control col" id="thirdActor" name="thirdActor">
                     <?php
                     foreach ($actors as $actor) {
-                        echo "<option>" . $actor->Actor . "</option>";
+                    ?>
+                        <option <?php if ($actor->Actor == $movie->Actors[2]->Actor) echo 'selected' ?>><?= $actor->Actor ?></option>
+                    <?php
                     }
                     ?>
                 </select>
@@ -137,7 +133,9 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <select class="form-control" id="director" name="director">
                     <?php
                     foreach ($directors as $director) {
-                        echo "<option>" . $director->Director . "</option>";
+                    ?>
+                        <option <?php if ($director->Director == $movie->Director->Director) echo 'selected' ?>><?= $director->Director ?></option>
+                    <?php
                     }
                     ?>
                 </select>
@@ -150,14 +148,18 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <select class="form-control col" id="company" name="company">
                     <?php
                     foreach ($companies as $company) {
-                        echo "<option>" . $company->Company . "</option>";
+                    ?>
+                        <option <?php if ($company->Company == $movie->Company->Company) echo 'selected' ?>><?= $company->Company ?></option>
+                    <?php
                     }
                     ?>
                 </select>
                 <select class="form-control col" id="country" name="country">
                     <?php
                     foreach ($countries as $country) {
-                        echo "<option>" . $country->Country . "</option>";
+                    ?>
+                        <option <?php if ($country->Country == $movie->Country->Country) echo 'selected' ?>><?= $country->Country ?></option>
+                    <?php
                     }
                     ?>
                 </select>
@@ -167,25 +169,49 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="durationHours">Durée du film</label>
             </div>
             <div class="form-group row">
-                <input type="number" value="2020" class="form-control col" id="releaseYear" name="releaseYear">
+                <input type="number" value="<?= $movie->ReleaseYear ?>" class="form-control col" id="releaseYear" name="releaseYear">
                 <div class="col row">
-                    <input type="number" class="form-control col" id="durationHours" name="durationHours"> heures et
-                    <input type="number" class="form-control col" id="durationMinutes" name="durationMinutes"> minutes
+                    <input type="number" class="form-control col" id="durationHours" name="durationHours" value="<?= timeDBToHours($movie->Duration) ?>"> heures et
+                    <input type="number" class="form-control col" id="durationMinutes" name="durationMinutes" value="<?= timeDBToMinutes($movie->Duration) ?>"> minutes
                 </div>
             </div>
             <div class="form-group">
                 <label for="links">Liens</label>
-                <textarea class="form-control" id="links" name="links" rows="3"></textarea>
+                <textarea class="form-control" id="links" name="links" rows="3"><?= $movie->Links ?></textarea>
             </div>
             <div class="w-100">
                 <label for="poster" class="w-50">Affiche du film</label>
                 <label for="medias">Médias à ajouter</label>
             </div>
             <div class="form-group row">
-                <input type="file" class="form-control-file col" id="poster" name="poster" accept="image/*">
-                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
+                <div class="col-6"><img src="<?= $movie->Poster ?>" alt="poster" width="250" />
+                    <input type="file" class="form-control-file col mt-1" id="poster" name="poster" accept="image/*"></div>
+                <div class="col-6">
+                    <?php
+                    foreach ($movie->Medias as $media) {
+                        if (strpos($media->Media, 'image')) {
+                            echo '<img src="' . $media->Media . '" width="250"></br>';
+                        } else if (strpos($media->Media, 'video')) {
+                            echo '<video width="250" controls><source src="' . $media->Media . '"></video>';
+                        } else if (strpos($media->Media, 'audio')) {
+                            echo '<audio controls><source src="' . $media->Media . '"></audio>';
+                        }
+                    }
+                    ?>
+                    <input type="file" class="form-control-file col mt-1" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" name="create">Créer le film</button>
+            <button type="submit" class="btn btn-primary" name="hide">
+                <?php 
+                $movie = MovieManager::getById($movieId);
+                if ($movie->Hidden != 1) { ?>
+                    Cacher le film
+                <?php } else { ?>
+                    Montrer le film
+                <?php } ?>
+            </button>
+            <button type="submit" class="btn btn-primary" name="update">Modifier le film</button>
+            <button type="submit" class="btn btn-danger" name="delete">Supprimer le film</button>
         </form>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>

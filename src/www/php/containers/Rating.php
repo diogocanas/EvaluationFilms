@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 
     /**
      * @brief Constructeur de la classe
-     * @param string $score La note donnée par l'utilisateur
+     * @param int $score La note donnée par l'utilisateur
      * @param string $remark Le commentaire de la note
      */
     function __construct($score, $remark)
@@ -33,7 +33,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     /**
      * La note donnée par l'utilisateur
      *
-     * @var string
+     * @var int
      */
     public $Score;
     

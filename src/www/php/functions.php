@@ -12,9 +12,9 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 
 /**
- * Fonction qui affiche une erreur
+ * Fonction qui affiche un message de succès
  *
- * @param string $message Le message de l'erreur
+ * @param string $message Le message de succès
  */
 function showSuccess($message)
 {
@@ -26,7 +26,7 @@ function showSuccess($message)
 }
 
 /**
- * Fonction qui affiche une erreur
+ * Fonction qui affiche un message d'erreur
  *
  * @param string $message Le message de l'erreur
  */
@@ -48,6 +48,26 @@ function showError($message)
  */
 function timeToMinutes($hours, $minutes) {
     return $hours * 60 + $minutes;
+}
+
+/**
+ * @brief Fonction qui retourne le nombre d'heures entières dans x minutes
+ *
+ * @param int $minutes Le nombre de minutes
+ * @return int Le nombre d'heures entières
+ */
+function timeDBToHours($minutes) {
+    return ($minutes - ($minutes % 60)) / 60;
+}
+
+/**
+ * @brief Fonction qui retourne le nombre de minutes qu'il reste après avoir soustrait les heures entières
+ *
+ * @param int $minutes Le nombre de minutes
+ * @return int Le nombre de minutes qu'il reste après avoir soustrait les heures entières
+ */
+function timeDBToMinutes($minutes) {
+    return $minutes - timeDBToHours($minutes) * 60;
 }
 
 /**

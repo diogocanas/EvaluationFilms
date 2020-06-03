@@ -32,9 +32,9 @@ class CodeManager
      */
 
     /**
-     * @brief Méthode qui récupère le rôle 
+     * @brief Méthode qui récupère le rôle par l'identifiant numérique
      *
-     * @param int $code L'identifiant numérique du rôle par l'identifiant numériqu
+     * @param int $code L'identifiant numérique du rôle
      * @return Role objet Role | false sinon
      */
     public static function getRoleByCode($code)
@@ -484,6 +484,13 @@ class CodeManager
         return $mediasArray;
     }
 
+    /**
+     * @brief Méthode qui insère des médias dans la base en les reliant à un film
+     *
+     * @param $_FILES $medias Les médias (images, vidéos et audios)
+     * @param string $title Le titre du film
+     * @return bool true si l'insertion a fonctionnée | false sinon
+     */
     public static function setMediasToMovie($medias, $title)
     {
         try {
@@ -495,10 +502,9 @@ class CodeManager
                 $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $mime = $finfo->file($file);
                 $media = 'data:' . $mime . ';base64,' . base64_encode($data);
-                if (!strpos($mime, 'image') || !strpos($mime, 'video') || !strpos($mime, 'audio')) {
+                if (strpos($mime, 'image') != false || strpos($mime, 'video') != false || strpos($mime, 'audio') != false) {
                     return false;
                 }
-
                 $stmt->bindParam(':media', $media, PDO::PARAM_STR);
                 $stmt->bindParam(':movies_id', MovieManager::getByTitle($title)->Id, PDO::PARAM_INT);
                 $stmt->execute();
@@ -577,7 +583,7 @@ class CodeManager
      * @param int $movieId L'identifiant numérique du film
      * @param int $score La note donnée par l'utilisateur
      * @param string $remark Le commentaire lié à la note
-     * @return bool true si l'insertion a fonctionné | false sinon
+     * @return bool true si l'insertion a fonctionnée | false sinon
      */
     public static function addRateToMovie($movieId, $score, $remark)
     {
@@ -633,7 +639,7 @@ class CodeManager
      */
 
     /**
-     * @brief Méthode qui récupère le pays d'origine par l'identifiant numérique 
+     * @brief Méthode qui récupère le statut par l'identifiant numérique 
      *
      * @param int $code L'identifiant numérique du statut
      * @return Status objet Status | false sinon

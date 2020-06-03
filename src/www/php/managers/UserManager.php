@@ -33,7 +33,7 @@ class UserManager
      * @param string $nickname Le surnom de l'utilisateur
      * @param string $email L'email de l'utilisateur
      * @param string $password Le mot de passe de l'utilisateur
-     * @return bool true si l'insertion a fonctionné | false sinon
+     * @return bool true si l'insertion a fonctionnée | false sinon
      */
     public static function create($nickname, $email, $password)
     {
@@ -72,8 +72,8 @@ class UserManager
      * @param string $nickname Le surnom de l'utilisateur
      * @param string $name Le nom de l'utilisateur
      * @param string $firstName Le prénom de l'utilisateur
-     * @param string $avatar La photo de profil de l'utilisateur
-     * @return bool true si la modification a fonctionné | false sinon
+     * @param string $img La photo de profil de l'utilisateur
+     * @return bool true si la modification a fonctionnée | false sinon
      */
     public static function update($nickname, $name, $firstName, $img, $email)
     {
@@ -83,7 +83,7 @@ class UserManager
                 $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $mime = $finfo->file($img);
                 $avatar = 'data:' . $mime . ';base64,' . base64_encode($data);
-                if (!strpos($mime, 'image')) {
+                if (strpos($mime, 'image') != false) {
                     return false;
                 }
             } else {
@@ -176,7 +176,7 @@ class UserManager
      *
      * @param string $nickname Le nickname de l'utilisateur
      * @param string $email L'adresse mail de l'utilisateur
-     * @return bool true si l'email est libre | false sinon
+     * @return bool true si le nickname et l'email sont libres | false sinon
      */
     public static function exist($nickname, $email)
     {
@@ -213,7 +213,7 @@ class UserManager
             $stmt = $db->prepare($sql);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($usersArray, new User($row['id'], $row['nickname'], $row['email'], $row['password'], $row['token'], $row['name'], $row['first_name'], $row['avatar'], $row['roles_code'], $row['status_id']));
+                array_push($usersArray, new User($row['id'], $row['nickname'], $row['email'], $row['password'], $row['salt'], $row['token'], CodeManager::getRoleByCode($row['roles_code']), CodeManager::getStatusByCode($row['status_id']), $row['name'], $row['first_name'], $row['avatar']));
             }
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
@@ -264,5 +264,32 @@ class UserManager
             echo 'Erreur : ' . $e->getMessage();
             return false;
         }
+    }
+
+    /**
+     * @brief Méthode qui bloque (ou débloque) un utilisateur
+     *
+     * @param User $user L'utilisateur à bloquer (ou débloquer)
+     * @return bool true si la modification a fonctionnée | false sinon
+     */
+    public static function block($user) {
+        try {
+            $db = DatabaseManager::getInstance();
+            if ($user->Status->Code != 3) {
+                $sql = 'UPDATE USERS SET status_id = 3 WHERE nickname LIKE :nickname';
+            } else {
+                $sql = 'UPDATE USERS SET status_id = 2 WHERE nickname LIKE :nickname';
+            }
+            
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':nickname', $user->Nickname, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                MailManager::sendBlockMail($user->Id);
+            }
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+        return true;
     }
 }

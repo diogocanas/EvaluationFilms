@@ -18,8 +18,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     /**
      * @brief Constructeur de la classe
      *
-     * @param int $id L'identifiant numérique de la société de production
-     * @param string $country Le nom de la société de production
+     * @param string $iso2 L'identifiant du pays d'origine
+     * @param string $country Le nom du pays d'origine
      */
     function __construct($iso2, $country)
     {
@@ -32,14 +32,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * L'identifiant numérique de la société de production
+     * L'identifiant du pays d'origine
      *
      * @var string
      */
     public $Iso2;
 
     /**
-     * Le nom de la société de production
+     * Le nom du pays d'origine
      *
      * @var string
      */

@@ -32,14 +32,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * L'identifiant numérique du réalisateur
+     * L'identifiant numérique de l'acteur
      *
      * @var int
      */
     public $Id;
 
     /**
-     * Le nom du réalisateur
+     * Le nom de l'acteur
      *
      * @var string
      */

@@ -97,4 +97,36 @@ class MailManager
 
         return self::send($subject, $user->Email, $message);
     }
+
+    /**
+     * @brief Méthode qui envoie un mail pour informer l'utilisateur qu'il a été bloqué ou débloqué
+     *
+     * @param int $userId L'identifiant numérique de l'utilisateur
+     * @return bool true si le mail est envoyé | false sinon
+     */
+    public static function sendBlockMail($userId)
+    {
+        $user = UserManager::getById($userId);
+        if ($user->Status->Code == 3) {
+            $subject = "Vous avez été bloqué.";
+            $message =
+                '<html>' .
+                ' <head></head>' .
+                ' <body>' .
+                '  <p>Un administrateur vous a bloqué. Vous ne pouvez plus vous connectez. Vous recevrez un mail en cas de déblocage.</p>  ';
+            ' </body>' .
+                '</html>';
+        } else {
+            $subject = "Vous avez été débloqué.";
+            $message =
+                '<html>' .
+                ' <head></head>' .
+                ' <body>' .
+                '  <p>Un administrateur vous a débloqué. Vous pouvez désormais vous connecter.</p>  ';
+            ' </body>' .
+                '</html>';
+        }
+
+        return self::send($subject, $user->Email, $message);
+    }
 }

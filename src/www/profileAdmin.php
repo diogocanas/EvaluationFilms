@@ -2,23 +2,28 @@
 
 /**
  * Nom du projet  : Evaluation Films
- * Nom du fichier : profile.php
+ * Nom du fichier : profileAdmin.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 02 juin 2020
+ * Date           : 03 juin 2020
  * Description    : Page de profil
  * Version        : 1.0
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
-if (!SessionManager::getIsLogged()) {
+if (!SessionManager::getIsLogged() && SessionManager::getLoggedUser()->Role->Code != 2) {
     header('Location: index.php');
 }
 
-$nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_STRING);
-$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-$firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
-$updateButton = filter_input(INPUT_POST, 'update');
+if (isset($_GET['userId'])) {
+    $userId = $_GET['userId'];
+} else {
+    header('Location: userManagement.php');
+}
+
+$user = UserManager::getById($userId);
+
+$blockButton = filter_input(INPUT_POST, 'block');
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,53 +36,48 @@ $updateButton = filter_input(INPUT_POST, 'update');
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Page d'inscription</title>
+    <title>Page de profil pour administrateur</title>
 </head>
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
     <div class="container">
         <?php
-        if ((!isset($_FILES['avatar']) || !is_uploaded_file($_FILES['avatar']['tmp_name']))) {
-            $avatar = null;
-        } else {
-            $avatar = $_FILES['avatar']['tmp_name'];
-        }
-        if (isset($updateButton)) {
-            if (!empty($nickname)) {
-                if (UserManager::update($nickname, $name, $firstName, $avatar, SessionManager::getLoggedUser()->Email)) {
-                    showSuccess("Le profil a été modifié correctement.");
-                } else {
-                    showError("Le profil n'a pas été modifié.");
-                }
-            } else {
-                showError("Le surnom est obligatoire.");
+        if (isset($blockButton)) {
+            if (UserManager::block($user)) {
+                header('Refresh: 0');
             }
         }
         ?>
-        <form method="POST" action="profile.php" enctype="multipart/form-data">
+        <form method="POST" action="">
             <div class="form-group">
                 <label for="nickname">Nickname</label>
-                <input type="text" class="form-control" id="nickname" name="nickname" value="<?= SessionManager::getLoggedUser()->Nickname ?>" autofocus required>
+                <p><?= $user->Nickname ?></p>
             </div>
             <div class="form-group">
                 <label for="name">Nom</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?= SessionManager::getLoggedUser()->Name ?>">
+                <p><?= $user->Name ?></p>
             </div>
             <div class="form-group">
                 <label for="firstName">Prénom</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" value="<?= SessionManager::getLoggedUser()->FirstName ?>">
+                <p><?= $user->FirstName ?></p>
             </div>
             <div class="form-group">
                 <label>Adresse mail</label>
-                <p><?= SessionManager::getLoggedUser()->Email ?></p>
+                <p><?= $user->Email ?></p>
             </div>
             <div class="form-group">
-                <label for="avatar">Avatar</label><br/>
-                <img src="<?= SessionManager::getLoggedUser()->Avatar ?>" width="250">
-                <input type="file" class="form-control-file" id="avatar" name="avatar" accept="image/*">
+                <label for="avatar">Avatar</label><br />
+                <img src="<?= $user->Avatar ?>" width="250">
             </div>
-            <button type="submit" class="btn btn-primary" name="update">Modifier</button>
+            <button type="submit" class="btn btn-primary" name="block">
+                <?php if ($user->Status->Code != 3) {
+                    echo "Bloquer";
+                } else {
+                    echo "Débloquer";
+                }
+                ?>
+            </button>
         </form>
     </div>
     <?php

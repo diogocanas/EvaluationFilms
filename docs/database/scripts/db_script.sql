@@ -31,9 +31,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`ROLES` (
   `code` INT NOT NULL,
   `label` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`code`),
-  UNIQUE INDEX `id_UNIQUE` (`code` ASC),
-  UNIQUE INDEX `role_UNIQUE` (`label` ASC))
+  PRIMARY KEY (`code`))
 ENGINE = InnoDB;
 
 
@@ -124,9 +122,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `evaluationFilms`.`COUNTRIES` (
   `iso2` VARCHAR(2) NOT NULL,
   `country` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`iso2`),
-  UNIQUE INDEX `id_UNIQUE` (`iso2` ASC),
-  UNIQUE INDEX `country_UNIQUE` (`country` ASC))
+  PRIMARY KEY (`iso2`))
 ENGINE = InnoDB;
 
 
@@ -140,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
   `release_year` INT NOT NULL,
   `duration` INT NOT NULL,
   `poster` LONGTEXT NOT NULL,
+  `hidden` INT NOT NULL,
   `links` LONGTEXT NULL,
   `directors_id` INT NOT NULL,
   `companies_id` INT NOT NULL,
@@ -152,8 +149,8 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
   INDEX `fk_MOVIES_USERS1_idx` (`users_id` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `title_UNIQUE` (`title` ASC),
-  INDEX `fk_MOVIES_COUNTRIES1_idx` (`countries_iso2` ASC),
   INDEX `fk_MOVIES_GENDERS1_idx` (`genders_code` ASC),
+  INDEX `fk_MOVIES_COUNTRIES1_idx` (`countries_iso2` ASC),
   CONSTRAINT `fk_MOVIES_DIRECTORS1`
     FOREIGN KEY (`directors_id`)
     REFERENCES `evaluationFilms`.`DIRECTORS` (`id`)
@@ -169,14 +166,14 @@ CREATE TABLE IF NOT EXISTS `evaluationFilms`.`MOVIES` (
     REFERENCES `evaluationFilms`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_MOVIES_COUNTRIES1`
-    FOREIGN KEY (`countries_iso2`)
-    REFERENCES `evaluationFilms`.`COUNTRIES` (`iso2`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_MOVIES_GENDERS1`
     FOREIGN KEY (`genders_code`)
     REFERENCES `evaluationFilms`.`GENDERS` (`code`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_MOVIES_COUNTRIES1`
+    FOREIGN KEY (`countries_iso2`)
+    REFERENCES `evaluationFilms`.`COUNTRIES` (`iso2`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

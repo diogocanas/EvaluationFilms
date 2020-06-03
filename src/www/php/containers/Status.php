@@ -32,14 +32,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     }
 
     /**
-     * L'identifiant numérique du genre
+     * L'identifiant numérique du statut
      *
      * @var int
      */
     public $Code;
 
     /**
-     * Le nom du genre
+     * Le nom du statut
      *
      * @var string
      */

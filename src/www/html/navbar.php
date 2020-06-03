@@ -36,12 +36,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="createMovie.php">Créer un film</a>
-            <a class="dropdown-item" href="#">Modifier un film</a>
+            <a class="dropdown-item" href="myMovies.php">Modifier un film</a>
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="profile.php">Profil</a>
         </li>
+        <?php if (SessionManager::getLoggedUser()->Role->Code == 2) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="userManagement.php">Gestion des utilisateurs</a>
+          </li>
+        <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Déconnexion</a>
         </li>

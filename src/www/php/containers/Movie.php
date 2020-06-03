@@ -24,6 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @param int $releaseYear L'année de sortie du film
      * @param int $duration La durée du film en minutes
      * @param string $poster L'affiche du film (en base64)
+     * @param int $hidden La visibilité du film
      * @param string $links Les liens reliés au film
      * @param string $medias Les médias reliés au film
      * @param int $director Le réalisateur du film
@@ -32,7 +33,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @param int $gender Le genre du film
      * @param int $user L'utilisateur qui a créé le film
      */
-    function __construct($id, $title, $description, $releaseYear, $duration, $poster, $links, $medias, $actors, $director, $company, $country, $gender, $user)
+    function __construct($id, $title, $description, $releaseYear, $duration, $poster, $hidden, $links, $medias, $actors, $director, $company, $country, $gender, $user)
     {
         $this->Id = $id;
         $this->Title = $title;
@@ -40,6 +41,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->ReleaseYear = $releaseYear;
         $this->Duration = $duration;
         $this->Poster = $poster;
+        $this->Hidden = $hidden;
         $this->Links = $links;
         $this->Medias = $medias;
         $this->Actors = $actors;
@@ -97,56 +99,63 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     public $Poster;
 
     /**
-     * Liens reliés au film
+     * La visibilité du film
+     *
+     * @var int
+     */
+    public $Hidden;
+
+    /**
+     * Les liens reliés au film
      *
      * @var string
      */
     public $Links;
 
     /**
-     * Médias reliés au film
+     * Les médias reliés au film
      *
      * @var Media[]
      */
     public $Medias;
 
     /**
-     * Acteurs du film
+     * Les acteurs du film
      *
      * @var Actor[]
      */
     public $Actors;
 
     /**
-     * Réalisateur du film
+     * Le réalisateur du film
      *
      * @var Director
      */
     public $Director;
 
     /**
-     * Société de production du film
+     * La société de production du film
      *
      * @var Company
      */
     public $Company;
 
     /**
-     * Pays d'origine du film
+     * Le pays d'origine du film
      *
      * @var Country
      */
     public $Country;
 
     /**
-     * Genre du film
+     * Le genre du film
      *
      * @var Gender
      */
     public $Gender;
 
     /**
-     * Utilisateur qui a créé le film
+     * L'utilisateur qui a créé le film
      *
      * @var User
      */

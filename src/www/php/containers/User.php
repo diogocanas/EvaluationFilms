@@ -92,14 +92,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     public $Token;
 
     /**
-     * Rôle de l'utilisateur
+     * Le rôle de l'utilisateur
      *
      * @var Role
      */
     public $Role;
 
     /**
-     * Statut de l'utilisateur
+     * Le statut de l'utilisateur
      *
      * @var Status
      */
