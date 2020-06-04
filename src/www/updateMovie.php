@@ -225,12 +225,13 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                     <?php
                     foreach ($movie->Medias as $media) {
                         if (strpos($media->Media, 'image')) {
-                            echo '<img src="' . $media->Media . '" width="250" class="media mediaToDelete"></br>';
+                            echo '<div class="row my-2"><img src="' . $media->Media . '" width="250" class="media"></br>';
                         } else if (strpos($media->Media, 'video')) {
-                            echo '<video width="250" controls><source src="' . $media->Media . '" class="media mediaToDelete"></video>';
+                            echo '<div class="row my-2"><video width="250" controls><source src="' . $media->Media . '" class="media"></video>';
                         } else if (strpos($media->Media, 'audio')) {
-                            echo '<audio controls><source src="' . $media->Media . '" class="media mediaToDelete"></audio>';
+                            echo '<div class="row my-2"><audio controls><source src="' . $media->Media . '" class="media"></audio>';
                         }
+                        echo '<a href="deleteMedias.php?media=' . $media->Id . '" class="btn btn-danger ml-1 h-50">Supprimer</a></div>';
                     }
                     ?>
                     <input type="file" class="form-control-file col mt-1" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
@@ -255,17 +256,6 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            $('.mediaToDelete').click(deleteMedia);
-        });
-
-        function deleteMedia() {
-            $.ajax({
-                
-            })
-        };
-    </script>
 </body>
 
 </html>

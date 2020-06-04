@@ -536,6 +536,17 @@ class CodeManager
         return true;
     }
 
+    public static function deleteMediaById($mediaId) {
+        try {
+            $db = DatabaseManager::getInstance();
+            $sql = 'DELETE FROM MEDIAS WHERE id LIKE :id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $mediaId, PDO::PARAM_INT);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     /**
      * Méthodes pour Rating
      */
