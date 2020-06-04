@@ -58,10 +58,10 @@ $rateButton = filter_input(INPUT_POST, 'rate');
             }
         }
         ?>
-        <div class="col-6 row">
+        <div class="col-8 row">
             <?php
             echo '<img src="' . $movie->Poster . '" width="250" class="col-6">';
-            echo '<div class="col-6">';
+            echo '<div class="col-6 w-50">';
             echo '<h1>' . $movie->Title . '</h1>';
             echo "Genre : " . $movie->Gender->Label . '</br>';
             echo "Réalisateur : " . $movie->Director->Director . '</br>';
@@ -81,7 +81,7 @@ $rateButton = filter_input(INPUT_POST, 'rate');
             ?>
 
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <h1>Liens et vidéos</h1>
             <?php 
             foreach ($links as $link) {

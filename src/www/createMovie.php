@@ -55,11 +55,11 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
-    <div class="container overflow-hidden">
+    <div class="container overflow-hidden p-0">
         <?php
         if (isset($createButton)) {
             if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
-                showError('Problème de transfert');
+                showError('Vous devez choisir une affiche.');
                 exit;
             }
             if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
@@ -109,15 +109,15 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <textarea class="form-control" id="description" name="description" rows="3"></textarea>
             </div>
             <label for="firstActor">Acteurs principaux</label>
-            <div class="form-group row">
-                <select class="form-control col" id="firstActor" name="firstActor">
+            <div class="form-group row px-3">
+                <select class="form-control col mr-3" id="firstActor" name="firstActor">
                     <?php
                     foreach ($actors as $actor) {
                         echo "<option>" . $actor->Actor . "</option>";
                     }
                     ?>
                 </select>
-                <select class="form-control col" id="secondActor" name="secondActor">
+                <select class="form-control col mr-3" id="secondActor" name="secondActor">
                     <?php
                     foreach ($actors as $actor) {
                         echo "<option>" . $actor->Actor . "</option>";
@@ -146,8 +146,8 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="company" class="w-50">Société de production</label>
                 <label for="country">Pays d'origine</label>
             </div>
-            <div class="form-group row">
-                <select class="form-control col" id="company" name="company">
+            <div class="form-group row px-3">
+                <select class="form-control col mr-3" id="company" name="company">
                     <?php
                     foreach ($companies as $company) {
                         echo "<option>" . $company->Company . "</option>";
@@ -166,11 +166,11 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="releaseYear" class="w-50">Année de sortie</label>
                 <label for="durationHours">Durée du film</label>
             </div>
-            <div class="form-group row">
-                <input type="number" value="2020" class="form-control col" id="releaseYear" name="releaseYear">
+            <div class="form-group row px-3">
+                <input type="number" value="2020" class="form-control col mr-3" id="releaseYear" name="releaseYear">
                 <div class="col row">
-                    <input type="number" class="form-control col" id="durationHours" name="durationHours"> heures et
-                    <input type="number" class="form-control col" id="durationMinutes" name="durationMinutes"> minutes
+                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours"> heures et
+                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes"> minutes
                 </div>
             </div>
             <div class="form-group">
@@ -183,7 +183,7 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
             </div>
             <div class="form-group row">
                 <input type="file" class="form-control-file col" id="poster" name="poster" accept="image/*">
-                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
+                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*"><span id="preview"></span>
             </div>
             <button type="submit" class="btn btn-primary" name="create">Créer le film</button>
         </form>

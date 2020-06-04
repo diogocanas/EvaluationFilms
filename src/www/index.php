@@ -12,7 +12,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
-$movies = MovieManager::getVisibleMovies();
+$movies = CodeManager::getMostRatedMovies();
 $genders = CodeManager::getAllGenders();
 $countries = CodeManager::getAllCountries();
 
@@ -111,7 +111,7 @@ $filterButton = filter_input(INPUT_POST, 'filter');
     }
     ?>
   </div>
-  <a href="allMovies.php">Voir tous les films</a>
+  <a href="allMovies.php" class="ml-2">Voir tous les films</a>
   <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

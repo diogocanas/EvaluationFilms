@@ -81,6 +81,7 @@ class MovieManager
     /**
      * @brief Méthode qui modifie un film dans la base de données
      *
+     * @param int $id L'identifiant numérique du film
      * @param string $title Le titre du film
      * @param string $description La description du film (résumé)
      * @param int $releaseYear L'année de sortie du film
@@ -97,14 +98,32 @@ class MovieManager
     public static function update($id, $title, $description, $releaseYear, $duration, $file, $links, $directorsId, $companiesId, $countriesIso2, $gendersCode, $usersId)
     {
         try {
+            if ($file['tmp_name'] != "") {
+                $data = file_get_contents($file['tmp_name']);
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mime = $finfo->file($file['tmp_name']);
+            $poster = 'data:' . $mime . ';base64,' . base64_encode($data);
+            if (strpos($mime, 'image') != false) {
+                return false;
+            }
+            } else {
+                $poster = null;
+            }
+
             $db = DatabaseManager::getInstance();
-            $sql = 'UPDATE MOVIES SET title = :title, description = :description, release_year = :release_year, duration = :duration, poster = :poster, links = :links, directors_id = :directors_id, companies_id = :companies_id, countries_iso2 = :countries_iso2, genders_code = :genders_code, users_id = :users_id WHERE id LIKE :id';
+            $sql = 'UPDATE MOVIES SET title = :title, description = :description, release_year = :release_year, duration = :duration, ';
+            if ($poster != null) {
+                $sql .= 'poster = :poster,';
+            }
+            $sql .= 'links = :links, directors_id = :directors_id, companies_id = :companies_id, countries_iso2 = :countries_iso2, genders_code = :genders_code, users_id = :users_id WHERE id LIKE :id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $description, PDO::PARAM_STR);
             $stmt->bindParam(':release_year', $releaseYear, PDO::PARAM_INT);
             $stmt->bindParam(':duration', $duration, PDO::PARAM_INT);
-            $stmt->bindParam(':poster', $file, PDO::PARAM_STR);
+            if ($poster != null) {
+                $stmt->bindParam(':poster', $poster, PDO::PARAM_STR);
+            }
             $stmt->bindParam(':links', $links, PDO::PARAM_STR);
             $stmt->bindParam(':directors_id', $directorsId, PDO::PARAM_INT);
             $stmt->bindParam(':companies_id', $companiesId, PDO::PARAM_INT);
@@ -115,7 +134,6 @@ class MovieManager
             $stmt->execute();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            $db->rollBack();
             return false;
         }
         return true;
@@ -132,6 +150,14 @@ class MovieManager
         try {
             $db = DatabaseManager::getInstance();
             $db->beginTransaction();
+            $sql = 'DELETE FROM MEDIAS WHERE movies_id LIKE :movies_id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':movies_id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $sql = 'DELETE FROM RATINGS WHERE movies_id LIKE :movies_id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':movies_id', $id, PDO::PARAM_INT);
+            $stmt->execute();
             $sql = 'DELETE FROM PARTICIPATE WHERE movies_id LIKE :movies_id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':movies_id', $id, PDO::PARAM_INT);

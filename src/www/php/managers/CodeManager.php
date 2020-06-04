@@ -269,6 +269,26 @@ class CodeManager
     }
 
     /**
+     * @brief Méthode qui supprime le lien entre un film et ses acteurs
+     *
+     * @param int $movieId L'identifiant numérique du film
+     * @return bool true si la suppression a fonctionnée | false sinon
+     */
+    public static function deleteActorsFromMovie($movieId) {
+        try {
+            $db = DatabaseManager::getInstance();
+            $sql = 'DELETE FROM PARTICIPATE WHERE movies_id LIKE :movies_id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':movies_id', $movieId, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * @brief Méthode qui récupère tous les acteurs en base
      *
      * @return Actor[] tableau de Actor | false sinon
@@ -632,7 +652,29 @@ class CodeManager
         }
     }
 
-
+    /**
+     * @brief Méthode qui retourne les 9 films les mieux notés
+     *
+     * @return Movie[] tableau de Movie | false sinon
+     */
+    public static function getMostRatedMovies() {
+        $moviesArray = array();
+        try {
+            $db = DatabaseManager::getInstance();
+            $sql = 'SELECT movies_id, AVG(score) FROM RATINGS GROUP BY movies_id ORDER BY COUNT(score) DESC, AVG(score) DESC LIMIT 9';
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if (MovieManager::getById($row['movies_id'])->Hidden == 0) {
+                    array_push($moviesArray, MovieManager::getById($row['movies_id']));
+                }
+            }
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+        return $moviesArray;
+    }
 
     /**
      * Méthodes pour Status

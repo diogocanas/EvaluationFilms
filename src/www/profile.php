@@ -73,7 +73,7 @@ $updateButton = filter_input(INPUT_POST, 'update');
                 <p><?= SessionManager::getLoggedUser()->Email ?></p>
             </div>
             <div class="form-group">
-                <label for="avatar">Avatar</label><br/>
+                <label for="avatar">Avatar</label><br />
                 <img src="<?= SessionManager::getLoggedUser()->Avatar ?>" width="250">
                 <input type="file" class="form-control-file" id="avatar" name="avatar" accept="image/*">
             </div>
