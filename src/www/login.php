@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Nom du projet  : ETPI
+ * Nom du projet  : Evaluation Films
  * Nom du fichier : login.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 13 mai 2020
+ * Date           : 29 mai 2020
  * Description    : Page de connexion
  * Version        : 1.0
  */
@@ -48,7 +48,7 @@ $loginButton = filter_input(INPUT_POST, 'login');
     <form method="POST" action="login.php">
       <div class="form-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" autofocus>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?= $email ?>" autofocus>
       </div>
       <div class="form-group">
         <label for="password">Mot de passe</label>

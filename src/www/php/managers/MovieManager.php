@@ -247,23 +247,6 @@ class MovieManager
         return $moviesArray;
     }
 
-    /*public static function getBetterRated() {
-        $moviesArray = array();
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'SELECT m.id, m.title, m.description, m.release_year, m.duration, m.poster, m.links, m.directors_id, m.companies_id, m.countries_iso2, m.genders_code, m.users_id FROM MOVIES AS m JOIN RATINGS AS r WHERE r.movies_id = m.id AND AVG(r.score) AND COUNT(r.score) LIMIT 9';
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($moviesArray, new Movie($row['id'], $row['title'], $row['description'], $row['release_year'], $row['duration'], $row['poster'], $row['links'], CodeManager::getMediasByMovieId($row['id']), CodeManager::getMediasByMovieId($row['id']), CodeManager::getDirectorById($row['directors_id']), CodeManager::getCompanyById($row['companies_id']), CodeManager::getCountryByIso2($row['countries_iso2']), CodeManager::getGenderByCode($row['genders_code']), UserManager::getById($row['users_id'])));
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return $moviesArray;
-    }*/
-
     /**
      * @brief Méthode qui récupère le film par l'identifiant numérique
      *
@@ -378,7 +361,7 @@ class MovieManager
                 $sql .= ' WHERE hidden LIKE 0 AND';
                 if ($keyword != "") {
                     if ($firstCondition) {
-                        $sql .= ' OR title LIKE :title OR description LIKE :description';
+                        $sql .= ' OR title LIKE :title OR description LIKE :description)';
                     } else {
                         $sql .= ' title LIKE :title OR description LIKE :description';
                     }

@@ -4,7 +4,7 @@
  * Nom du projet  : Evaluation Films
  * Nom du fichier : register.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 17 mai 2020
+ * Date           : 29 mai 2020
  * Description    : Page d'inscription
  * Version        : 1.0
  */
@@ -62,11 +62,11 @@ $registerButton = filter_input(INPUT_POST, 'register');
     <form method="POST" action="register.php" enctype="multipart/form-data">
       <div class="form-group">
         <label for="nickname">Nickname</label>
-        <input type="text" class="form-control" id="nickname" name="nickname" autofocus required>
+        <input type="text" class="form-control" id="nickname" name="nickname" value="<?= $nickname ?>" autofocus required>
       </div>
       <div class="form-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" <?= $email ?> required>
       </div>
       <div class="form-group">
         <label for="password">Mot de passe</label>

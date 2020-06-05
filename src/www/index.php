@@ -44,15 +44,17 @@ $filterButton = filter_input(INPUT_POST, 'filter');
   <form method="POST" action="index.php" class="m-4 d-flex justify-content-between">
     <div class="form-group d-inline-block">
       <label for="keyword">Mots-clés</label>
-      <input class="form-control" type="text" id="keyword" name="keyword" />
+      <input class="form-control" type="text" id="keyword" name="keyword" value="<?= $keywordFilter ?>" />
     </div>
     <div class="form-group d-inline-block">
       <label for="gender">Genre</label>
       <select class="form-control" id="gender" name="gender">
-        <option selected>Tout</option>
+        <option>Tout</option>
         <?php
         foreach ($genders as $gender) {
-          echo "<option>" . $gender->Label . "</option>";
+        ?>
+          <option <?php if ($gender->Label == $genderFilter) echo 'selected'; ?>><?= $gender->Label ?></option>
+        <?php
         }
         ?>
       </select>
@@ -60,11 +62,11 @@ $filterButton = filter_input(INPUT_POST, 'filter');
     <div class="form-group d-inline-block">
       <b><label>Année de sortie</label></b>
       <label for="releaseYearStart">De</label>
-      <input class="form-control" type="number" id="releaseYearStart" name="releaseYearStart" />
+      <input class="form-control" type="number" id="releaseYearStart" name="releaseYearStart" value="<?= $releaseYearStartFilter ?>" />
     </div>
     <div class="form-group d-inline-block">
       <label for="releaseYearEnd">À</label>
-      <input class="form-control" type="number" id="releaseYearEnd" name="releaseYearEnd" />
+      <input class="form-control" type="number" id="releaseYearEnd" name="releaseYearEnd" value="<?= $releaseYearEndFilter ?>" />
     </div>
     <div class="form-group d-inline-block">
       <label for="country">Pays</label>
@@ -72,7 +74,9 @@ $filterButton = filter_input(INPUT_POST, 'filter');
         <option selected>Tout</option>
         <?php
         foreach ($countries as $country) {
-          echo "<option>" . $country->Country . "</option>";
+        ?>
+          <option <?php if ($country->Country == $countryFilter) echo 'selected' ?>><?= $country->Country ?></option>;
+        <?php
         }
         ?>
       </select>
@@ -80,11 +84,11 @@ $filterButton = filter_input(INPUT_POST, 'filter');
     <div class="form-group d-inline-block">
       <b><label>Durée (en minutes)</label></b>
       <label for="durationStart">De</label>
-      <input class="form-control" type="number" id="durationStart" name="durationStart" />
+      <input class="form-control" type="number" id="durationStart" name="durationStart" value="<?= $durationStartFilter ?>" />
     </div>
     <div class="form-group d-inline-block">
       <label for="durationEnd">À</label>
-      <input class="form-control" type="number" id="durationEnd" name="durationEnd" />
+      <input class="form-control" type="number" id="durationEnd" name="durationEnd" value="<?= $durationEndFilter ?>" />
     </div>
     <button type="submit" class="btn btn-primary h-25 mt-4" name="filter">Filtrer</button>
   </form>

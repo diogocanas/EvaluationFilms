@@ -1,9 +1,9 @@
 <?php
 /**
- * Nom du projet  : ETPI
+ * Nom du projet  : Evaluation Films
  * Nom du fichier : logout.php
  * Auteur         : Diogo Canas Almeida
- * Date           : 20 mai 2020
+ * Date           : 29 mai 2020
  * Description    : Fichier de déconnexion
  * Version        : 1.0
  */

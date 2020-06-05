@@ -127,11 +127,11 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
             </div>
             <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title" value="<?= $movie->Title ?>">
+                <input type="text" class="form-control" id="title" name="title" value="<?php if ($title == "") echo $movie->Title; else echo $title ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?= $movie->Description ?></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3"><?php if ($description == "") echo $movie->Description; else echo $description ?></textarea>
             </div>
             <label for="firstActor">Acteurs principaux</label>
             <div class="form-group row px-3">
@@ -204,36 +204,37 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="durationHours">Durée du film</label>
             </div>
             <div class="form-group row px-3">
-                <input type="number" value="<?= $movie->ReleaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
+                <input type="number" value="<?php if($releaseYear == "") echo $movie->ReleaseYear; else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
                 <div class="col row">
-                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?= timeDBToHours($movie->Duration) ?>"> heures et
-                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?= timeDBToMinutes($movie->Duration) ?>"> minutes
+                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?php if ($durationHours == "") echo timeDBToHours($movie->Duration); else echo $durationHours ?>"> heures et
+                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?php if ($durationMinutes == "") echo timeDBToMinutes($movie->Duration); else echo $durationMinutes ?>"> minutes
                 </div>
             </div>
             <div class="form-group">
                 <label for="links">Liens</label>
-                <textarea class="form-control" id="links" name="links" rows="3"><?= $movie->Links ?></textarea>
+                <textarea class="form-control" id="links" name="links" rows="3"><?php if ($links == "") echo $movie->Links; else echo $links ?></textarea>
             </div>
             <div class="w-100">
                 <label for="poster" class="w-50">Affiche du film</label>
                 <label for="medias">Médias à ajouter</label>
             </div>
             <div class="form-group row">
-                <div class="col-6"><img src="<?= $movie->Poster ?>" alt="poster" width="250" />
-                    <input type="file" class="form-control-file col mt-1 media" id="poster" name="poster" accept="image/*"></div>
+                <div class="col-6"><img src="<?= $movie->Poster ?>" alt="poster" width="250" id="imgPoster" />
+                    <input type="file" class="form-control-file col mt-1" id="poster" name="poster" accept="image/*"></div>
                 <div class="col-6">
                     <?php
                     foreach ($movie->Medias as $media) {
                         if (strpos($media->Media, 'image')) {
-                            echo '<div class="row my-2"><img src="' . $media->Media . '" width="250" class="media"></br>';
+                            echo '<div class="row my-2"><img src="' . $media->Media . '" width="250" class="media" id="imgMedia"></br>';
                         } else if (strpos($media->Media, 'video')) {
-                            echo '<div class="row my-2"><video width="250" controls><source src="' . $media->Media . '" class="media"></video>';
+                            echo '<div class="row my-2"><video width="250" controls><source src="' . $media->Media . '" class="media" id="vidImg"></video>';
                         } else if (strpos($media->Media, 'audio')) {
-                            echo '<div class="row my-2"><audio controls><source src="' . $media->Media . '" class="media"></audio>';
+                            echo '<div class="row my-2"><audio controls><source src="' . $media->Media . '" class="media" id="audImg"></audio>';
                         }
-                        echo '<a href="deleteMedias.php?media=' . $media->Id . '" class="btn btn-danger ml-1 h-50">Supprimer</a></div>';
+                        echo '<a href="deleteMedias.php?mediaId=' . $media->Id . '&movieId=' . $movieId . '" class="btn btn-danger ml-1 h-50">Supprimer</a></div>';
                     }
                     ?>
+                    <div id="divMedias"></div>
                     <input type="file" class="form-control-file col mt-1" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*">
                 </div>
             </div>
@@ -256,6 +257,52 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script>
+        $('#poster').change(function() {
+            var file = $(this)[0].files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function() {
+                $('#imgPoster').attr('src', reader.result);
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $('#medias').change(function() {
+            $('#divMedias').empty();
+            var files = $(this)[0].files;
+            var reader = new FileReader();
+
+            $(files).each(function() {
+                if (this.type.includes("image")) {
+                reader.addEventListener("load", function() {
+                    var img = $(document.createElement('img'));
+                    img.attr('src', reader.result);
+                    img.attr('width', 250);
+                    img.appendTo('#divMedias');
+                }, false);
+            } else if (this.type.includes("video")) {
+                reader.addEventListener("load", function() {
+                    var vid = $(document.createElement('video'));
+                    var source = $(document.createElement('source'));
+                    source.appendTo(vid);
+                    source.attr('src', reader.result);
+                    source.appendTo('#divMedias');
+                }, false);
+            } else if (this.type.includes("audio")) {
+                reader.addEventListener("load", function() {
+                    $('#audMedia').attr('src', reader.result);
+                }, false);
+            }
+            if (this) {
+                reader.readAsDataURL(this);
+            }
+            });
+        });
+    </script>
 </body>
 
 </html>

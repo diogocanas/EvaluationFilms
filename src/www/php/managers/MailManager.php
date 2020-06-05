@@ -113,7 +113,7 @@ class MailManager
                 '<html>' .
                 ' <head></head>' .
                 ' <body>' .
-                '  <p>Un administrateur vous a bloqué. Vous ne pouvez plus vous connectez. Vous recevrez un mail en cas de déblocage.</p>  ';
+                '  <p>Vous avez été bloqué. Vous ne pouvez plus vous connectez. Vous recevrez un mail en cas de déblocage.</p>  ';
             ' </body>' .
                 '</html>';
         } else {
@@ -122,7 +122,7 @@ class MailManager
                 '<html>' .
                 ' <head></head>' .
                 ' <body>' .
-                '  <p>Un administrateur vous a débloqué. Vous pouvez désormais vous connecter.</p>  ';
+                '  <p>Vous avez été débloqué. Vous pouvez désormais vous connecter.</p>  ';
             ' </body>' .
                 '</html>';
         }
