@@ -127,11 +127,13 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
             </div>
             <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title" value="<?php if ($title == "") echo $movie->Title; else echo $title ?>">
+                <input type="text" class="form-control" id="title" name="title" value="<?php if ($title == "") echo $movie->Title;
+                                                                                        else echo $title ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?php if ($description == "") echo $movie->Description; else echo $description ?></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3"><?php if ($description == "") echo $movie->Description;
+                                                                                            else echo $description ?></textarea>
             </div>
             <label for="firstActor">Acteurs principaux</label>
             <div class="form-group row px-3">
@@ -204,15 +206,19 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="durationHours">Durée du film</label>
             </div>
             <div class="form-group row px-3">
-                <input type="number" value="<?php if($releaseYear == "") echo $movie->ReleaseYear; else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
+                <input type="number" value="<?php if ($releaseYear == "") echo $movie->ReleaseYear;
+                                            else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
                 <div class="col row">
-                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?php if ($durationHours == "") echo timeDBToHours($movie->Duration); else echo $durationHours ?>"> heures et
-                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?php if ($durationMinutes == "") echo timeDBToMinutes($movie->Duration); else echo $durationMinutes ?>"> minutes
+                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?php if ($durationHours == "") echo timeDBToHours($movie->Duration);
+                                                                                                                        else echo $durationHours ?>"> heures et
+                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?php if ($durationMinutes == "") echo timeDBToMinutes($movie->Duration);
+                                                                                                                            else echo $durationMinutes ?>"> minutes
                 </div>
             </div>
             <div class="form-group">
                 <label for="links">Liens</label>
-                <textarea class="form-control" id="links" name="links" rows="3"><?php if ($links == "") echo $movie->Links; else echo $links ?></textarea>
+                <textarea class="form-control" id="links" name="links" rows="3"><?php if ($links == "") echo $movie->Links;
+                                                                                else echo $links ?></textarea>
             </div>
             <div class="w-100">
                 <label for="poster" class="w-50">Affiche du film</label>
@@ -274,32 +280,35 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
         $('#medias').change(function() {
             $('#divMedias').empty();
             var files = $(this)[0].files;
-            var reader = new FileReader();
 
             $(files).each(function() {
+                var reader = new FileReader();
                 if (this.type.includes("image")) {
-                reader.addEventListener("load", function() {
-                    var img = $(document.createElement('img'));
-                    img.attr('src', reader.result);
-                    img.attr('width', 250);
-                    img.appendTo('#divMedias');
-                }, false);
-            } else if (this.type.includes("video")) {
-                reader.addEventListener("load", function() {
-                    var vid = $(document.createElement('video'));
-                    var source = $(document.createElement('source'));
-                    source.appendTo(vid);
-                    source.attr('src', reader.result);
-                    source.appendTo('#divMedias');
-                }, false);
-            } else if (this.type.includes("audio")) {
-                reader.addEventListener("load", function() {
-                    $('#audMedia').attr('src', reader.result);
-                }, false);
-            }
-            if (this) {
-                reader.readAsDataURL(this);
-            }
+                    reader.addEventListener("load", function() {
+                        var img = $(document.createElement('img'));
+                        img.attr('src', reader.result);
+                        img.attr('width', 250);
+                        img.appendTo('#divMedias');
+                    }, false);
+                } else if (this.type.includes("video")) {
+                    reader.addEventListener("load", function() {
+                        var vid = $(document.createElement('video'));
+                        vid.attr('width', 250);
+                        vid.attr('controls', true);
+                        vid.attr('src', reader.result);
+                        vid.appendTo('#divMedias');
+                    }, false);
+                } else if (this.type.includes("audio")) {
+                    reader.addEventListener("load", function() {
+                        var aud = $(document.createElement('audio'));
+                        aud.attr('controls', true);
+                        aud.attr('src', reader.result);
+                        aud.appendTo('#divMedias');
+                    }, false);
+                }
+                if (this) {
+                    reader.readAsDataURL(this);
+                }
             });
         });
     </script>
