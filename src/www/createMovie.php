@@ -13,7 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
 if (!SessionManager::getIsLogged()) {
-    header('Location: index.php');
+    header('Location: login.php');
 }
 
 $genders = CodeManager::getAllGenders();
@@ -32,8 +32,7 @@ $directorForm = filter_input(INPUT_POST, 'director', FILTER_SANITIZE_STRING);
 $companyForm = filter_input(INPUT_POST, 'company', FILTER_SANITIZE_STRING);
 $countryForm = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 $releaseYear = filter_input(INPUT_POST, 'releaseYear', FILTER_VALIDATE_INT);
-$durationHours = filter_input(INPUT_POST, 'durationHours', FILTER_VALIDATE_INT);
-$durationMinutes = filter_input(INPUT_POST, 'durationMinutes', FILTER_VALIDATE_INT);
+$duration = filter_input(INPUT_POST, 'duration', FILTER_VALIDATE_INT);
 $links = filter_input(INPUT_POST, 'links', FILTER_SANITIZE_STRING);
 $createButton = filter_input(INPUT_POST, 'create');
 
@@ -58,25 +57,34 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <div class="container overflow-hidden p-0">
         <?php
         if (isset($createButton)) {
-            if ((!isset($_FILES['poster']) || !is_uploaded_file($_FILES['poster']['tmp_name']))) {
-                showError('Vous devez choisir une affiche.');
-            }
-            if (!empty($genderForm) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($directorForm) && !empty($companyForm) && !empty($countryForm) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
+            if (!empty($genderForm) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($directorForm) && !empty($companyForm) && !empty($countryForm) && !empty($releaseYear) && !empty($duration)) {
                 if (MovieManager::exist($title)) {
                     if ($firstActor != $secondActor && $firstActor != $thirdActor && $secondActor != $thirdActor) {
-                        if (MovieManager::create($title, $description, $releaseYear, timeToMinutes($durationHours, $durationMinutes), $_FILES['poster'], 0, $links, CodeManager::getDirectorByName($directorForm)->Id, CodeManager::getCompanyByName($companyForm)->Id, CodeManager::getCountryByName($countryForm)->Iso2, CodeManager::getGenderByLabel($genderForm)->Code, SessionManager::getLoggedUser()->Id)) {
-                            if (CodeManager::setActorsToMovie($actorsArray, $title)) {
-                                if ($_FILES['medias']['name'][0] != "") {
-                                    if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
-                                        showError("L'ajout des médias a échoué.");
+                        if ((isset($_FILES['poster']) && is_uploaded_file($_FILES['poster']['tmp_name']))) {
+                            if ($releaseYear >= 0) {
+                                if ($duration >= 0) {
+                                    if (MovieManager::create($title, $description, $releaseYear, $duration, $_FILES['poster'], 0, $links, CodeManager::getDirectorByName($directorForm)->Id, CodeManager::getCompanyByName($companyForm)->Id, CodeManager::getCountryByName($countryForm)->Iso2, CodeManager::getGenderByLabel($genderForm)->Code, SessionManager::getLoggedUser()->Id)) {
+                                        if (CodeManager::setActorsToMovie($actorsArray, $title)) {
+                                            if ($_FILES['medias']['name'][0] != "") {
+                                                if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
+                                                    showError("L'ajout des médias a échoué.");
+                                                }
+                                            }
+                                            showSuccess("Le film a été créé avec succès.");
+                                        } else {
+                                            showError("L'ajout des acteurs a échoué.");
+                                        }
+                                    } else {
+                                        showError("La création du film a échoué.");
                                     }
+                                } else {
+                                    showError("La durée du film doit être supérieure à 0.");
                                 }
-                                showSuccess("Le film a été créé avec succès.");
                             } else {
-                                showError("L'ajout des acteurs a échoué.");
+                                showError("L'année de sortie doit être supérieure ou égale à 0");
                             }
                         } else {
-                            showError("La création du film a échoué.");
+                            showError("Vous devez choisir une affiche.");
                         }
                     } else {
                         showError("Les trois acteurs doivent être différents.");
@@ -178,14 +186,13 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
             </div>
             <div class="w-100">
                 <label for="releaseYear" class="w-50">Année de sortie</label>
-                <label for="durationHours">Durée du film</label>
+                <label for="duration">Durée du film (en minutes)</label>
             </div>
             <div class="form-group row px-3">
                 <input type="number" value="<?php if ($releaseYear == "") echo '2020';
-                                            else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
+                                            else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear" min="0">
                 <div class="col row">
-                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?= $durationHours ?>"> heures et
-                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?= $durationMinutes ?>"> minutes
+                    <input type="number" class="form-control col" id="duration" name="duration" value="<?= $duration ?>" min="0">
                 </div>
             </div>
             <div class="form-group">
@@ -197,9 +204,10 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 <label for="medias">Médias à ajouter</label>
             </div>
             <div class="form-group row">
-                <div class="col"><div id="divMedias"></div>
+                <div class="col"><div id="divPoster"></div>
                 <input type="file" class="form-control-file" id="poster" name="poster" accept="image/*"></div>
-                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*"><span id="preview"></span>
+                <div class="col"><div id="divMedias"></div>
+                <input type="file" class="form-control-file col" id="medias" name="medias[]" multiple accept="image/*, video/*, audio/*"></div>
             </div>
             <button type="submit" class="btn btn-primary" name="create">Créer le film</button>
         </form>
@@ -212,6 +220,7 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script>
         $('#poster').change(function() {
+            $('#divPoster').empty();
             var file = $(this)[0].files[0];
             var reader = new FileReader();
 
@@ -219,12 +228,47 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                 var img = $(document.createElement('img'));
                 img.attr('src', reader.result);
                 img.attr('width', 250);
-                img.appendTo('#divMedias');
+                img.appendTo('#divPoster');
             }, false);
 
             if (file) {
                 reader.readAsDataURL(file);
             }
+        });
+
+        $('#medias').change(function() {
+            $('#divMedias').empty();
+            var files = $(this)[0].files;
+
+            $(files).each(function() {
+                var reader = new FileReader();
+                if (this.type.includes("image")) {
+                    reader.addEventListener("load", function() {
+                        var img = $(document.createElement('img'));
+                        img.attr('src', reader.result);
+                        img.attr('width', 250);
+                        img.appendTo('#divMedias');
+                    }, false);
+                } else if (this.type.includes("video")) {
+                    reader.addEventListener("load", function() {
+                        var vid = $(document.createElement('video'));
+                        vid.attr('width', 250);
+                        vid.attr('controls', true);
+                        vid.attr('src', reader.result);
+                        vid.appendTo('#divMedias');
+                    }, false);
+                } else if (this.type.includes("audio")) {
+                    reader.addEventListener("load", function() {
+                        var aud = $(document.createElement('audio'));
+                        aud.attr('controls', true);
+                        aud.attr('src', reader.result);
+                        aud.appendTo('#divMedias');
+                    }, false);
+                }
+                if (this) {
+                    reader.readAsDataURL(this);
+                }
+            });
         });
     </script>
 </body>

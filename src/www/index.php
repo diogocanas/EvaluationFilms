@@ -40,64 +40,69 @@ $filterButton = filter_input(INPUT_POST, 'filter');
 </head>
 
 <body>
-  <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
-  <form method="POST" action="index.php" class="m-4 d-flex justify-content-between">
-    <div class="form-group d-inline-block">
-      <label for="keyword">Mots-clés</label>
-      <input class="form-control" type="text" id="keyword" name="keyword" value="<?= $keywordFilter ?>" />
-    </div>
-    <div class="form-group d-inline-block">
-      <label for="gender">Genre</label>
-      <select class="form-control" id="gender" name="gender">
-        <option>Tout</option>
-        <?php
-        foreach ($genders as $gender) {
-        ?>
-          <option <?php if ($gender->Label == $genderFilter) echo 'selected'; ?>><?= $gender->Label ?></option>
-        <?php
-        }
-        ?>
-      </select>
-    </div>
-    <div class="form-group d-inline-block">
-      <b><label>Année de sortie</label></b>
-      <label for="releaseYearStart">De</label>
-      <input class="form-control" type="number" id="releaseYearStart" name="releaseYearStart" value="<?= $releaseYearStartFilter ?>" />
-    </div>
-    <div class="form-group d-inline-block">
-      <label for="releaseYearEnd">À</label>
-      <input class="form-control" type="number" id="releaseYearEnd" name="releaseYearEnd" value="<?= $releaseYearEndFilter ?>" />
-    </div>
-    <div class="form-group d-inline-block">
-      <label for="country">Pays</label>
-      <select class="form-control" id="country" name="country">
-        <option selected>Tout</option>
-        <?php
-        foreach ($countries as $country) {
-        ?>
-          <option <?php if ($country->Country == $countryFilter) echo 'selected' ?>><?= $country->Country ?></option>;
-        <?php
-        }
-        ?>
-      </select>
-    </div>
-    <div class="form-group d-inline-block">
-      <b><label>Durée (en minutes)</label></b>
-      <label for="durationStart">De</label>
-      <input class="form-control" type="number" id="durationStart" name="durationStart" value="<?= $durationStartFilter ?>" />
-    </div>
-    <div class="form-group d-inline-block">
-      <label for="durationEnd">À</label>
-      <input class="form-control" type="number" id="durationEnd" name="durationEnd" value="<?= $durationEndFilter ?>" />
-    </div>
-    <button type="submit" class="btn btn-primary h-25 mt-4" name="filter">Filtrer</button>
-  </form>
+  <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php';
+  if (isset($movies[0])) {
+  ?>
+    <form method="POST" action="index.php" class="m-4 d-flex justify-content-between">
+      <div class="form-group d-inline-block">
+        <label for="keyword">Mots-clés</label>
+        <input class="form-control" type="text" id="keyword" name="keyword" value="<?= $keywordFilter ?>" />
+      </div>
+      <div class="form-group d-inline-block">
+        <label for="gender">Genre</label>
+        <select class="form-control" id="gender" name="gender">
+          <option>Tout</option>
+          <?php
+          foreach ($genders as $gender) {
+          ?>
+            <option <?php if ($gender->Label == $genderFilter) echo 'selected'; ?>><?= $gender->Label ?></option>
+          <?php
+          }
+          ?>
+        </select>
+      </div>
+      <div class="form-group d-inline-block">
+        <b><label>Année de sortie</label></b>
+        <label for="releaseYearStart">De</label>
+        <input class="form-control" type="number" id="releaseYearStart" name="releaseYearStart" value="<?= $releaseYearStartFilter ?>" />
+      </div>
+      <div class="form-group d-inline-block">
+        <label for="releaseYearEnd">À</label>
+        <input class="form-control" type="number" id="releaseYearEnd" name="releaseYearEnd" value="<?= $releaseYearEndFilter ?>" />
+      </div>
+      <div class="form-group d-inline-block">
+        <label for="country">Pays</label>
+        <select class="form-control" id="country" name="country">
+          <option selected>Tout</option>
+          <?php
+          foreach ($countries as $country) {
+          ?>
+            <option <?php if ($country->Country == $countryFilter) echo 'selected' ?>><?= $country->Country ?></option>;
+          <?php
+          }
+          ?>
+        </select>
+      </div>
+      <div class="form-group d-inline-block">
+        <b><label>Durée (en minutes)</label></b>
+        <label for="durationStart">De</label>
+        <input class="form-control" type="number" id="durationStart" name="durationStart" value="<?= $durationStartFilter ?>" />
+      </div>
+      <div class="form-group d-inline-block">
+        <label for="durationEnd">À</label>
+        <input class="form-control" type="number" id="durationEnd" name="durationEnd" value="<?= $durationEndFilter ?>" />
+      </div>
+      <button type="submit" class="btn btn-primary h-25 mt-4" name="filter">Filtrer</button>
+    </form>
+  <?php } ?>
   <div class="container">
     <?php
     if (isset($filterButton)) {
       $movies = MovieManager::filter($keywordFilter, $genderFilter, $releaseYearStartFilter, $releaseYearEndFilter, $countryFilter, $durationStartFilter, $durationEndFilter);
     }
-
+    if (!isset($movies[0])) {
+      showWarning('Aucun film n\'est disponible. <a href="createMovie.php">Cliquez ici pour en créer un !</a>');
+    }
     foreach ($movies as $movie) {
     ?>
       <div class="d-inline-block">

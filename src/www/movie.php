@@ -42,22 +42,22 @@ $rateButton = filter_input(INPUT_POST, 'rate');
 
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
-    <div class="container m-auto row center w-100">
-        <?php
-        if (isset($rateButton)) {
-            if (!empty($rating)) {
-                if ($rating >= 0 && $rating <= 10) {
-                    if (CodeManager::addRateToMovie($movie->Id, $rating, $remark)) {
-                        header('Location: movie.php?movieId=' . $movie->Id);
-                    } else {
-                        showError("La notation du film a échoué.");
-                    }
+    <?php
+    if (isset($rateButton)) {
+        if (!empty($rating)) {
+            if ($rating >= 0 && $rating <= 10) {
+                if (CodeManager::addRateToMovie($movie->Id, $rating, $remark)) {
+                    header('Location: movie.php?movieId=' . $movie->Id);
                 } else {
-                    showError("La note doit être entre 0 et 10.");
+                    showError("La notation du film a échoué.");
                 }
+            } else {
+                showError("La note doit être entre 0 et 10.");
             }
         }
-        ?>
+    }
+    ?>
+    <div class="container m-auto row center w-100">
         <div class="col-8 row">
             <?php
             echo '<img src="' . $movie->Poster . '" width="250" class="col-6">';
@@ -82,30 +82,35 @@ $rateButton = filter_input(INPUT_POST, 'rate');
 
         </div>
         <div class="col-4">
-            <h1>Liens et vidéos</h1>
-            <?php 
-            foreach ($links as $link) {
-                echo '<a href="' . $link . '" target="_blank">' . $link . '</a></br>';
-            }
-            foreach ($movie->Medias as $media) {
-                if (strpos($media->Media, 'image')) {
-                    echo '<img src="' . $media->Media . '" width="250"></br>';
-                } else if (strpos($media->Media, 'video')) {
-                    echo '<video width="250" controls><source src="' . $media->Media . '"></video>';
-                } else if (strpos($media->Media, 'audio')) {
-                    echo '<audio controls><source src="' . $media->Media . '"></audio>';
+            <?php if ($links[0] != "" || isset($movie->Medias[0])) { ?>
+                <h2>Liens et médias</h2>
+            <?php
+                foreach ($links as $link) {
+                    echo '<a href="' . $link . '" target="_blank">' . $link . '</a></br>';
+                }
+                foreach ($movie->Medias as $media) {
+                    if (strpos($media->Media, 'image')) {
+                        echo '<img src="' . $media->Media . '" width="250"></br>';
+                    } else if (strpos($media->Media, 'video')) {
+                        echo '<video width="250" controls><source src="' . $media->Media . '"></video>';
+                    } else if (strpos($media->Media, 'audio')) {
+                        echo '<audio controls><source src="' . $media->Media . '"></audio>';
+                    }
                 }
             }
             echo '<h2>Commentaires</h2>';
+            echo '<ul class="list-group">';
             foreach ($ratings as $rating) {
-                echo $rating->Remark . '</br>';
+                echo '<li class="list-group-item">' . $rating->Remark . ' par ' . $rating->User->Nickname . '</li>';
             }
+            echo '</ul>';
             ?>
         </div>
         <?php
         if (CodeManager::alreadyRated($movieId) && SessionManager::getIsLogged()) {
         ?>
-            <form method="POST" action='' class="w-25 ml-3">
+            <form method="POST" action='' class="w-25 ml-3 mt-4">
+                <h2>Noter le film</h2>
                 <div class="form-group">
                     <label for="rating">Noter le film (de 0 à 10)</label>
                     <input type="number" min="0" max="10" class="form-control" id="rating" name="rating">

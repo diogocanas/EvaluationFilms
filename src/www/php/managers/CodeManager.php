@@ -570,12 +570,12 @@ class CodeManager
         $ratingsArray = array();
         try {
             $db = DatabaseManager::getInstance();
-            $sql = 'SELECT score, remark FROM RATINGS WHERE movies_id LIKE :movies_id';
+            $sql = 'SELECT score, remark, users_id FROM RATINGS WHERE movies_id LIKE :movies_id';
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':movies_id', $movieId, PDO::PARAM_INT);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($ratingsArray, new Rating($row['score'], $row['remark']));
+                array_push($ratingsArray, new Rating($row['score'], $row['remark'], UserManager::getById($row['users_id'])));
             }
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();

@@ -12,7 +12,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
-if (!SessionManager::getIsLogged() && SessionManager::getLoggedUser()->Role->Code != 2) {
+if (SessionManager::getLoggedUser()->Role->Code != 2) {
     header('Location: index.php');
 }
 

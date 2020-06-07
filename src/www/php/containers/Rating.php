@@ -19,11 +19,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @brief Constructeur de la classe
      * @param int $score La note donnée par l'utilisateur
      * @param string $remark Le commentaire de la note
+     * @param User $usersId Lutilisateur qui a noté
      */
-    function __construct($score, $remark)
+    function __construct($score, $remark, $user)
     {
         $this->Score = $score;
         $this->Remark = $remark;
+        $this->User = $user;
     }
 
     function __clone()
@@ -43,5 +45,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @var string
      */
     public $Remark;
+
+    /**
+     * L'utilisateur qui a noté
+     *
+     * @var User
+     */
+    public $User;
  }
  ?>

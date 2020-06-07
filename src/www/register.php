@@ -46,7 +46,7 @@ $registerButton = filter_input(INPUT_POST, 'register');
                 showError("L'inscription a échoué.");
               }
             } else {
-              showError("Cette adresse mail est déjà utilisée.");
+              showError("Ce/cette nickname et/ou adresse mail est déjà utilisée.");
             }
           } else {
             showError("Votre adresse mail n'est pas valide.");
@@ -66,7 +66,7 @@ $registerButton = filter_input(INPUT_POST, 'register');
       </div>
       <div class="form-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" <?= $email ?> required>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?= $email ?>" required>
       </div>
       <div class="form-group">
         <label for="password">Mot de passe</label>

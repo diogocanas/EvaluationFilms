@@ -26,6 +26,20 @@ function showSuccess($message)
 }
 
 /**
+ * Fonction qui affiche un message d'avertissement
+ *
+ * @param string $message Le message d'avertissement
+ */
+function showWarning($message)
+{
+?>
+    <div class="alert alert-warning mt-2" role="alert">
+        <?= $message ?>
+    </div>
+<?php
+}
+
+/**
  * Fonction qui affiche un message d'erreur
  *
  * @param string $message Le message de l'erreur
@@ -46,7 +60,8 @@ function showError($message)
  * @param int $minutes Le nombre de minutes
  * @return int Le nombre de minutes totales
  */
-function timeToMinutes($hours, $minutes) {
+function timeToMinutes($hours, $minutes)
+{
     return $hours * 60 + $minutes;
 }
 
@@ -56,7 +71,8 @@ function timeToMinutes($hours, $minutes) {
  * @param int $minutes Le nombre de minutes
  * @return int Le nombre d'heures entières
  */
-function timeDBToHours($minutes) {
+function timeDBToHours($minutes)
+{
     return ($minutes - ($minutes % 60)) / 60;
 }
 
@@ -66,7 +82,8 @@ function timeDBToHours($minutes) {
  * @param int $minutes Le nombre de minutes
  * @return int Le nombre de minutes qu'il reste après avoir soustrait les heures entières
  */
-function timeDBToMinutes($minutes) {
+function timeDBToMinutes($minutes)
+{
     return $minutes - timeDBToHours($minutes) * 60;
 }
 
@@ -76,7 +93,8 @@ function timeDBToMinutes($minutes) {
  * @param string $links Les liens en une chaîne de caractères
  * @return string[] $linksArray Les liens séparés dans un tableau de string
  */
-function getLinks($links) {
+function getLinks($links)
+{
     $linksArray = explode("\n", $links);
     return $linksArray;
 }

@@ -40,7 +40,9 @@ $filterButton = filter_input(INPUT_POST, 'filter');
 </head>
 
 <body>
-  <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
+  <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; 
+  if (isset($movies[0])) {
+  ?>
   <form method="POST" action="index.php" class="m-4 d-flex justify-content-between">
     <div class="form-group d-inline-block">
       <label for="keyword">Mots-clés</label>
@@ -92,12 +94,15 @@ $filterButton = filter_input(INPUT_POST, 'filter');
     </div>
     <button type="submit" class="btn btn-primary h-25 mt-4" name="filter">Filtrer</button>
   </form>
+      <?php } ?>
   <div class="container">
     <?php
     if (isset($filterButton)) {
       $movies = MovieManager::filter($keywordFilter, $genderFilter, $releaseYearStartFilter, $releaseYearEndFilter, $countryFilter, $durationStartFilter, $durationEndFilter);
     }
-
+    if (!isset($movies[0])) {
+      showWarning('Aucun film n\'est disponible. <a href="createMovie.php">Cliquez ici pour en créer un !</a>');
+    }
     foreach ($movies as $movie) {
     ?>
       <div class="d-inline-block">

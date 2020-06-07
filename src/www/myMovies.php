@@ -12,6 +12,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
+if (!SessionManager::getIsLogged()) {
+  header('Location: login.php');
+}
+
 $movies = MovieManager::getMoviesCreatedByUserLogged();
 ?>
 <!doctype html>
@@ -32,6 +36,9 @@ $movies = MovieManager::getMoviesCreatedByUserLogged();
   <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/navbar.php'; ?>
   <div class="container">
     <?php
+    if (!isset($movies[0])) {
+      showWarning('Vous n\'avez créé aucun film. <a href="createMovie.php">Cliquez ici pour en créer un !</a>');
+    }
     foreach ($movies as $movie) {
     ?>
       <div class="d-inline-block">

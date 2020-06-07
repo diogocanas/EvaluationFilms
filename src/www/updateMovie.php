@@ -13,7 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
 if (!SessionManager::getIsLogged()) {
-    header('Location: index.php');
+    header('Location: login.php');
 }
 
 if (isset($_GET['movieId'])) {
@@ -40,8 +40,7 @@ $director = filter_input(INPUT_POST, 'director', FILTER_SANITIZE_STRING);
 $company = filter_input(INPUT_POST, 'company', FILTER_SANITIZE_STRING);
 $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 $releaseYear = filter_input(INPUT_POST, 'releaseYear', FILTER_VALIDATE_INT);
-$durationHours = filter_input(INPUT_POST, 'durationHours', FILTER_VALIDATE_INT);
-$durationMinutes = filter_input(INPUT_POST, 'durationMinutes', FILTER_VALIDATE_INT);
+$duration = filter_input(INPUT_POST, 'duration', FILTER_VALIDATE_INT);
 $links = filter_input(INPUT_POST, 'links', FILTER_SANITIZE_STRING);
 $hideButton = filter_input(INPUT_POST, 'hide');
 $updateButton = filter_input(INPUT_POST, 'update');
@@ -76,23 +75,31 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
 
         // Pour modifier le film
         if (isset($updateButton)) {
-            if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($durationHours) && !empty($durationMinutes)) {
+            if (!empty($gender) && !empty($title) && !empty($description) && !empty($firstActor) && !empty($secondActor) && !empty($thirdActor) && !empty($director) && !empty($company) && !empty($country) && !empty($releaseYear) && !empty($duration)) {
                 if (MovieManager::exist($title) || $title == $movie->Title) {
                     if ($firstActor != $secondActor && $firstActor != $thirdActor && $secondActor != $thirdActor) {
-                        if (MovieManager::update($movieId, $title, $description, $releaseYear, timeToMinutes($durationHours, $durationMinutes), $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
-                            if (CodeManager::deleteActorsFromMovie($movieId) && CodeManager::setActorsToMovie($actorsArray, $title)) {
-                                if ($_FILES['medias']['name'][0] != "") {
-                                    if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
-                                        showError("L'ajout des médias a échoué.");
+                        if ($releaseYear >= 0) {
+                            if ($duration >= 0) {
+                                if (MovieManager::update($movieId, $title, $description, $releaseYear, $duration, $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
+                                    if (CodeManager::deleteActorsFromMovie($movieId) && CodeManager::setActorsToMovie($actorsArray, $title)) {
+                                        if ($_FILES['medias']['name'][0] != "") {
+                                            if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
+                                                showError("L'ajout des médias a échoué.");
+                                            }
+                                        }
+                                        header('Refresh: 0');
+                                        showSuccess("Le film a été modifié avec succès.");
+                                    } else {
+                                        showError("L'ajout des acteurs a échoué.");
                                     }
+                                } else {
+                                    showError("La modification du film a échoué.");
                                 }
-                                header('Refresh: 0');
-                                showSuccess("Le film a été modifié avec succès.");
                             } else {
-                                showError("L'ajout des acteurs a échoué.");
+                                showError("La durée du film doit être supérieure à 0.");
                             }
                         } else {
-                            showError("La modification du film a échoué.");
+                            showError("L'année de sortie doit être supérieure ou égale à 0.");
                         }
                     } else {
                         showError("Les trois acteurs doivent être différents.");
@@ -203,16 +210,13 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
             </div>
             <div class="w-100">
                 <label for="releaseYear" class="w-50">Année de sortie</label>
-                <label for="durationHours">Durée du film</label>
+                <label for="duration">Durée du film (en minutes)</label>
             </div>
             <div class="form-group row px-3">
                 <input type="number" value="<?php if ($releaseYear == "") echo $movie->ReleaseYear;
-                                            else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear">
+                                            else echo $releaseYear ?>" class="form-control col mr-3" id="releaseYear" name="releaseYear" min="0">
                 <div class="col row">
-                    <input type="number" class="form-control col mr-3" id="durationHours" name="durationHours" value="<?php if ($durationHours == "") echo timeDBToHours($movie->Duration);
-                                                                                                                        else echo $durationHours ?>"> heures et
-                    <input type="number" class="form-control col mx-3" id="durationMinutes" name="durationMinutes" value="<?php if ($durationMinutes == "") echo timeDBToMinutes($movie->Duration);
-                                                                                                                            else echo $durationMinutes ?>"> minutes
+                    <input type="number" class="form-control col" id="duration" name="duration" value="<?php if ($duration == "") echo $movie->Duration; else echo $duration ?>">
                 </div>
             </div>
             <div class="form-group">
