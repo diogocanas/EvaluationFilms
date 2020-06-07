@@ -28,10 +28,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->User = $user;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * La note donnée par l'utilisateur
      *

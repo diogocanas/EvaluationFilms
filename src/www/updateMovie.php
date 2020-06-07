@@ -9,6 +9,10 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Cette page sert à modifier un film. Elle est uniquement accessible depuis la page myMovies
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
@@ -81,9 +85,9 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                         if ($releaseYear >= 0) {
                             if ($duration >= 0) {
                                 if (MovieManager::update($movieId, $title, $description, $releaseYear, $duration, $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
-                                    if (CodeManager::deleteActorsFromMovie($movieId) && CodeManager::setActorsToMovie($actorsArray, $title)) {
+                                    if (CodeManager::deleteActorsFromMovie($movieId) && MovieManager::setActorsToMovie($actorsArray, $title)) {
                                         if ($_FILES['medias']['name'][0] != "") {
-                                            if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
+                                            if (!MovieManager::setMediasToMovie($_FILES['medias'], $title)) {
                                                 showError("L'ajout des médias a échoué.");
                                             }
                                         }

@@ -12,6 +12,9 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . 'swiftmailer5/lib/swift_required.php';
 
+ /**
+  * @brief Classe manager de MailManager
+  */
 class MailManager
 {
     /**

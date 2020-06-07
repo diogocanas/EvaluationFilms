@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode create()
  */
-/*if (UserManager::create("johndoe7", "johndoe7@gmail.com", "Super2012", 1, 1)) {
+/*if (UserManager::create("johndoe7", "johndoe7@gmail.com", "Super2012")) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -32,7 +32,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode confirmAccount()
  */
-/*if (UserManager::confirmAccount("diogo.cnslm@eduge.ch", "b66b2b48b3173da7b0fd2b0def17a3bd850a9fe52fe74339f74700e264f2d1ff")) {
+/*if (UserManager::confirmAccount("diogo.cnslm@eduge.ch", "04bb17d57b31c71f635a8ce73d16815b552122d558eacb169da83d3f2e506713")) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -41,7 +41,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode login()
  */
-/*if (UserManager::login("johndoe7@gmail.com", "Super2012")) {
+/*if (UserManager::login("diogo.cnslm@eduge.ch", "Super2012")) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -50,7 +50,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode exist()
  */
-/*if (!UserManager::exist("johndoe7@gmail.com")) {
+/*if (!UserManager::exist("diogo.cnslm@eduge.ch")) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -78,6 +78,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
  * Test de la méthode getByEmail()
  */
 /*if (UserManager::getByEmail("diogoalmeida1709@gmail.com")) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}
+
+/**
+ * Test de la méthode block()
+ */
+if (UserManager::block(new User(3, "diogo", "", "", "", "", null, new Status(3, ""), "", "", ""))) {
     echo "Works";
 } else {
     echo "Don't works";

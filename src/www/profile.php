@@ -8,6 +8,11 @@
  * Description    : Page de profil
  * Version        : 1.0
  */
+
+ /**
+  * @brief C'est la page de profil de l'utilisateur connecté. Il peut y modifier ses informations personnelles.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

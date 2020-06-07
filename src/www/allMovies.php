@@ -9,6 +9,10 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Cette page sert à afficher tous les films de la base de données.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

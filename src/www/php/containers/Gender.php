@@ -27,10 +27,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Label = $label;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant numérique du genre
      *

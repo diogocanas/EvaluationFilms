@@ -5,9 +5,13 @@
  * Nom du fichier : createMovie.php
  * Auteur         : Diogo Canas Almeida
  * Date           : 29 mai 2020
- * Description    : Page de détail du film
+ * Description    : Page de création de film
  * Version        : 1.0
  */
+
+ /**
+  * @brief Cette page permet à l'utilisateur de créer une référence de film.
+  */
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
@@ -64,9 +68,9 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                             if ($releaseYear >= 0) {
                                 if ($duration >= 0) {
                                     if (MovieManager::create($title, $description, $releaseYear, $duration, $_FILES['poster'], 0, $links, CodeManager::getDirectorByName($directorForm)->Id, CodeManager::getCompanyByName($companyForm)->Id, CodeManager::getCountryByName($countryForm)->Iso2, CodeManager::getGenderByLabel($genderForm)->Code, SessionManager::getLoggedUser()->Id)) {
-                                        if (CodeManager::setActorsToMovie($actorsArray, $title)) {
+                                        if (MovieManager::setActorsToMovie($actorsArray, $title)) {
                                             if ($_FILES['medias']['name'][0] != "") {
-                                                if (!CodeManager::setMediasToMovie($_FILES['medias'], $title)) {
+                                                if (!MovieManager::setMediasToMovie($_FILES['medias'], $title)) {
                                                     showError("L'ajout des médias a échoué.");
                                                 }
                                             }

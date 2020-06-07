@@ -45,10 +45,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Avatar = $avatar;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant numérique de l'utilisateur
      *

@@ -27,10 +27,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Company = $company;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant numérique de la société de production
      *

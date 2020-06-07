@@ -9,6 +9,10 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Sur cette page s'affichent les films créés par l'utilisateur connecté.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

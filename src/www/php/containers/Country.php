@@ -27,10 +27,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Country = $country;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant du pays d'origine
      *

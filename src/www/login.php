@@ -8,6 +8,11 @@
  * Description    : Page de connexion
  * Version        : 1.0
  */
+
+ /**
+  * @brief Cette page permet à l'utilisateur de se connecter. S'il n'a pas de compte, un lien est disponible pour qu'il puisse s'inscrire.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

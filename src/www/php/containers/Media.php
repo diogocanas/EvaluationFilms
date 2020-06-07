@@ -29,10 +29,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->MoviesId = $moviesId;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant numérique du lien
      *

@@ -8,6 +8,11 @@
  * Description    : Page d'inscription
  * Version        : 1.0
  */
+
+ /**
+  * @brief Cette page permet à l'utilisateur de s'inscrire.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

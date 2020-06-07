@@ -9,6 +9,10 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Page qui affiche un tableau contenant tous les utilisateurs en base. Seul l'administrateur a accès à cette page. Depuis cette page, il peut directement se diriger sur la page profileAdmin
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

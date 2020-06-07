@@ -27,10 +27,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Actor = $actor;
     }
 
-    function __clone()
-    {
-    }
-
     /**
      * L'identifiant numérique de l'acteur
      *

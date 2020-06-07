@@ -269,26 +269,6 @@ class CodeManager
     }
 
     /**
-     * @brief Méthode qui supprime le lien entre un film et ses acteurs
-     *
-     * @param int $movieId L'identifiant numérique du film
-     * @return bool true si la suppression a fonctionnée | false sinon
-     */
-    public static function deleteActorsFromMovie($movieId) {
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'DELETE FROM PARTICIPATE WHERE movies_id LIKE :movies_id';
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam(':movies_id', $movieId, PDO::PARAM_INT);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * @brief Méthode qui récupère tous les acteurs en base
      *
      * @return Actor[] tableau de Actor | false sinon
@@ -504,37 +484,7 @@ class CodeManager
         return $mediasArray;
     }
 
-    /**
-     * @brief Méthode qui insère des médias dans la base en les reliant à un film
-     *
-     * @param $_FILES $medias Les médias (images, vidéos et audios)
-     * @param string $title Le titre du film
-     * @return bool true si l'insertion a fonctionnée | false sinon
-     */
-    public static function setMediasToMovie($medias, $title)
-    {
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'INSERT INTO MEDIAS(media, movies_id) VALUES(:media, :movies_id)';
-            $stmt = $db->prepare($sql);
-            foreach ($medias['tmp_name'] as $file) {
-                $data = file_get_contents($file);
-                $finfo = new finfo(FILEINFO_MIME_TYPE);
-                $mime = $finfo->file($file);
-                $media = 'data:' . $mime . ';base64,' . base64_encode($data);
-                if (strpos($mime, 'image') != false || strpos($mime, 'video') != false || strpos($mime, 'audio') != false) {
-                    return false;
-                }
-                $stmt->bindParam(':media', $media, PDO::PARAM_STR);
-                $stmt->bindParam(':movies_id', MovieManager::getByTitle($title)->Id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return true;
-    }
+    
 
     /**
      * @brief Méthode qui supprime un média
@@ -599,10 +549,9 @@ class CodeManager
             foreach ($ratings as $rating) {
                 $avgRating += $rating->Score;
             }
-            return $avgRating / count($ratings);
-        } else {
-            return 0;
+            $avgRating /= count($ratings);
         }
+        return $avgRating;
     }
 
     /**
@@ -615,34 +564,6 @@ class CodeManager
     {
         $ratings = self::getRatingsByMovieId($movieId);
         return count($ratings);
-    }
-
-    /**
-     * @brief Méthode qui insère une note dans la base
-     *
-     * @param int $movieId L'identifiant numérique du film
-     * @param int $score La note donnée par l'utilisateur
-     * @param string $remark Le commentaire lié à la note
-     * @return bool true si l'insertion a fonctionnée | false sinon
-     */
-    public static function addRateToMovie($movieId, $score, $remark)
-    {
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'INSERT INTO RATINGS(users_id, movies_id, score, remark) VALUES(:users_id, :movies_id, :score, :remark)';
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam(':users_id', SessionManager::getLoggedUser()->Id, PDO::PARAM_INT);
-            $stmt->bindParam(':movies_id', $movieId, PDO::PARAM_INT);
-            $stmt->bindParam(':score', $score, PDO::PARAM_INT);
-            $stmt->bindParam(':remark', $remark, PDO::PARAM_STR);
-            if ($stmt->execute()) {
-                MailManager::sendRatingMail($movieId, $score);
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -673,30 +594,6 @@ class CodeManager
     }
 
     /**
-     * @brief Méthode qui retourne les 9 films les mieux notés
-     *
-     * @return Movie[] tableau de Movie | false sinon
-     */
-    public static function getMostRatedMovies() {
-        $moviesArray = array();
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'SELECT movies_id, AVG(score) FROM RATINGS GROUP BY movies_id ORDER BY COUNT(score) DESC, AVG(score) DESC LIMIT 9';
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if (MovieManager::getById($row['movies_id'])->Hidden == 0) {
-                    array_push($moviesArray, MovieManager::getById($row['movies_id']));
-                }
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return $moviesArray;
-    }
-
-    /**
      * Méthodes pour Status
      */
 
@@ -720,33 +617,5 @@ class CodeManager
             echo 'Erreur : ' . $e->getMessage();
             return false;
         }
-    }
-
-    /**
-     * Méthodes pour la table PARTICIPATE
-     */
-    /**
-     * @brief Méthode qui relie les acteurs au film
-     *
-     * @param string[] $actors Les acteurs choisis par l'utilisateur
-     * @param string $title Le titre du film
-     * @return bool true si l'insertion a fonctionnée | false sinon
-     */
-    public static function setActorsToMovie($actors, $title)
-    {
-        try {
-            $db = DatabaseManager::getInstance();
-            $sql = 'INSERT INTO PARTICIPATE(actors_id, movies_id) VALUES(:actors_id, :movies_id)';
-            $stmt = $db->prepare($sql);
-            foreach ($actors as $actor) {
-                $stmt->bindParam(':actors_id', self::getActorByName($actor)->Id, PDO::PARAM_INT);
-                $stmt->bindParam(':movies_id', MovieManager::getByTitle($title)->Id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-            return false;
-        }
-        return true;
     }
 }

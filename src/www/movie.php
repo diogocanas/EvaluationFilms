@@ -9,6 +9,10 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Cette page affiche les détails d'un film. C'est sur cette page que l'utilisateur pourra noter et commenter un film.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
@@ -46,7 +50,7 @@ $rateButton = filter_input(INPUT_POST, 'rate');
     if (isset($rateButton)) {
         if (!empty($rating)) {
             if ($rating >= 0 && $rating <= 10) {
-                if (CodeManager::addRateToMovie($movie->Id, $rating, $remark)) {
+                if (MovieManager::addRateToMovie($movie->Id, $rating, $remark)) {
                     header('Location: movie.php?movieId=' . $movie->Id);
                 } else {
                     showError("La notation du film a échoué.");
@@ -98,12 +102,14 @@ $rateButton = filter_input(INPUT_POST, 'rate');
                     }
                 }
             }
-            echo '<h2>Commentaires</h2>';
-            echo '<ul class="list-group">';
-            foreach ($ratings as $rating) {
-                echo '<li class="list-group-item">' . $rating->Remark . ' par ' . $rating->User->Nickname . '</li>';
+            if (isset($ratings[0])) {
+                echo '<h2>Commentaires</h2>';
+                echo '<ul class="list-group">';
+                foreach ($ratings as $rating) {
+                    echo '<li class="list-group-item">' . $rating->Remark . ' par <b>' . $rating->User->Nickname . '</b></li>';
+                }
+                echo '</ul>';
             }
-            echo '</ul>';
             ?>
         </div>
         <?php

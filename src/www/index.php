@@ -9,10 +9,14 @@
  * Version        : 1.0
  */
 
+ /**
+  * @brief Cette page est la page d'accueil. Elle affiche les neufs films les plus (et les mieux) notés.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 
-$movies = CodeManager::getMostRatedMovies();
+$movies = MovieManager::getMostRatedMovies();
 $genders = CodeManager::getAllGenders();
 $countries = CodeManager::getAllCountries();
 

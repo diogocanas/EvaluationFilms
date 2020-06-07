@@ -23,8 +23,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode sendRatingMail()
  */
-/*if (MailManager::sendRatingMail(5, 10)) {
+/*if (MailManager::sendRatingMail(26, 10)) {
     echo "Works";
 } else {
     echo "Don't works";
 }
+
+/**
+ * Test de la méthode sendBlockMail()
+ */
+/*if (MailManager::sendBlockMail(3)) {
+    echo "Works";
+} else {
+    echo "Don't works";
+}*/

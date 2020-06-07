@@ -5,9 +5,14 @@
  * Nom du fichier : profileAdmin.php
  * Auteur         : Diogo Canas Almeida
  * Date           : 03 juin 2020
- * Description    : Page de profil
+ * Description    : Page de profil (pour l'administrateur)
  * Version        : 1.0
  */
+
+ /**
+  * @brief Cette page est utilisée par l'administrateur pour bloquer un utilisateur. Il y voit toutes les informations de l'utilisateur.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 

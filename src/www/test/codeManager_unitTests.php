@@ -10,6 +10,7 @@
  */
 
 require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
+session_start();
 
 /**
  * Tests de Role
@@ -40,10 +41,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode getGenderByLabel()
  */
-/*if (!CodeManager::getGenderByLabel(1)) {
+/*if (!CodeManager::getGenderByLabel("Action")) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getGenderByLabel(1));
+    var_dump(CodeManager::getGenderByLabel("Action"));
 }
 
 /**
@@ -71,10 +72,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode getDirectorByName()
  */
-/*if (!CodeManager::getDirectorByName("Alfred Hitchcock")) {
+/*if (!CodeManager::getDirectorByName("Martin Scorsese")) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getDirectorByName("Alfred Hitchcock"));
+    var_dump(CodeManager::getDirectorByName("Martin Scorsese"));
 }
 
 /**
@@ -93,28 +94,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode getActorById()
  */
-/*if (!CodeManager::getActorById(2)) {
+/*if (!CodeManager::getActorById(1)) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getActorById(2));
+    var_dump(CodeManager::getActorById(1));
 }
 
 /**
  * Test de la méthode getActorByName()
  */
-/*if (!CodeManager::getActorByName("Leonardo DiCaprio")) {
+/*if (!CodeManager::getActorByName("Brad Pitt")) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getActorByName("Leonardo DiCaprio"));
+    var_dump(CodeManager::getActorByName("Brad Pitt"));
 }
 
 /**
  * Test de la méthode getActorsByMovieId()
  */
-/*if (!CodeManager::getActorsByMovieId(2)) {
+/*if (!CodeManager::getActorsByMovieId(26)) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getActorsByMovieId(2));
+    var_dump(CodeManager::getActorsByMovieId(26));
 }
 
 /**
@@ -194,28 +195,46 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode getMediaById()
  */
-/*if (!CodeManager::getMediaById(2)) {
+/*if (!CodeManager::getMediaById(30)) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getMediaById(2));
+    var_dump(CodeManager::getMediaById(30));
 }
 
 /**
  * Test de la méthode getMediasByMovieId()
  */
-/*if (!CodeManager::getMediasByMovieId(2)) {
+/*if (!CodeManager::getMediasByMovieId(26)) {
     echo "Don't works";
 } else {
-    var_dump(CodeManager::getMediasByMovieId(2));
+    var_dump(CodeManager::getMediasByMovieId(26));
+}
+
+/**
+ * Test de la méthode deleteMediaById()
+ */
+/*if (CodeManager::deleteMediaById(26)) {
+    echo "Works";
+} else {
+    echo "Don't works";
 }
 
 /**
  * Tests de Rating
  */
 /**
+ * Test de la méthode getRatingsByMovieId()
+ */
+/*if (!CodeManager::getRatingsByMovieId(26)) {
+    echo "Don't works";
+} else {
+    var_dump(CodeManager::getRatingsByMovieId(26));
+}
+
+/**
  * Test de la méthode getAvgRatingByMovieId()
  */
-/*if (CodeManager::getAvgRatingByMovieId(5) != 0) {
+/*if (CodeManager::getAvgRatingByMovieId(26) >= 0) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -224,16 +243,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode getNumberRatingsByMovieId()
  */
-/*if (CodeManager::getNumberRatingsByMovieId(5) > 0) {
-    echo "Works";
-} else {
-    echo "Don't works";
-}
-
-/**
- * Test de la méthode addRateToMovie()
- */
-/*if (CodeManager::addRateToMovie(5, 10, "oui")) {
+/*if (CodeManager::getNumberRatingsByMovieId(26) >= 0) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -242,7 +252,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Test de la méthode alreadyRated()
  */
-/*if (!CodeManager::alreadyRated(5)) {
+/*if (!CodeManager::alreadyRated(26)) {
     echo "Works";
 } else {
     echo "Don't works";
@@ -251,7 +261,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
 /**
  * Tests de Status
  */
-
 /**
  * Test de la méthode getStatusByCode()
  */
@@ -259,13 +268,4 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
     echo "Don't works";
 } else {
     var_dump(CodeManager::getStatusByCode(1));
-}
-
-/**
- * Tests de la table PARTICIPATE
- */
-if (CodeManager::setActorsToMovie(array("Robert De Niro", "Brad Pitt", "Al Pacino"), "TPI")) {
-    echo "Works";
-} else {
-    echo "Don't works";
 }

@@ -26,12 +26,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
      * @param string $poster L'affiche du film (en base64)
      * @param int $hidden La visibilité du film
      * @param string $links Les liens reliés au film
-     * @param string $medias Les médias reliés au film
-     * @param int $director Le réalisateur du film
-     * @param int $company La société de production du film
-     * @param int $country Le pays d'origine du film
-     * @param int $gender Le genre du film
-     * @param int $user L'utilisateur qui a créé le film
+     * @param Media[] $medias Les médias reliés au film
+     * @param Actor[] $actors Les acteurs reliés au film
+     * @param Director $director Le réalisateur du film
+     * @param Company $company La société de production du film
+     * @param Country $country Le pays d'origine du film
+     * @param Gender $gender Le genre du film
+     * @param User $user L'utilisateur qui a créé le film
      */
     function __construct($id, $title, $description, $releaseYear, $duration, $poster, $hidden, $links, $medias, $actors, $director, $company, $country, $gender, $user)
     {
@@ -50,10 +51,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'php/inc/inc.all.php';
         $this->Country = $country;
         $this->Gender = $gender;
         $this->User = $user;
-    }
-
-    function __clone()
-    {
     }
 
     /**

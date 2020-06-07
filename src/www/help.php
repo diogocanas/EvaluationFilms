@@ -1,12 +1,18 @@
-<!--
-    Nom du projet  : Evaluation Films
-    Nom du fichier : help.php
-    Auteur         : Diogo Canas Almeida
-    Date           : 05 juin 2020
-    Description    : Page d'aide du site (manuel utilisateur)
-    Version        : 1.0
--->
 <?php
+
+/**
+ * Nom du projet  : Evaluation Films
+ * Nom du fichier : help.php
+ * Auteur         : Diogo Canas Almeida
+ * Date           : 05 juin 2020
+ * Description    : Page d'aide du site (manuel utilisateur)
+ * Version        : 1.0
+ */
+
+ /**
+  * @brief Cette page sert à aider l'utilisateur s'il ne sait pas comment utiliser le site.
+  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
 ?>
