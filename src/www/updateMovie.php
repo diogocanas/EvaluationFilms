@@ -85,7 +85,7 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                         if ($releaseYear >= 0) {
                             if ($duration >= 0) {
                                 if (MovieManager::update($movieId, $title, $description, $releaseYear, $duration, $_FILES['poster'], $links, CodeManager::getDirectorByName($director)->Id, CodeManager::getCompanyByName($company)->Id, CodeManager::getCountryByName($country)->Iso2, CodeManager::getGenderByLabel($gender)->Code, SessionManager::getLoggedUser()->Id)) {
-                                    if (CodeManager::deleteActorsFromMovie($movieId) && MovieManager::setActorsToMovie($actorsArray, $title)) {
+                                    if (MovieManager::deleteActorsFromMovie($movieId) && MovieManager::setActorsToMovie($actorsArray, $title)) {
                                         if ($_FILES['medias']['name'][0] != "") {
                                             if (!MovieManager::setMediasToMovie($_FILES['medias'], $title)) {
                                                 showError("L'ajout des médias a échoué.");
@@ -109,7 +109,7 @@ $actorsArray = array($firstActor, $secondActor, $thirdActor);
                         showError("Les trois acteurs doivent être différents.");
                     }
                 } else {
-                    showError("Vous donnez un nom de film qui est déjà utilisé.");
+                    showError("Ce titre est déjà utilisé par un autre film.");
                 }
             } else {
                 showError("Veuillez remplir tous les champs.");

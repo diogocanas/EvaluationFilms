@@ -58,6 +58,8 @@ $rateButton = filter_input(INPUT_POST, 'rate');
             } else {
                 showError("La note doit être entre 0 et 10.");
             }
+        } else {
+            showError("Remplir le champ de la note.");
         }
     }
     ?>

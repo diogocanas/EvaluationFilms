@@ -50,10 +50,14 @@ $updateButton = filter_input(INPUT_POST, 'update');
         }
         if (isset($updateButton)) {
             if (!empty($nickname)) {
-                if (UserManager::update($nickname, $name, $firstName, $avatar, SessionManager::getLoggedUser()->Email)) {
-                    showSuccess("Le profil a été modifié correctement.");
+                if (UserManager::exist($nickname, SessionManager::getLoggedUser()->Email)) {
+                    if (UserManager::update($nickname, $name, $firstName, $avatar, SessionManager::getLoggedUser()->Email)) {
+                        showSuccess("Le profil a été modifié correctement.");
+                    } else {
+                        showError("Le profil n'a pas été modifié.");
+                    }
                 } else {
-                    showError("Le profil n'a pas été modifié.");
+                    showError("Le surnom utilisé n'est pas disponible.");
                 }
             } else {
                 showError("Le surnom est obligatoire.");

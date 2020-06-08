@@ -67,19 +67,19 @@ $registerButton = filter_input(INPUT_POST, 'register');
     <form method="POST" action="register.php" enctype="multipart/form-data">
       <div class="form-group">
         <label for="nickname">Nickname</label>
-        <input type="text" class="form-control" id="nickname" name="nickname" value="<?= $nickname ?>" autofocus required>
+        <input type="text" class="form-control" id="nickname" name="nickname" value="<?= $nickname ?>" autofocus>
       </div>
       <div class="form-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?= $email ?>" required>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?= $email ?>">
       </div>
       <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" id="password" name="password" required>
+        <input type="password" class="form-control" id="password" name="password">
       </div>
       <div class="form-group">
         <label for="verifPassword">Vérification du mot de passe</label>
-        <input type="password" class="form-control" id="verifPassword" name="verifPassword" required>
+        <input type="password" class="form-control" id="verifPassword" name="verifPassword">
       </div>
       <button type="submit" class="btn btn-primary" name="register">S'inscrire</button>
     </form>

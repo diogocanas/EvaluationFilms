@@ -18,5 +18,5 @@ if (isset($_GET['nickname']) && isset($_GET['token'])) {
     UserManager::confirmAccount($nickname, $token);
 }
 
-header('Location: index.php');
+header('Location: login.php');
 ?>

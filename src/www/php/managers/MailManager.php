@@ -41,7 +41,7 @@ class MailManager
             // Le sujet du message
             $message->setSubject($subject);
             // Qui envoie le message 
-            $message->setFrom(array(EMAIL_USERNAME => 'Contact TPI'));
+            $message->setFrom(array(EMAIL_USERNAME => 'Contact Evaluation Films'));
             // A qui on envoie le message
             $message->setTo(array($setTo));
 

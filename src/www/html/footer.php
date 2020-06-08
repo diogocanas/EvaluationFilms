@@ -10,7 +10,7 @@
  */
 ?>
 <!-- Footer -->
-<footer class="fixed-bottom bg-light pt-3" style="position: relative">
+<footer class="fixed-bottom bg-light pt-3"  style="position: relative">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">Evaluation Films - Diogo CANAS ALMEIDA TPI 2020 ©
     </div>

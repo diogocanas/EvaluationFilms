@@ -361,7 +361,7 @@ class MovieManager
                 $sql .= ' WHERE hidden LIKE 0 AND';
                 if ($keyword != "") {
                     if ($firstCondition) {
-                        $sql .= ' OR title LIKE :title OR description LIKE :description)';
+                        $sql .= ' OR title LIKE :title OR description LIKE :description';
                     } else {
                         $sql .= ' title LIKE :title OR description LIKE :description';
                     }

@@ -19,5 +19,5 @@
 define('EMAIL_SERVER', "smtp.gmail.com");
 define('EMAIL_PORT', 465);
 define('EMAIL_TRANS', "ssl");
-define('EMAIL_USERNAME', "almeidatpi2020@gmail.com");
-define('EMAIL_PASSWORD', "ETPI2020MAILER");
+define('EMAIL_USERNAME', "evaluationfilms.contact@gmail.com");
+define('EMAIL_PASSWORD', "EvaluationFilmstpi2020");
