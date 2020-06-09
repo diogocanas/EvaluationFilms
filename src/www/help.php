@@ -9,9 +9,9 @@
  * Version        : 1.0
  */
 
- /**
-  * @brief Cette page sert à aider l'utilisateur s'il ne sait pas comment utiliser le site.
-  */
+/**
+ * @brief Cette page sert à aider l'utilisateur s'il ne sait pas comment utiliser le site.
+ */
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/inc/inc.all.php';
 session_start();
@@ -41,52 +41,50 @@ session_start();
             <a href="#createMovie" class="list-group-item list-group-item-action">Création d'un film</a>
             <a href="#updateMovie" class="list-group-item list-group-item-action">Modification d'un film</a>
             <a href="#profile" class="list-group-item list-group-item-action">Page de profil</a>
-            <a href="#userManagement" class="list-group-item list-group-item-action">Gestion des utilisateurs</a>
         </div>
         <h2 id="filter">Filtres</h2>
         <p>
-            Un formulaire est disponible en haut de <a href="index.php" target="_blank">la page d'accueil</a> et de <a href="allMovies.php" target="_blank">la page de films</a> afin de pouvoir filtrer les films. Lorsque l'on applique un filtre, il est appliqué sur tous les films du site et pas seulement ceux affichés (pour la page d'accueil). Il est également possible d'appliquer plusieurs filtres en même temps, un film sera affiché s'il rempli ne serait ce qu'une seule condition du filtre.
-        </p>
-        <p>Il est possible de filtrer les films par :
+            Sur <a href="index.php" target="_blank">la page d'accueil</a> et <a href="allMovies.php" target="_blank">la page des films</a>, un formulaire de filtrage est disponible. Grâce à ce formulaire, l'utilisateur peut afficher des films selon certaines conditions.</br>
+            Les filtres disponibles sont les suivants :
             <ul>
                 <li>Mots-clés</li>
                 <li>Genre</li>
                 <li>Année de sortie</li>
-                <li>Pays</li>
-                <li>Durée</li>
+                <li>Pays d'origine</li>
+                <li>Durée du film (en minutes)</li>
             </ul>
+            Pour filter les films, il faut remplir un ou plusieurs champs du formulaire et cliquer sur le bouton "Filtrer". Chaque film répondant à une des conditions sera affiché.
         </p>
         <h2 id="loginRegister">Connexion / Inscription</h2>
         <p>
-            Pour se connecter, il faut se rendre sur <a href="login.php" target="_blank">la page de connexion</a> et remplir le formulaire. Si l'utilisateur n'a pas encore de compte, il doit cliquer sur le petit lien en dessous du formulaire qui le redirigera vers <a href="register.php" target="_blank">la page d'inscription</a>.
-            </br>
-            Afin de s'inscrire, il faut utiliser un nickname unique et une adresse mail valide. Un mail sera envoyé à l'utilisateur afin de validé son compte. Sans cette validation, l'utilisateur ne pourra pas se connecter.
+            Pour se rendre sur la page d'inscription, il faut cliquer sur le lien présent en dessous du formulaire de <a href="login.php" target="_blank">la page de connexion</a>.</br>
+            Afin de pouvoir créer des films, il faut avoir un compte. Pour cela, il faut se rendre sur <a href="register.php" target="_blank">la page d'inscription</a>, remplir le formulaire et cliquer sur le bouton "S'inscrire". Tout les champs sont obligatoires, le nickname et l'adresse mail doivent être unique et cette dernière valide. Les mots de passes doivent être identiques.</br>
+            Une fois que l'utilisateur a créé un compte, un mail lui est envoyé à l'adresse renseignée afin de pouvoir vérifier cette dernière. Il doit cliquer sur le lien présent dans le mail avant de se connecter.
+        </p>
+        <p>
+            Pour se connecter, il faut se rendre sur la page de connexion, remplir le formulaire puis cliquer sur le bouton "Se connecter". Pour se déconnecter, il faut cliquer sur "Déconnexion" dans la barre de navigation.
         </p>
         <h2 id="rating">Notation d'un film</h2>
         <p>
             Lorsque l'on clique sur un film dans <a href="index.php" target="_blank">la page d'accueil</a> ou <a href="allMovies.php" target="_blank">la page de films</a>, on se retrouve sur la page de détails de film.
             </br>
-            Sur cette page, l'utilisateur connecté peut noter le film. En notant, il peut également laisser un commentaire. Dès que l'utilisateur valide le formulaire, la note moyenne est calculée et le commentaire est affiché correctement. Un utilisateur ne peut pas noter deux fois le même film. L'utilisateur qui a créé le film est notifié d'un mail pour l'informer que son film a été noté.
+            Sur cette page, un formulaire est disponible afin de noter le film. Il doit remplir le champ de la note et peut laisser un commentaire (facultatif) et cliquer sur "Noter le film" pour valider la note. La note n'est pas modifiable et est unique (un utilisateur ne peut pas noter deux fois le même film).
+            Le propriétaire sera notifié d'un mail à chaque fois qu'un utilisateur ajoutera une note à son film. Sur cette page, l'utilisateur peut également cliquer sur les liens sur la droite de son écran et lire les vidéos ou audios reliés au film.
         </p>
         <h2 id="createMovie">Création d'un film</h2>
         <p>
             Pour créer un film, il faut avoir un compte et être connecté. Dans le formulaire de <a href="createMovie.php" target="_blank">la page de création</a>, tous les champs sont obligatoires sauf les liens et les médias.
-            <br />
-            Le titre du film est unique, donc on ne peut pas créer deux films avec le même titre. Les 3 acteurs principaux doivent être différent et l'affiche du film est obligatoire.
+            Le titre du film est unique, donc on ne peut pas créer deux films avec le même titre. Les 3 acteurs principaux doivent être différent et l'affiche du film est obligatoire. Une fois rempli, le formulaire est validé en cliquant sur le bouton "Créer le film".
         </p>
         <h2 id="updateMovie">Modification d'un film</h2>
         <p>
             Pour modifier un film, il faut passer par <a href="myMovies.php" target="_blank">la page contenant tous les films créés par l'utilisateur connecté</a>. C'est en cliquant sur un des films affiché que l'utilisateur se rend sur la page de modification.
             <br />
-            Les champs obligatoires sont les mêmes que ceux de la page de création. L'utilisateur peut supprimer les médias précedemment ajouter grâce au petit bouton "Supprimer" à côté du média. Il peut cacher (ou montrer) le film afin qu'il soit visible (ou non) sur le site. Il peut également le supprimer.
+            Les champs obligatoires sont les mêmes que ceux de la page de création. Une fois le formulaire rempli, il faut cliquer sur le bouton "Modifier le film" pour confirmer les modifications. L'utilisateur peut supprimer les médias précedemment ajouter grâce au petit bouton "Supprimer" à côté du média. Il peut cacher (ou montrer) le film afin qu'il soit visible (ou non) sur le site en cliquant sur le bouton "Cacher le film" ou "Montrer le film". Il peut également le supprimer avec le bouton "Supprimer le film".
         </p>
         <h2 id="profile">Page de profil</h2>
         <p>
-            Sur <a href="profile.php" target="_blank">la page de profil</a>, l'utilisateur connecté peut modifier ses informations personnelles. Il peut uniquement modifier son nickname (obligatoire), son nom, son prénom et sa photo de profil.
-        </p>
-        <h2 id="userManagement">Gestion des utilisateurs</h2>
-        <p>
-            L'administrateur a accès à <a href="userManagement.php" target="_blank">la page de gestion des utilisateurs</a> afin de pouvoir en bloquer. La page présente un tableau où chaque ligne représente un utilisateur. En cliquant sur le lien "Voir le profil" (tout à droite d'une ligne), il peut voir le profil de l'utilisateur et le bloquer (ou le débloquer). L'utilisateur concerné reçoit un mail pour l'informer de son blocage.
+            Sur <a href="profile.php" target="_blank">la page de profil</a>, l'utilisateur connecté peut modifier ses informations personnelles. Il peut uniquement modifier son nickname (obligatoire), son nom, son prénom et sa photo de profil. Il doit cliquer sur "Modifier" pour sauvegarder ses modifications.
         </p>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . 'html/footer.php'; ?>
