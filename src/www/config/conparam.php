@@ -17,4 +17,3 @@
  define('DB_NAME', 'EvaluationFilms');
  define('DB_USER', 'EvaluationFilms');
  define('DB_PWD', 'EvaluationFilmsTPI2020');
-?>

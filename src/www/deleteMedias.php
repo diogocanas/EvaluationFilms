@@ -1,7 +1,7 @@
 <?php
 /**
  * Nom du projet  : Evaluation Films
- * Nom du fichier : logout.php
+ * Nom du fichier : deleteMedias.php
  * Auteur         : Diogo Canas Almeida
  * Date           : 29 mai 2020
  * Description    : Fichier de suppression de média
